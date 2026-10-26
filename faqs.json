@@ -1,0 +1,291 @@
+[
+  {
+    "answer": "Hello! 👋 Welcome to Mission Academy. Use the menu below to browse IGNOU and SGOU courses, or just ask me a question about admissions, notes, or assignments.",
+    "id": "greeting",
+    "keywords": [
+      "hi",
+      "hello",
+      "hey",
+      "namaste",
+      "assalam"
+    ]
+  },
+  {
+    "answer": "You're welcome! 😊 If you need anything else, just ask — or message us on WhatsApp at +91 86066 56245.",
+    "id": "thanks",
+    "keywords": [
+      "thank",
+      "thanks",
+      "nanni"
+    ]
+  },
+  {
+    "answer": "Don't worry, everything will be fine! 😊 Take a deep breath. Tell me what's worrying you — admissions, exams, assignments — and I'll do my best to help. If it's urgent, our team is on WhatsApp: +91 86066 56245",
+    "id": "worried",
+    "keywords": [
+      "worried",
+      "worry",
+      "tension",
+      "stressed",
+      "stress",
+      "scared",
+      "afraid",
+      "nervous",
+      "anxious"
+    ]
+  },
+  {
+    "answer": "It's okay — missing a date happens, and there's always a next step. ✅ IGNOU + SGOU July 2026 admissions closed on 13 Oct, but our January 2027 Priority List is open now. Join it and you'll be first to know when admissions open. Message us on WhatsApp: +91 86066 56245",
+    "id": "missed",
+    "keywords": [
+      "missed",
+      "miss",
+      "late",
+      "could not apply",
+      "couldn't apply",
+      "didn't apply",
+      "last date over"
+    ]
+  },
+  {
+    "answer": "I'm really sorry to hear that. 💛 One result never decides your future — there are always options: re-appear, switch courses, or plan the next session with us. Talk to our team and we'll guide you: +91 86066 56245",
+    "id": "failed",
+    "keywords": [
+      "failed",
+      "fail",
+      "fail aayi",
+      "supplementary",
+      "supply",
+      "back paper"
+    ]
+  },
+  {
+    "answer": "No problem at all! 😊 Tell me what you're confused about — admissions, a course, notes, or assignments — and I'll explain it simply. You can also message our team on WhatsApp: +91 86066 56245",
+    "id": "confused",
+    "keywords": [
+      "confused",
+      "confusion",
+      "don't understand",
+      "dont understand",
+      "not understanding",
+      "doubt",
+      "doubts"
+    ]
+  },
+  {
+    "answer": "I'm here to help! 😊 You can ask me about:\n\n📚 Admissions\n📖 Courses (IGNOU + SGOU)\n📝 Notes, assignments, question papers\n\nOr just browse the menu above. For anything else, WhatsApp us: +91 86066 56245",
+    "id": "help",
+    "keywords": [
+      "help",
+      "help me",
+      "can you help",
+      "need help",
+      "support"
+    ]
+  },
+  {
+    "answer": "📚 Admissions update:\n\nIGNOU + SGOU July 2026 admissions closed on 13 October 2026.\n\n🎯 Our January 2027 Priority List is now open — members get the first alert when admissions open, plus the document checklist in advance.\n\nTo join, message us on WhatsApp: +91 86066 56245",
+    "id": "admission",
+    "keywords": [
+      "admission",
+      "admissions",
+      "apply",
+      "join",
+      "enroll",
+      "new admission",
+      "january",
+      "priority list"
+    ]
+  },
+  {
+    "answer": "Mission Academy offers:\n\n✅ IGNOU + SGOU admission & follow-up\n✅ Notes and study material (all courses)\n✅ Assignment services (all courses)\n✅ Projects, dissertations, field-work reports, practicum documentation\n✅ Classes — Malayalam / bilingual, plus premium English notes\n\nMessage us on WhatsApp: +91 86066 56245",
+    "id": "services",
+    "keywords": [
+      "service",
+      "services",
+      "what do you do",
+      "what you offer",
+      "help"
+    ]
+  },
+  {
+    "answer": "📝 We provide notes and study material for all IGNOU and SGOU courses — diploma, certificate, UG and PG.\n\nOur premium exam-oriented notes are specially prepared for English courses (MA/BA English, diplomas, certificates).\n\nBrowse your course in the menu above, or message us on WhatsApp: +91 86066 56245",
+    "id": "notes",
+    "keywords": [
+      "notes",
+      "note",
+      "study material",
+      "study materials",
+      "material"
+    ]
+  },
+  {
+    "answer": "📋 We provide assignment services for ALL IGNOU and SGOU courses — diploma, certificate, UG and PG — plus projects, dissertations, field-work reports and practicum documentation.\n\nTo place an order, message us on WhatsApp: +91 86066 56245",
+    "id": "assignment",
+    "keywords": [
+      "assignment",
+      "assignments",
+      "tma"
+    ]
+  },
+  {
+    "answer": "📖 MA English (MEG/MAEG) — IGNOU:\n\nWe offer admission support, Malayalam / bilingual classes, premium exam-oriented notes, assignments and question papers for MA English.\n\nBrowse MEG/MAEG in the menu above, or message us on WhatsApp: +91 86066 56245",
+    "id": "ma-english",
+    "keywords": [
+      "ma english",
+      "meg",
+      "maeg",
+      "m.a. english",
+      "master english"
+    ]
+  },
+  {
+    "answer": "📖 BA English — IGNOU / SGOU:\n\nWe offer admission support, classes, premium exam-oriented notes, assignments and question papers for BA English.\n\nBrowse BA English in the menu above, or message us on WhatsApp: +91 86066 56245",
+    "id": "ba-english",
+    "keywords": [
+      "ba english",
+      "b.a. english",
+      "bachelor english"
+    ]
+  },
+  {
+    "answer": "🎓 We offer English NET coaching (UGC NET) with classes and study material.\n\nFor details and batches, message us on WhatsApp: +91 86066 56245",
+    "id": "net",
+    "keywords": [
+      "net",
+      "ugc",
+      "nta",
+      "jrf"
+    ]
+  },
+  {
+    "answer": "📘 We also offer: B.Ed / M.Ed English, TESOL / TEFL, IELTS / OET, school subjects, KTET / CTET / SET, and spoken English courses.\n\nFor details, message us on WhatsApp: +91 86066 56245",
+    "id": "english-courses",
+    "keywords": [
+      "ielts",
+      "oet",
+      "spoken english",
+      "tesol",
+      "tefl",
+      "ktet",
+      "ctet",
+      "set",
+      "b.ed",
+      "bed",
+      "m.ed",
+      "med"
+    ]
+  },
+  {
+    "answer": "📝 IGNOU December 2026 Term-End Exam: assignments are due 31 October 2026.\n\nFor exam-form help, hall tickets, or results, message us on WhatsApp: +91 86066 56245",
+    "id": "tee",
+    "keywords": [
+      "exam",
+      "tee",
+      "hall ticket",
+      "date sheet",
+      "result"
+    ]
+  },
+  {
+    "answer": "📞 Contact Mission Academy:\n\nWhatsApp: +91 86066 56245\nEmail: Missionacademy52@gmail.com\nPlace: Oomanoor, Edavannappara 673645",
+    "id": "contact",
+    "keywords": [
+      "contact",
+      "number",
+      "phone",
+      "whatsapp",
+      "email",
+      "address",
+      "location",
+      "call"
+    ]
+  },
+  {
+    "answer": "💰 Fees and offers depend on the course and service. Please message us on WhatsApp at +91 86066 56245 and our team will share the exact details.",
+    "id": "fees",
+    "keywords": [
+      "fee",
+      "fees",
+      "price",
+      "cost",
+      "charge",
+      "payment",
+      "discount",
+      "offer"
+    ]
+  },
+  {
+    "answer": "I'm doing great, thank you for asking! 😊 How can I help you today? You can ask me about admissions, courses, notes, or assignments — or just browse the menu.",
+    "id": "how-are-you",
+    "keywords": [
+      "how are you",
+      "how r u",
+      "how are u",
+      "how is it going",
+      "whats up",
+      "what's up",
+      "how do you do"
+    ]
+  },
+  {
+    "answer": "Good morning! ☀️ Welcome to Mission Academy. How can I help you today?",
+    "id": "good-morning",
+    "keywords": [
+      "good morning",
+      "morning"
+    ]
+  },
+  {
+    "answer": "Good afternoon! 😊 How can I help you today?",
+    "id": "good-afternoon",
+    "keywords": [
+      "good afternoon",
+      "afternoon"
+    ]
+  },
+  {
+    "answer": "Good evening! 🌙 How can I help you today?",
+    "id": "good-evening",
+    "keywords": [
+      "good evening",
+      "evening"
+    ]
+  },
+  {
+    "answer": "Got it! 👍 Let me know if you need anything else — I'm here to help.",
+    "id": "ok",
+    "keywords": [
+      "ok",
+      "okay",
+      "k",
+      "👍",
+      "👌",
+      "fine",
+      "good"
+    ]
+  },
+  {
+    "answer": "Bye! 👋 Take care, and come back anytime you need help with admissions, notes, or assignments. Mission Academy is always here for you.",
+    "id": "bye",
+    "keywords": [
+      "bye",
+      "goodbye",
+      "see you",
+      "good night"
+    ]
+  },
+  {
+    "answer": "I'm Mission Academy's assistant bot 🤖 — here to help you with admissions, courses, notes, assignments and more. I'm not a human, but our real team is just a WhatsApp message away: +91 86066 56245",
+    "id": "who-are-you",
+    "keywords": [
+      "who are you",
+      "your name",
+      "are you human",
+      "are you real",
+      "are you a robot",
+      "are you bot",
+      "human"
+    ]
+  }
+]

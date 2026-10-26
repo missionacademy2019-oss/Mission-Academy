@@ -1,0 +1,2 @@
+# Mission Academy Telegram bot uses only the Python standard library.
+# This file exists so the host detects a Python app.
