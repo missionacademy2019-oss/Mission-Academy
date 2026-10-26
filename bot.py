@@ -136,6 +136,8 @@ def main() -> int:
         return 3
     me = call("getMe", {})
     print("bot:", me.get("result", {}).get("username"), flush=True)
+    # handlers need the bot's own id to ignore its own group joins
+    CTX["bot_id"] = me.get("result", {}).get("id")
     offset = 0
     while True:
         try:

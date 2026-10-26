@@ -1,0 +1,38 @@
+# Force-join groups for @ignouassignmentsofficial
+# Requested by Mohammed 26 Oct 2026 ~22:54 IST.
+# The old combined bot (@Shafeeque_rayaroth_bot) must act as forcer in these
+# groups: anyone JOINING one of them must join @ignouassignmentsofficial.
+# Enforcement = new joiners only (existing members are NOT retroactively forced).
+# The bot must be admin (with ban/restrict permission) in each group, and admin
+# of @ignouassignmentsofficial (already confirmed) to check membership.
+# NOTE: restriction only works in groups/supergroups. If any entry below turns
+# out to be a channel (not a group), enforcement cannot apply there — verify
+# each entry's type before enabling it.
+
+# General groups (5)
+@ignoumcomkerala25
+@IGNOUSTUDYCENTRESRC
+@ignou_kerala_chapter
+@ignoudiscussionchannel
+@ignounotificationkerala
+
+# MEG subject groups (19)
+@meg01new
+@meg02new
+@meg03new
+@meg04new
+@meg05new
+@meg06newcommunity
+@meg07new
+@meg08new
+@meg09newcommunity
+@meg10newcommunity
+@ignou_meg_11
+@ignou_meg_12
+@ignou_meg_13
+@ignou_meg_14
+@ignou_meg_15
+@ignou_meg_16
+@meg17newcommunitty
+@meg18newcommunity
+@meg19newcommunity
