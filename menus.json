@@ -21493,26 +21493,52 @@
   ]
  },
  "ignou-pg-maeg-yr1": {
-  "text": "MAEG — Master of Arts (English) — Year 1\n\nChoose what you need:",
+  "text": "MAEG — Master of Arts (English) — Year 1\n\nMEG-05 is compulsory; choose any 4 of the other 8.\n\nChoose a subject:",
   "buttons": [
    [
     {
-     "text": "Notes",
-     "to": "ignou-pg-maeg-yr1-notes"
+     "text": "MEG-05 · Literary Theory and Criticism ⭐",
+     "to": "ignou-pg-maeg-yr1-meg05"
     },
     {
-     "text": "Assignments",
-     "to": "ignou-pg-maeg-yr1-assignments"
+     "text": "MEG-01 · British Poetry",
+     "to": "ignou-pg-maeg-yr1-meg01"
     }
    ],
    [
     {
-     "text": "Question Papers",
-     "to": "ignou-pg-maeg-yr1-papers"
+     "text": "MEG-02 · British Drama",
+     "to": "ignou-pg-maeg-yr1-meg02"
     },
     {
-     "text": "Others",
-     "to": "ignou-pg-maeg-yr1-others"
+     "text": "MEG-03 · British Novel",
+     "to": "ignou-pg-maeg-yr1-meg03"
+    }
+   ],
+   [
+    {
+     "text": "MEG-06 · American Literature",
+     "to": "ignou-pg-maeg-yr1-meg06"
+    },
+    {
+     "text": "MEG-07 · Indian English Literature",
+     "to": "ignou-pg-maeg-yr1-meg07"
+    }
+   ],
+   [
+    {
+     "text": "MEG-08 · New Literatures in English",
+     "to": "ignou-pg-maeg-yr1-meg08"
+    },
+    {
+     "text": "MEG-09 · Australian Literature",
+     "to": "ignou-pg-maeg-yr1-meg09"
+    }
+   ],
+   [
+    {
+     "text": "MEG-12 · A Survey Course in 20th Century Canadian Literature",
+     "to": "ignou-pg-maeg-yr1-meg12"
     }
    ],
    [
@@ -21568,26 +21594,56 @@
   ]
  },
  "ignou-pg-maeg-yr2": {
-  "text": "MAEG — Master of Arts (English) — Year 2\n\nChoose what you need:",
+  "text": "MAEG — Master of Arts (English) — Year 2\n\nChoose any 5 of these 10.\n\nChoose a subject:",
   "buttons": [
    [
     {
-     "text": "Notes",
-     "to": "ignou-pg-maeg-yr2-notes"
+     "text": "MEG-04 · Aspects of Language",
+     "to": "ignou-pg-maeg-yr2-meg04"
     },
     {
-     "text": "Assignments",
-     "to": "ignou-pg-maeg-yr2-assignments"
+     "text": "MEG-10 · English Studies in India",
+     "to": "ignou-pg-maeg-yr2-meg10"
     }
    ],
    [
     {
-     "text": "Question Papers",
-     "to": "ignou-pg-maeg-yr2-papers"
+     "text": "MEG-11 · American Novel",
+     "to": "ignou-pg-maeg-yr2-meg11"
     },
     {
-     "text": "Others",
-     "to": "ignou-pg-maeg-yr2-others"
+     "text": "MEG-13 · Writing from the Margins",
+     "to": "ignou-pg-maeg-yr2-meg13"
+    }
+   ],
+   [
+    {
+     "text": "MEG-14 · Contemporary Indian Literature in English Translation",
+     "to": "ignou-pg-maeg-yr2-meg14"
+    },
+    {
+     "text": "MEG-15 · Comparative Literature",
+     "to": "ignou-pg-maeg-yr2-meg15"
+    }
+   ],
+   [
+    {
+     "text": "MEG-16 · Indian Folk Literature",
+     "to": "ignou-pg-maeg-yr2-meg16"
+    },
+    {
+     "text": "MEG-17 · American Drama",
+     "to": "ignou-pg-maeg-yr2-meg17"
+    }
+   ],
+   [
+    {
+     "text": "MEG-18 · American Poetry",
+     "to": "ignou-pg-maeg-yr2-meg18"
+    },
+    {
+     "text": "MEG-19 · Australian Novel",
+     "to": "ignou-pg-maeg-yr2-meg19"
     }
    ],
    [
@@ -51542,6 +51598,1431 @@
     {
      "text": "⬅ Back",
      "to": "home"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr1-meg05": {
+  "text": "MAEG — Year 1 — MEG-05 · Literary Theory and Criticism\n\nCompulsory paper.\n\nChoose what you need:",
+  "buttons": [
+   [
+    {
+     "text": "Notes",
+     "to": "ignou-pg-maeg-yr1-meg05-notes"
+    },
+    {
+     "text": "Assignments",
+     "to": "ignou-pg-maeg-yr1-meg05-assignments"
+    }
+   ],
+   [
+    {
+     "text": "Question Papers",
+     "to": "ignou-pg-maeg-yr1-meg05-papers"
+    },
+    {
+     "text": "Others",
+     "to": "ignou-pg-maeg-yr1-meg05-others"
+    }
+   ],
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr1"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr1-meg05-notes": {
+  "text": "MAEG — Year 1 — MEG-05 · Literary Theory and Criticism — Notes\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr1-meg05"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr1-meg05-assignments": {
+  "text": "MAEG — Year 1 — MEG-05 · Literary Theory and Criticism — Assignments\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr1-meg05"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr1-meg05-papers": {
+  "text": "MAEG — Year 1 — MEG-05 · Literary Theory and Criticism — Question Papers\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr1-meg05"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr1-meg05-others": {
+  "text": "MAEG — Year 1 — MEG-05 · Literary Theory and Criticism — Others\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr1-meg05"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr1-meg01": {
+  "text": "MAEG — Year 1 — MEG-01 · British Poetry\n\nElective paper.\n\nChoose what you need:",
+  "buttons": [
+   [
+    {
+     "text": "Notes",
+     "to": "ignou-pg-maeg-yr1-meg01-notes"
+    },
+    {
+     "text": "Assignments",
+     "to": "ignou-pg-maeg-yr1-meg01-assignments"
+    }
+   ],
+   [
+    {
+     "text": "Question Papers",
+     "to": "ignou-pg-maeg-yr1-meg01-papers"
+    },
+    {
+     "text": "Others",
+     "to": "ignou-pg-maeg-yr1-meg01-others"
+    }
+   ],
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr1"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr1-meg01-notes": {
+  "text": "MAEG — Year 1 — MEG-01 · British Poetry — Notes\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr1-meg01"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr1-meg01-assignments": {
+  "text": "MAEG — Year 1 — MEG-01 · British Poetry — Assignments\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr1-meg01"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr1-meg01-papers": {
+  "text": "MAEG — Year 1 — MEG-01 · British Poetry — Question Papers\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr1-meg01"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr1-meg01-others": {
+  "text": "MAEG — Year 1 — MEG-01 · British Poetry — Others\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr1-meg01"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr1-meg02": {
+  "text": "MAEG — Year 1 — MEG-02 · British Drama\n\nElective paper.\n\nChoose what you need:",
+  "buttons": [
+   [
+    {
+     "text": "Notes",
+     "to": "ignou-pg-maeg-yr1-meg02-notes"
+    },
+    {
+     "text": "Assignments",
+     "to": "ignou-pg-maeg-yr1-meg02-assignments"
+    }
+   ],
+   [
+    {
+     "text": "Question Papers",
+     "to": "ignou-pg-maeg-yr1-meg02-papers"
+    },
+    {
+     "text": "Others",
+     "to": "ignou-pg-maeg-yr1-meg02-others"
+    }
+   ],
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr1"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr1-meg02-notes": {
+  "text": "MAEG — Year 1 — MEG-02 · British Drama — Notes\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr1-meg02"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr1-meg02-assignments": {
+  "text": "MAEG — Year 1 — MEG-02 · British Drama — Assignments\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr1-meg02"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr1-meg02-papers": {
+  "text": "MAEG — Year 1 — MEG-02 · British Drama — Question Papers\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr1-meg02"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr1-meg02-others": {
+  "text": "MAEG — Year 1 — MEG-02 · British Drama — Others\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr1-meg02"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr1-meg03": {
+  "text": "MAEG — Year 1 — MEG-03 · British Novel\n\nElective paper.\n\nChoose what you need:",
+  "buttons": [
+   [
+    {
+     "text": "Notes",
+     "to": "ignou-pg-maeg-yr1-meg03-notes"
+    },
+    {
+     "text": "Assignments",
+     "to": "ignou-pg-maeg-yr1-meg03-assignments"
+    }
+   ],
+   [
+    {
+     "text": "Question Papers",
+     "to": "ignou-pg-maeg-yr1-meg03-papers"
+    },
+    {
+     "text": "Others",
+     "to": "ignou-pg-maeg-yr1-meg03-others"
+    }
+   ],
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr1"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr1-meg03-notes": {
+  "text": "MAEG — Year 1 — MEG-03 · British Novel — Notes\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr1-meg03"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr1-meg03-assignments": {
+  "text": "MAEG — Year 1 — MEG-03 · British Novel — Assignments\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr1-meg03"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr1-meg03-papers": {
+  "text": "MAEG — Year 1 — MEG-03 · British Novel — Question Papers\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr1-meg03"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr1-meg03-others": {
+  "text": "MAEG — Year 1 — MEG-03 · British Novel — Others\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr1-meg03"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr1-meg06": {
+  "text": "MAEG — Year 1 — MEG-06 · American Literature\n\nElective paper.\n\nChoose what you need:",
+  "buttons": [
+   [
+    {
+     "text": "Notes",
+     "to": "ignou-pg-maeg-yr1-meg06-notes"
+    },
+    {
+     "text": "Assignments",
+     "to": "ignou-pg-maeg-yr1-meg06-assignments"
+    }
+   ],
+   [
+    {
+     "text": "Question Papers",
+     "to": "ignou-pg-maeg-yr1-meg06-papers"
+    },
+    {
+     "text": "Others",
+     "to": "ignou-pg-maeg-yr1-meg06-others"
+    }
+   ],
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr1"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr1-meg06-notes": {
+  "text": "MAEG — Year 1 — MEG-06 · American Literature — Notes\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr1-meg06"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr1-meg06-assignments": {
+  "text": "MAEG — Year 1 — MEG-06 · American Literature — Assignments\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr1-meg06"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr1-meg06-papers": {
+  "text": "MAEG — Year 1 — MEG-06 · American Literature — Question Papers\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr1-meg06"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr1-meg06-others": {
+  "text": "MAEG — Year 1 — MEG-06 · American Literature — Others\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr1-meg06"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr1-meg07": {
+  "text": "MAEG — Year 1 — MEG-07 · Indian English Literature\n\nElective paper.\n\nChoose what you need:",
+  "buttons": [
+   [
+    {
+     "text": "Notes",
+     "to": "ignou-pg-maeg-yr1-meg07-notes"
+    },
+    {
+     "text": "Assignments",
+     "to": "ignou-pg-maeg-yr1-meg07-assignments"
+    }
+   ],
+   [
+    {
+     "text": "Question Papers",
+     "to": "ignou-pg-maeg-yr1-meg07-papers"
+    },
+    {
+     "text": "Others",
+     "to": "ignou-pg-maeg-yr1-meg07-others"
+    }
+   ],
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr1"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr1-meg07-notes": {
+  "text": "MAEG — Year 1 — MEG-07 · Indian English Literature — Notes\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr1-meg07"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr1-meg07-assignments": {
+  "text": "MAEG — Year 1 — MEG-07 · Indian English Literature — Assignments\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr1-meg07"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr1-meg07-papers": {
+  "text": "MAEG — Year 1 — MEG-07 · Indian English Literature — Question Papers\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr1-meg07"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr1-meg07-others": {
+  "text": "MAEG — Year 1 — MEG-07 · Indian English Literature — Others\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr1-meg07"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr1-meg08": {
+  "text": "MAEG — Year 1 — MEG-08 · New Literatures in English\n\nElective paper.\n\nChoose what you need:",
+  "buttons": [
+   [
+    {
+     "text": "Notes",
+     "to": "ignou-pg-maeg-yr1-meg08-notes"
+    },
+    {
+     "text": "Assignments",
+     "to": "ignou-pg-maeg-yr1-meg08-assignments"
+    }
+   ],
+   [
+    {
+     "text": "Question Papers",
+     "to": "ignou-pg-maeg-yr1-meg08-papers"
+    },
+    {
+     "text": "Others",
+     "to": "ignou-pg-maeg-yr1-meg08-others"
+    }
+   ],
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr1"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr1-meg08-notes": {
+  "text": "MAEG — Year 1 — MEG-08 · New Literatures in English — Notes\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr1-meg08"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr1-meg08-assignments": {
+  "text": "MAEG — Year 1 — MEG-08 · New Literatures in English — Assignments\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr1-meg08"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr1-meg08-papers": {
+  "text": "MAEG — Year 1 — MEG-08 · New Literatures in English — Question Papers\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr1-meg08"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr1-meg08-others": {
+  "text": "MAEG — Year 1 — MEG-08 · New Literatures in English — Others\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr1-meg08"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr1-meg09": {
+  "text": "MAEG — Year 1 — MEG-09 · Australian Literature\n\nElective paper.\n\nChoose what you need:",
+  "buttons": [
+   [
+    {
+     "text": "Notes",
+     "to": "ignou-pg-maeg-yr1-meg09-notes"
+    },
+    {
+     "text": "Assignments",
+     "to": "ignou-pg-maeg-yr1-meg09-assignments"
+    }
+   ],
+   [
+    {
+     "text": "Question Papers",
+     "to": "ignou-pg-maeg-yr1-meg09-papers"
+    },
+    {
+     "text": "Others",
+     "to": "ignou-pg-maeg-yr1-meg09-others"
+    }
+   ],
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr1"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr1-meg09-notes": {
+  "text": "MAEG — Year 1 — MEG-09 · Australian Literature — Notes\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr1-meg09"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr1-meg09-assignments": {
+  "text": "MAEG — Year 1 — MEG-09 · Australian Literature — Assignments\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr1-meg09"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr1-meg09-papers": {
+  "text": "MAEG — Year 1 — MEG-09 · Australian Literature — Question Papers\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr1-meg09"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr1-meg09-others": {
+  "text": "MAEG — Year 1 — MEG-09 · Australian Literature — Others\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr1-meg09"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr1-meg12": {
+  "text": "MAEG — Year 1 — MEG-12 · A Survey Course in 20th Century Canadian Literature\n\nElective paper.\n\nChoose what you need:",
+  "buttons": [
+   [
+    {
+     "text": "Notes",
+     "to": "ignou-pg-maeg-yr1-meg12-notes"
+    },
+    {
+     "text": "Assignments",
+     "to": "ignou-pg-maeg-yr1-meg12-assignments"
+    }
+   ],
+   [
+    {
+     "text": "Question Papers",
+     "to": "ignou-pg-maeg-yr1-meg12-papers"
+    },
+    {
+     "text": "Others",
+     "to": "ignou-pg-maeg-yr1-meg12-others"
+    }
+   ],
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr1"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr1-meg12-notes": {
+  "text": "MAEG — Year 1 — MEG-12 · A Survey Course in 20th Century Canadian Literature — Notes\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr1-meg12"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr1-meg12-assignments": {
+  "text": "MAEG — Year 1 — MEG-12 · A Survey Course in 20th Century Canadian Literature — Assignments\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr1-meg12"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr1-meg12-papers": {
+  "text": "MAEG — Year 1 — MEG-12 · A Survey Course in 20th Century Canadian Literature — Question Papers\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr1-meg12"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr1-meg12-others": {
+  "text": "MAEG — Year 1 — MEG-12 · A Survey Course in 20th Century Canadian Literature — Others\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr1-meg12"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr2-meg04": {
+  "text": "MAEG — Year 2 — MEG-04 · Aspects of Language\n\nElective paper.\n\nChoose what you need:",
+  "buttons": [
+   [
+    {
+     "text": "Notes",
+     "to": "ignou-pg-maeg-yr2-meg04-notes"
+    },
+    {
+     "text": "Assignments",
+     "to": "ignou-pg-maeg-yr2-meg04-assignments"
+    }
+   ],
+   [
+    {
+     "text": "Question Papers",
+     "to": "ignou-pg-maeg-yr2-meg04-papers"
+    },
+    {
+     "text": "Others",
+     "to": "ignou-pg-maeg-yr2-meg04-others"
+    }
+   ],
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr2"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr2-meg04-notes": {
+  "text": "MAEG — Year 2 — MEG-04 · Aspects of Language — Notes\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr2-meg04"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr2-meg04-assignments": {
+  "text": "MAEG — Year 2 — MEG-04 · Aspects of Language — Assignments\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr2-meg04"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr2-meg04-papers": {
+  "text": "MAEG — Year 2 — MEG-04 · Aspects of Language — Question Papers\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr2-meg04"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr2-meg04-others": {
+  "text": "MAEG — Year 2 — MEG-04 · Aspects of Language — Others\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr2-meg04"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr2-meg10": {
+  "text": "MAEG — Year 2 — MEG-10 · English Studies in India\n\nElective paper.\n\nChoose what you need:",
+  "buttons": [
+   [
+    {
+     "text": "Notes",
+     "to": "ignou-pg-maeg-yr2-meg10-notes"
+    },
+    {
+     "text": "Assignments",
+     "to": "ignou-pg-maeg-yr2-meg10-assignments"
+    }
+   ],
+   [
+    {
+     "text": "Question Papers",
+     "to": "ignou-pg-maeg-yr2-meg10-papers"
+    },
+    {
+     "text": "Others",
+     "to": "ignou-pg-maeg-yr2-meg10-others"
+    }
+   ],
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr2"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr2-meg10-notes": {
+  "text": "MAEG — Year 2 — MEG-10 · English Studies in India — Notes\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr2-meg10"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr2-meg10-assignments": {
+  "text": "MAEG — Year 2 — MEG-10 · English Studies in India — Assignments\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr2-meg10"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr2-meg10-papers": {
+  "text": "MAEG — Year 2 — MEG-10 · English Studies in India — Question Papers\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr2-meg10"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr2-meg10-others": {
+  "text": "MAEG — Year 2 — MEG-10 · English Studies in India — Others\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr2-meg10"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr2-meg11": {
+  "text": "MAEG — Year 2 — MEG-11 · American Novel\n\nElective paper.\n\nChoose what you need:",
+  "buttons": [
+   [
+    {
+     "text": "Notes",
+     "to": "ignou-pg-maeg-yr2-meg11-notes"
+    },
+    {
+     "text": "Assignments",
+     "to": "ignou-pg-maeg-yr2-meg11-assignments"
+    }
+   ],
+   [
+    {
+     "text": "Question Papers",
+     "to": "ignou-pg-maeg-yr2-meg11-papers"
+    },
+    {
+     "text": "Others",
+     "to": "ignou-pg-maeg-yr2-meg11-others"
+    }
+   ],
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr2"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr2-meg11-notes": {
+  "text": "MAEG — Year 2 — MEG-11 · American Novel — Notes\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr2-meg11"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr2-meg11-assignments": {
+  "text": "MAEG — Year 2 — MEG-11 · American Novel — Assignments\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr2-meg11"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr2-meg11-papers": {
+  "text": "MAEG — Year 2 — MEG-11 · American Novel — Question Papers\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr2-meg11"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr2-meg11-others": {
+  "text": "MAEG — Year 2 — MEG-11 · American Novel — Others\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr2-meg11"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr2-meg13": {
+  "text": "MAEG — Year 2 — MEG-13 · Writing from the Margins\n\nElective paper.\n\nChoose what you need:",
+  "buttons": [
+   [
+    {
+     "text": "Notes",
+     "to": "ignou-pg-maeg-yr2-meg13-notes"
+    },
+    {
+     "text": "Assignments",
+     "to": "ignou-pg-maeg-yr2-meg13-assignments"
+    }
+   ],
+   [
+    {
+     "text": "Question Papers",
+     "to": "ignou-pg-maeg-yr2-meg13-papers"
+    },
+    {
+     "text": "Others",
+     "to": "ignou-pg-maeg-yr2-meg13-others"
+    }
+   ],
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr2"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr2-meg13-notes": {
+  "text": "MAEG — Year 2 — MEG-13 · Writing from the Margins — Notes\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr2-meg13"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr2-meg13-assignments": {
+  "text": "MAEG — Year 2 — MEG-13 · Writing from the Margins — Assignments\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr2-meg13"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr2-meg13-papers": {
+  "text": "MAEG — Year 2 — MEG-13 · Writing from the Margins — Question Papers\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr2-meg13"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr2-meg13-others": {
+  "text": "MAEG — Year 2 — MEG-13 · Writing from the Margins — Others\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr2-meg13"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr2-meg14": {
+  "text": "MAEG — Year 2 — MEG-14 · Contemporary Indian Literature in English Translation\n\nElective paper.\n\nChoose what you need:",
+  "buttons": [
+   [
+    {
+     "text": "Notes",
+     "to": "ignou-pg-maeg-yr2-meg14-notes"
+    },
+    {
+     "text": "Assignments",
+     "to": "ignou-pg-maeg-yr2-meg14-assignments"
+    }
+   ],
+   [
+    {
+     "text": "Question Papers",
+     "to": "ignou-pg-maeg-yr2-meg14-papers"
+    },
+    {
+     "text": "Others",
+     "to": "ignou-pg-maeg-yr2-meg14-others"
+    }
+   ],
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr2"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr2-meg14-notes": {
+  "text": "MAEG — Year 2 — MEG-14 · Contemporary Indian Literature in English Translation — Notes\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr2-meg14"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr2-meg14-assignments": {
+  "text": "MAEG — Year 2 — MEG-14 · Contemporary Indian Literature in English Translation — Assignments\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr2-meg14"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr2-meg14-papers": {
+  "text": "MAEG — Year 2 — MEG-14 · Contemporary Indian Literature in English Translation — Question Papers\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr2-meg14"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr2-meg14-others": {
+  "text": "MAEG — Year 2 — MEG-14 · Contemporary Indian Literature in English Translation — Others\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr2-meg14"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr2-meg15": {
+  "text": "MAEG — Year 2 — MEG-15 · Comparative Literature\n\nElective paper.\n\nChoose what you need:",
+  "buttons": [
+   [
+    {
+     "text": "Notes",
+     "to": "ignou-pg-maeg-yr2-meg15-notes"
+    },
+    {
+     "text": "Assignments",
+     "to": "ignou-pg-maeg-yr2-meg15-assignments"
+    }
+   ],
+   [
+    {
+     "text": "Question Papers",
+     "to": "ignou-pg-maeg-yr2-meg15-papers"
+    },
+    {
+     "text": "Others",
+     "to": "ignou-pg-maeg-yr2-meg15-others"
+    }
+   ],
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr2"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr2-meg15-notes": {
+  "text": "MAEG — Year 2 — MEG-15 · Comparative Literature — Notes\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr2-meg15"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr2-meg15-assignments": {
+  "text": "MAEG — Year 2 — MEG-15 · Comparative Literature — Assignments\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr2-meg15"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr2-meg15-papers": {
+  "text": "MAEG — Year 2 — MEG-15 · Comparative Literature — Question Papers\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr2-meg15"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr2-meg15-others": {
+  "text": "MAEG — Year 2 — MEG-15 · Comparative Literature — Others\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr2-meg15"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr2-meg16": {
+  "text": "MAEG — Year 2 — MEG-16 · Indian Folk Literature\n\nElective paper.\n\nChoose what you need:",
+  "buttons": [
+   [
+    {
+     "text": "Notes",
+     "to": "ignou-pg-maeg-yr2-meg16-notes"
+    },
+    {
+     "text": "Assignments",
+     "to": "ignou-pg-maeg-yr2-meg16-assignments"
+    }
+   ],
+   [
+    {
+     "text": "Question Papers",
+     "to": "ignou-pg-maeg-yr2-meg16-papers"
+    },
+    {
+     "text": "Others",
+     "to": "ignou-pg-maeg-yr2-meg16-others"
+    }
+   ],
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr2"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr2-meg16-notes": {
+  "text": "MAEG — Year 2 — MEG-16 · Indian Folk Literature — Notes\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr2-meg16"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr2-meg16-assignments": {
+  "text": "MAEG — Year 2 — MEG-16 · Indian Folk Literature — Assignments\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr2-meg16"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr2-meg16-papers": {
+  "text": "MAEG — Year 2 — MEG-16 · Indian Folk Literature — Question Papers\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr2-meg16"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr2-meg16-others": {
+  "text": "MAEG — Year 2 — MEG-16 · Indian Folk Literature — Others\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr2-meg16"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr2-meg17": {
+  "text": "MAEG — Year 2 — MEG-17 · American Drama\n\nElective paper.\n\nChoose what you need:",
+  "buttons": [
+   [
+    {
+     "text": "Notes",
+     "to": "ignou-pg-maeg-yr2-meg17-notes"
+    },
+    {
+     "text": "Assignments",
+     "to": "ignou-pg-maeg-yr2-meg17-assignments"
+    }
+   ],
+   [
+    {
+     "text": "Question Papers",
+     "to": "ignou-pg-maeg-yr2-meg17-papers"
+    },
+    {
+     "text": "Others",
+     "to": "ignou-pg-maeg-yr2-meg17-others"
+    }
+   ],
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr2"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr2-meg17-notes": {
+  "text": "MAEG — Year 2 — MEG-17 · American Drama — Notes\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr2-meg17"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr2-meg17-assignments": {
+  "text": "MAEG — Year 2 — MEG-17 · American Drama — Assignments\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr2-meg17"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr2-meg17-papers": {
+  "text": "MAEG — Year 2 — MEG-17 · American Drama — Question Papers\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr2-meg17"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr2-meg17-others": {
+  "text": "MAEG — Year 2 — MEG-17 · American Drama — Others\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr2-meg17"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr2-meg18": {
+  "text": "MAEG — Year 2 — MEG-18 · American Poetry\n\nElective paper.\n\nChoose what you need:",
+  "buttons": [
+   [
+    {
+     "text": "Notes",
+     "to": "ignou-pg-maeg-yr2-meg18-notes"
+    },
+    {
+     "text": "Assignments",
+     "to": "ignou-pg-maeg-yr2-meg18-assignments"
+    }
+   ],
+   [
+    {
+     "text": "Question Papers",
+     "to": "ignou-pg-maeg-yr2-meg18-papers"
+    },
+    {
+     "text": "Others",
+     "to": "ignou-pg-maeg-yr2-meg18-others"
+    }
+   ],
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr2"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr2-meg18-notes": {
+  "text": "MAEG — Year 2 — MEG-18 · American Poetry — Notes\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr2-meg18"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr2-meg18-assignments": {
+  "text": "MAEG — Year 2 — MEG-18 · American Poetry — Assignments\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr2-meg18"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr2-meg18-papers": {
+  "text": "MAEG — Year 2 — MEG-18 · American Poetry — Question Papers\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr2-meg18"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr2-meg18-others": {
+  "text": "MAEG — Year 2 — MEG-18 · American Poetry — Others\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr2-meg18"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr2-meg19": {
+  "text": "MAEG — Year 2 — MEG-19 · Australian Novel\n\nElective paper.\n\nChoose what you need:",
+  "buttons": [
+   [
+    {
+     "text": "Notes",
+     "to": "ignou-pg-maeg-yr2-meg19-notes"
+    },
+    {
+     "text": "Assignments",
+     "to": "ignou-pg-maeg-yr2-meg19-assignments"
+    }
+   ],
+   [
+    {
+     "text": "Question Papers",
+     "to": "ignou-pg-maeg-yr2-meg19-papers"
+    },
+    {
+     "text": "Others",
+     "to": "ignou-pg-maeg-yr2-meg19-others"
+    }
+   ],
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr2"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr2-meg19-notes": {
+  "text": "MAEG — Year 2 — MEG-19 · Australian Novel — Notes\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr2-meg19"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr2-meg19-assignments": {
+  "text": "MAEG — Year 2 — MEG-19 · Australian Novel — Assignments\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr2-meg19"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr2-meg19-papers": {
+  "text": "MAEG — Year 2 — MEG-19 · Australian Novel — Question Papers\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr2-meg19"
+    }
+   ]
+  ]
+ },
+ "ignou-pg-maeg-yr2-meg19-others": {
+  "text": "MAEG — Year 2 — MEG-19 · Australian Novel — Others\n\nContent coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "⬅ Back",
+     "to": "ignou-pg-maeg-yr2-meg19"
     }
    ]
   ]
