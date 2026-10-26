@@ -162,4 +162,11 @@ if __name__ == "__main__":
         if not DIRECT_TOKEN:
             print("no token on stdin", flush=True)
             sys.exit(2)
+    elif os.environ.get("TELEGRAM_BOT_TOKEN"):
+        # FadeHost (and most hosts) run the bot directly, not via the
+        # Procfile's stdin pipe, so read the token from the environment
+        # variable set on the app. This must come before any Telegram call:
+        # without it api_url() falls back to the Hatch-only vault helper,
+        # which raises RuntimeError outside the Hatch host and crash-loops.
+        DIRECT_TOKEN = os.environ["TELEGRAM_BOT_TOKEN"].strip()
     sys.exit(main())
