@@ -1,6 +1,6 @@
 {
  "home": {
-  "text": "Welcome to Mission Academy! 🎓\n\nChoose an option:",
+  "text": "Mission Academy — IGNOU and SGOU study help.\nമിഷൻ അക്കാദമി — IGNOU, SGOU പഠന സഹായം.",
   "buttons": [
    [
     {
@@ -14,8 +14,18 @@
    ],
    [
     {
-     "text": "📝 Daily Study",
+     "text": "Daily Study",
      "to": "daily-study"
+    },
+    {
+     "text": "Ask a Question",
+     "to": "ask-question"
+    }
+   ],
+   [
+    {
+     "text": "My Subscription",
+     "to": "my-subscription"
     }
    ]
   ]
@@ -51574,29 +51584,31 @@
   ]
  },
  "daily-study": {
-  "text": "📝 Daily Study\n\nOne quiz + one notes card every day — free.\nTap below to take today's quiz or read today's notes.",
+  "text": "Daily Study\nOne quiz and one note each day.",
   "buttons": [
    [
     {
-     "text": "❓ Take Today's Quiz",
+     "text": "Take Today's Quiz",
      "to": "daily-quiz-take"
-    }
-   ],
-   [
+    },
     {
-     "text": "📚 Today's Notes",
+     "text": "Today's Notes",
      "to": "daily-notes"
     }
    ],
    [
     {
-     "text": "🔔 Subscribe to Daily Study",
-     "to": "daily-subscribe"
+     "text": "Subscribe to Daily Study",
+     "to": "sub-choose-university"
+    },
+    {
+     "text": "My Subscription",
+     "to": "my-subscription"
     }
    ],
    [
     {
-     "text": "⬅ Back",
+     "text": "Back",
      "to": "home"
     }
    ]
@@ -53023,6 +53035,547 @@
     {
      "text": "⬅ Back",
      "to": "ignou-pg-maeg-yr2-meg19"
+    }
+   ]
+  ]
+ },
+ "ask-question": {
+  "text": "Ask a Question\nSend your question as a message.\nFor a calculation, type /calc followed by the sum.\nExample: /calc 2 + 3",
+  "buttons": [
+   [
+    {
+     "text": "Back",
+     "to": "home"
+    }
+   ]
+  ]
+ },
+ "sub-choose-university": {
+  "text": "Choose your university.",
+  "buttons": [
+   [
+    {
+     "text": "IGNOU",
+     "to": "sub-ignou-courses"
+    },
+    {
+     "text": "SGOU",
+     "to": "sub-sgou-courses"
+    }
+   ],
+   [
+    {
+     "text": "Back",
+     "to": "daily-study"
+    }
+   ]
+  ]
+ },
+ "sub-ignou-courses": {
+  "text": "Choose your course.\nMAEG English is ready now.\nOther courses are coming soon.",
+  "buttons": [
+   [
+    {
+     "text": "MAEG English",
+     "to": "sub-maeg-years"
+    },
+    {
+     "text": "Other courses",
+     "to": "sub-coming-soon"
+    }
+   ],
+   [
+    {
+     "text": "Back",
+     "to": "sub-choose-university"
+    }
+   ]
+  ]
+ },
+ "sub-sgou-courses": {
+  "text": "SGOU courses are coming soon.\nMAEG English is ready now under IGNOU.",
+  "buttons": [
+   [
+    {
+     "text": "Back to universities",
+     "to": "sub-choose-university"
+    }
+   ]
+  ]
+ },
+ "sub-maeg-years": {
+  "text": "MAEG English\nChoose your year.",
+  "buttons": [
+   [
+    {
+     "text": "Year 1",
+     "to": "sub-maeg-yr1-subjects"
+    },
+    {
+     "text": "Year 2",
+     "to": "sub-maeg-yr2-subjects"
+    }
+   ],
+   [
+    {
+     "text": "Back",
+     "to": "sub-ignou-courses"
+    }
+   ]
+  ]
+ },
+ "sub-coming-soon": {
+  "text": "Coming soon.\nThis course does not have subjects ready yet.\nMAEG English is ready now under IGNOU.",
+  "buttons": [
+   [
+    {
+     "text": "MAEG English",
+     "to": "sub-maeg-years"
+    },
+    {
+     "text": "Back",
+     "to": "sub-choose-university"
+    }
+   ]
+  ]
+ },
+ "sub-maeg-yr1-subjects": {
+  "text": "MAEG English — Year 1\nChoose your subject.",
+  "buttons": [
+   [
+    {
+     "text": "MEG-05 Literary Theory and Criticism",
+     "to": "sub-confirm-MEG-05"
+    },
+    {
+     "text": "MEG-01 British Poetry",
+     "to": "sub-confirm-MEG-01"
+    }
+   ],
+   [
+    {
+     "text": "MEG-02 British Drama",
+     "to": "sub-confirm-MEG-02"
+    },
+    {
+     "text": "MEG-03 British Novel",
+     "to": "sub-confirm-MEG-03"
+    }
+   ],
+   [
+    {
+     "text": "MEG-06 American Literature",
+     "to": "sub-confirm-MEG-06"
+    },
+    {
+     "text": "MEG-07 Indian English Literature",
+     "to": "sub-confirm-MEG-07"
+    }
+   ],
+   [
+    {
+     "text": "MEG-08 New Literatures in English",
+     "to": "sub-confirm-MEG-08"
+    },
+    {
+     "text": "MEG-09 Australian Literature",
+     "to": "sub-confirm-MEG-09"
+    }
+   ],
+   [
+    {
+     "text": "MEG-12 A Survey Course in 20th Century Canadian Literature",
+     "to": "sub-confirm-MEG-12"
+    }
+   ],
+   [
+    {
+     "text": "Back",
+     "to": "sub-maeg-years"
+    }
+   ]
+  ]
+ },
+ "sub-confirm-MEG-05": {
+  "text": "Subscribe to MEG-05 Literary Theory and Criticism?\nYou will get one quiz and one note each day for this subject.",
+  "buttons": [
+   [
+    {
+     "text": "Subscribe to this subject",
+     "to": "sub-do-MEG-05"
+    }
+   ],
+   [
+    {
+     "text": "Back",
+     "to": "sub-maeg-yr1-subjects"
+    }
+   ]
+  ]
+ },
+ "sub-confirm-MEG-01": {
+  "text": "Subscribe to MEG-01 British Poetry?\nYou will get one quiz and one note each day for this subject.",
+  "buttons": [
+   [
+    {
+     "text": "Subscribe to this subject",
+     "to": "sub-do-MEG-01"
+    }
+   ],
+   [
+    {
+     "text": "Back",
+     "to": "sub-maeg-yr1-subjects"
+    }
+   ]
+  ]
+ },
+ "sub-confirm-MEG-02": {
+  "text": "Subscribe to MEG-02 British Drama?\nYou will get one quiz and one note each day for this subject.",
+  "buttons": [
+   [
+    {
+     "text": "Subscribe to this subject",
+     "to": "sub-do-MEG-02"
+    }
+   ],
+   [
+    {
+     "text": "Back",
+     "to": "sub-maeg-yr1-subjects"
+    }
+   ]
+  ]
+ },
+ "sub-confirm-MEG-03": {
+  "text": "Subscribe to MEG-03 British Novel?\nYou will get one quiz and one note each day for this subject.",
+  "buttons": [
+   [
+    {
+     "text": "Subscribe to this subject",
+     "to": "sub-do-MEG-03"
+    }
+   ],
+   [
+    {
+     "text": "Back",
+     "to": "sub-maeg-yr1-subjects"
+    }
+   ]
+  ]
+ },
+ "sub-confirm-MEG-06": {
+  "text": "Subscribe to MEG-06 American Literature?\nYou will get one quiz and one note each day for this subject.",
+  "buttons": [
+   [
+    {
+     "text": "Subscribe to this subject",
+     "to": "sub-do-MEG-06"
+    }
+   ],
+   [
+    {
+     "text": "Back",
+     "to": "sub-maeg-yr1-subjects"
+    }
+   ]
+  ]
+ },
+ "sub-confirm-MEG-07": {
+  "text": "Subscribe to MEG-07 Indian English Literature?\nYou will get one quiz and one note each day for this subject.",
+  "buttons": [
+   [
+    {
+     "text": "Subscribe to this subject",
+     "to": "sub-do-MEG-07"
+    }
+   ],
+   [
+    {
+     "text": "Back",
+     "to": "sub-maeg-yr1-subjects"
+    }
+   ]
+  ]
+ },
+ "sub-confirm-MEG-08": {
+  "text": "Subscribe to MEG-08 New Literatures in English?\nYou will get one quiz and one note each day for this subject.",
+  "buttons": [
+   [
+    {
+     "text": "Subscribe to this subject",
+     "to": "sub-do-MEG-08"
+    }
+   ],
+   [
+    {
+     "text": "Back",
+     "to": "sub-maeg-yr1-subjects"
+    }
+   ]
+  ]
+ },
+ "sub-confirm-MEG-09": {
+  "text": "Subscribe to MEG-09 Australian Literature?\nYou will get one quiz and one note each day for this subject.",
+  "buttons": [
+   [
+    {
+     "text": "Subscribe to this subject",
+     "to": "sub-do-MEG-09"
+    }
+   ],
+   [
+    {
+     "text": "Back",
+     "to": "sub-maeg-yr1-subjects"
+    }
+   ]
+  ]
+ },
+ "sub-confirm-MEG-12": {
+  "text": "Subscribe to MEG-12 A Survey Course in 20th Century Canadian Literature?\nYou will get one quiz and one note each day for this subject.",
+  "buttons": [
+   [
+    {
+     "text": "Subscribe to this subject",
+     "to": "sub-do-MEG-12"
+    }
+   ],
+   [
+    {
+     "text": "Back",
+     "to": "sub-maeg-yr1-subjects"
+    }
+   ]
+  ]
+ },
+ "sub-maeg-yr2-subjects": {
+  "text": "MAEG English — Year 2\nChoose your subject.",
+  "buttons": [
+   [
+    {
+     "text": "MEG-04 Aspects of Language",
+     "to": "sub-confirm-MEG-04"
+    },
+    {
+     "text": "MEG-10 English Studies in India",
+     "to": "sub-confirm-MEG-10"
+    }
+   ],
+   [
+    {
+     "text": "MEG-11 American Novel",
+     "to": "sub-confirm-MEG-11"
+    },
+    {
+     "text": "MEG-13 Writing from the Margins",
+     "to": "sub-confirm-MEG-13"
+    }
+   ],
+   [
+    {
+     "text": "MEG-14 Contemporary Indian Literature in English Translation",
+     "to": "sub-confirm-MEG-14"
+    },
+    {
+     "text": "MEG-15 Comparative Literature",
+     "to": "sub-confirm-MEG-15"
+    }
+   ],
+   [
+    {
+     "text": "MEG-16 Indian Folk Literature",
+     "to": "sub-confirm-MEG-16"
+    },
+    {
+     "text": "MEG-17 American Drama",
+     "to": "sub-confirm-MEG-17"
+    }
+   ],
+   [
+    {
+     "text": "MEG-18 American Poetry",
+     "to": "sub-confirm-MEG-18"
+    },
+    {
+     "text": "MEG-19 Australian Novel",
+     "to": "sub-confirm-MEG-19"
+    }
+   ],
+   [
+    {
+     "text": "Back",
+     "to": "sub-maeg-years"
+    }
+   ]
+  ]
+ },
+ "sub-confirm-MEG-04": {
+  "text": "Subscribe to MEG-04 Aspects of Language?\nYou will get one quiz and one note each day for this subject.",
+  "buttons": [
+   [
+    {
+     "text": "Subscribe to this subject",
+     "to": "sub-do-MEG-04"
+    }
+   ],
+   [
+    {
+     "text": "Back",
+     "to": "sub-maeg-yr2-subjects"
+    }
+   ]
+  ]
+ },
+ "sub-confirm-MEG-10": {
+  "text": "Subscribe to MEG-10 English Studies in India?\nYou will get one quiz and one note each day for this subject.",
+  "buttons": [
+   [
+    {
+     "text": "Subscribe to this subject",
+     "to": "sub-do-MEG-10"
+    }
+   ],
+   [
+    {
+     "text": "Back",
+     "to": "sub-maeg-yr2-subjects"
+    }
+   ]
+  ]
+ },
+ "sub-confirm-MEG-11": {
+  "text": "Subscribe to MEG-11 American Novel?\nYou will get one quiz and one note each day for this subject.",
+  "buttons": [
+   [
+    {
+     "text": "Subscribe to this subject",
+     "to": "sub-do-MEG-11"
+    }
+   ],
+   [
+    {
+     "text": "Back",
+     "to": "sub-maeg-yr2-subjects"
+    }
+   ]
+  ]
+ },
+ "sub-confirm-MEG-13": {
+  "text": "Subscribe to MEG-13 Writing from the Margins?\nYou will get one quiz and one note each day for this subject.",
+  "buttons": [
+   [
+    {
+     "text": "Subscribe to this subject",
+     "to": "sub-do-MEG-13"
+    }
+   ],
+   [
+    {
+     "text": "Back",
+     "to": "sub-maeg-yr2-subjects"
+    }
+   ]
+  ]
+ },
+ "sub-confirm-MEG-14": {
+  "text": "Subscribe to MEG-14 Contemporary Indian Literature in English Translation?\nYou will get one quiz and one note each day for this subject.",
+  "buttons": [
+   [
+    {
+     "text": "Subscribe to this subject",
+     "to": "sub-do-MEG-14"
+    }
+   ],
+   [
+    {
+     "text": "Back",
+     "to": "sub-maeg-yr2-subjects"
+    }
+   ]
+  ]
+ },
+ "sub-confirm-MEG-15": {
+  "text": "Subscribe to MEG-15 Comparative Literature?\nYou will get one quiz and one note each day for this subject.",
+  "buttons": [
+   [
+    {
+     "text": "Subscribe to this subject",
+     "to": "sub-do-MEG-15"
+    }
+   ],
+   [
+    {
+     "text": "Back",
+     "to": "sub-maeg-yr2-subjects"
+    }
+   ]
+  ]
+ },
+ "sub-confirm-MEG-16": {
+  "text": "Subscribe to MEG-16 Indian Folk Literature?\nYou will get one quiz and one note each day for this subject.",
+  "buttons": [
+   [
+    {
+     "text": "Subscribe to this subject",
+     "to": "sub-do-MEG-16"
+    }
+   ],
+   [
+    {
+     "text": "Back",
+     "to": "sub-maeg-yr2-subjects"
+    }
+   ]
+  ]
+ },
+ "sub-confirm-MEG-17": {
+  "text": "Subscribe to MEG-17 American Drama?\nYou will get one quiz and one note each day for this subject.",
+  "buttons": [
+   [
+    {
+     "text": "Subscribe to this subject",
+     "to": "sub-do-MEG-17"
+    }
+   ],
+   [
+    {
+     "text": "Back",
+     "to": "sub-maeg-yr2-subjects"
+    }
+   ]
+  ]
+ },
+ "sub-confirm-MEG-18": {
+  "text": "Subscribe to MEG-18 American Poetry?\nYou will get one quiz and one note each day for this subject.",
+  "buttons": [
+   [
+    {
+     "text": "Subscribe to this subject",
+     "to": "sub-do-MEG-18"
+    }
+   ],
+   [
+    {
+     "text": "Back",
+     "to": "sub-maeg-yr2-subjects"
+    }
+   ]
+  ]
+ },
+ "sub-confirm-MEG-19": {
+  "text": "Subscribe to MEG-19 Australian Novel?\nYou will get one quiz and one note each day for this subject.",
+  "buttons": [
+   [
+    {
+     "text": "Subscribe to this subject",
+     "to": "sub-do-MEG-19"
+    }
+   ],
+   [
+    {
+     "text": "Back",
+     "to": "sub-maeg-yr2-subjects"
     }
    ]
   ]

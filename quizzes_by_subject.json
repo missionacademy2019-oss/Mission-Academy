@@ -1,0 +1,1085 @@
+{
+ "MEG-01": [
+  {
+   "q": "Who wrote The Canterbury Tales?",
+   "options": [
+    "Geoffrey Chaucer",
+    "William Shakespeare",
+    "John Milton",
+    "Edmund Spenser"
+   ],
+   "answer": 0,
+   "explanation": "Chaucer wrote The Canterbury Tales in Middle English."
+  },
+  {
+   "q": "How many sonnets did Shakespeare write?",
+   "options": [
+    "100",
+    "154",
+    "120",
+    "200"
+   ],
+   "answer": 1,
+   "explanation": "Shakespeare's sonnet sequence has 154 sonnets."
+  },
+  {
+   "q": "Who wrote Paradise Lost?",
+   "options": [
+    "John Dryden",
+    "John Milton",
+    "Alexander Pope",
+    "William Blake"
+   ],
+   "answer": 1,
+   "explanation": "Milton wrote Paradise Lost."
+  },
+  {
+   "q": "Who wrote Ode to a Nightingale?",
+   "options": [
+    "Percy Shelley",
+    "John Keats",
+    "Lord Byron",
+    "William Wordsworth"
+   ],
+   "answer": 1,
+   "explanation": "Keats wrote Ode to a Nightingale."
+  },
+  {
+   "q": "In which year did Lyrical Ballads appear?",
+   "options": [
+    "1789",
+    "1798",
+    "1800",
+    "1810"
+   ],
+   "answer": 1,
+   "explanation": "Lyrical Ballads appeared in 1798."
+  }
+ ],
+ "MEG-02": [
+  {
+   "q": "Who wrote Hamlet?",
+   "options": [
+    "Christopher Marlowe",
+    "William Shakespeare",
+    "Ben Jonson",
+    "John Webster"
+   ],
+   "answer": 1,
+   "explanation": "Shakespeare wrote Hamlet."
+  },
+  {
+   "q": "Who wrote Doctor Faustus?",
+   "options": [
+    "William Shakespeare",
+    "Christopher Marlowe",
+    "Thomas Kyd",
+    "Ben Jonson"
+   ],
+   "answer": 1,
+   "explanation": "Marlowe wrote Doctor Faustus."
+  },
+  {
+   "q": "Who wrote Waiting for Godot?",
+   "options": [
+    "Samuel Beckett",
+    "Harold Pinter",
+    "John Osborne",
+    "George Bernard Shaw"
+   ],
+   "answer": 0,
+   "explanation": "Beckett wrote Waiting for Godot."
+  },
+  {
+   "q": "Who wrote Pygmalion?",
+   "options": [
+    "George Bernard Shaw",
+    "Oscar Wilde",
+    "John Synge",
+    "Noel Coward"
+   ],
+   "answer": 0,
+   "explanation": "Shaw wrote Pygmalion."
+  },
+  {
+   "q": "Who wrote The Importance of Being Earnest?",
+   "options": [
+    "Oscar Wilde",
+    "George Bernard Shaw",
+    "Samuel Beckett",
+    "Harold Pinter"
+   ],
+   "answer": 0,
+   "explanation": "Wilde wrote The Importance of Being Earnest."
+  }
+ ],
+ "MEG-03": [
+  {
+   "q": "Who wrote Pride and Prejudice?",
+   "options": [
+    "Charlotte Bronte",
+    "Jane Austen",
+    "George Eliot",
+    "Elizabeth Gaskell"
+   ],
+   "answer": 1,
+   "explanation": "Austen wrote Pride and Prejudice."
+  },
+  {
+   "q": "Who wrote Jane Eyre?",
+   "options": [
+    "Emily Bronte",
+    "Anne Bronte",
+    "Charlotte Bronte",
+    "Jane Austen"
+   ],
+   "answer": 2,
+   "explanation": "Charlotte Bronte wrote Jane Eyre."
+  },
+  {
+   "q": "Who wrote Great Expectations?",
+   "options": [
+    "Charles Dickens",
+    "William Thackeray",
+    "Thomas Hardy",
+    "Anthony Trollope"
+   ],
+   "answer": 0,
+   "explanation": "Dickens wrote Great Expectations."
+  },
+  {
+   "q": "Who wrote Mrs Dalloway?",
+   "options": [
+    "Virginia Woolf",
+    "Katherine Mansfield",
+    "D. H. Lawrence",
+    "E. M. Forster"
+   ],
+   "answer": 0,
+   "explanation": "Woolf wrote Mrs Dalloway."
+  },
+  {
+   "q": "Who wrote Wuthering Heights?",
+   "options": [
+    "Charlotte Bronte",
+    "Emily Bronte",
+    "Anne Bronte",
+    "Jane Austen"
+   ],
+   "answer": 1,
+   "explanation": "Emily Bronte wrote Wuthering Heights."
+  }
+ ],
+ "MEG-04": [
+  {
+   "q": "What is the study of sounds in language called?",
+   "options": [
+    "Syntax",
+    "Phonetics",
+    "Semantics",
+    "Pragmatics"
+   ],
+   "answer": 1,
+   "explanation": "Phonetics studies the sounds of language."
+  },
+  {
+   "q": "What is the smallest unit of meaning?",
+   "options": [
+    "Phoneme",
+    "Morpheme",
+    "Clause",
+    "Paragraph"
+   ],
+   "answer": 1,
+   "explanation": "A morpheme is the smallest unit of meaning."
+  },
+  {
+   "q": "What is the study of sentence structure called?",
+   "options": [
+    "Semantics",
+    "Syntax",
+    "Phonology",
+    "Morphology"
+   ],
+   "answer": 1,
+   "explanation": "Syntax studies sentence structure."
+  },
+  {
+   "q": "What is the study of meaning called?",
+   "options": [
+    "Pragmatics",
+    "Semantics",
+    "Phonetics",
+    "Syntax"
+   ],
+   "answer": 1,
+   "explanation": "Semantics studies meaning."
+  },
+  {
+   "q": "What studies language use in context?",
+   "options": [
+    "Phonology",
+    "Morphology",
+    "Pragmatics",
+    "Semantics"
+   ],
+   "answer": 2,
+   "explanation": "Pragmatics studies language use in context."
+  }
+ ],
+ "MEG-05": [
+  {
+   "q": "Which idea is central to Aristotle's Poetics?",
+   "options": [
+    "Art as imitation",
+    "Art for art's sake",
+    "Death of the author",
+    "Reader response"
+   ],
+   "answer": 0,
+   "explanation": "Aristotle saw art as imitation of life."
+  },
+  {
+   "q": "Longinus is known for which idea?",
+   "options": [
+    "The Sublime",
+    "Irony",
+    "Allegory",
+    "Symbolism"
+   ],
+   "answer": 0,
+   "explanation": "Longinus wrote about the sublime."
+  },
+  {
+   "q": "Coleridge contrasts fancy with what?",
+   "options": [
+    "Memory",
+    "Imagination",
+    "Reason",
+    "Feeling"
+   ],
+   "answer": 1,
+   "explanation": "Coleridge contrasts fancy with imagination."
+  },
+  {
+   "q": "Objective correlative is linked to which writer?",
+   "options": [
+    "T. S. Eliot",
+    "I. A. Richards",
+    "F. R. Leavis",
+    "Matthew Arnold"
+   ],
+   "answer": 0,
+   "explanation": "Eliot used the term objective correlative."
+  },
+  {
+   "q": "In Plato's ideal state, what did he want for poets?",
+   "options": [
+    "Welcome them",
+    "Banish them",
+    "Crown them",
+    "Ignore them"
+   ],
+   "answer": 1,
+   "explanation": "Plato distrusted poetry's effect on reason."
+  }
+ ],
+ "MEG-06": [
+  {
+   "q": "Who wrote Leaves of Grass?",
+   "options": [
+    "Ralph Waldo Emerson",
+    "Walt Whitman",
+    "Henry David Thoreau",
+    "Edgar Allan Poe"
+   ],
+   "answer": 1,
+   "explanation": "Whitman wrote Leaves of Grass."
+  },
+  {
+   "q": "Who wrote Walden?",
+   "options": [
+    "Ralph Waldo Emerson",
+    "Henry David Thoreau",
+    "Nathaniel Hawthorne",
+    "Herman Melville"
+   ],
+   "answer": 1,
+   "explanation": "Thoreau wrote Walden."
+  },
+  {
+   "q": "Who wrote The Scarlet Letter?",
+   "options": [
+    "Nathaniel Hawthorne",
+    "Mark Twain",
+    "Henry James",
+    "Edgar Allan Poe"
+   ],
+   "answer": 0,
+   "explanation": "Hawthorne wrote The Scarlet Letter."
+  },
+  {
+   "q": "Who wrote Adventures of Huckleberry Finn?",
+   "options": [
+    "Mark Twain",
+    "Herman Melville",
+    "James Fenimore Cooper",
+    "Stephen Crane"
+   ],
+   "answer": 0,
+   "explanation": "Twain wrote Adventures of Huckleberry Finn."
+  },
+  {
+   "q": "Emily Dickinson wrote mainly what kind of poems?",
+   "options": [
+    "Long epics",
+    "Short lyric poems",
+    "Plays",
+    "Novels"
+   ],
+   "answer": 1,
+   "explanation": "Dickinson wrote short lyric poems."
+  }
+ ],
+ "MEG-07": [
+  {
+   "q": "Who wrote Gitanjali?",
+   "options": [
+    "Rabindranath Tagore",
+    "Sarojini Naidu",
+    "Sri Aurobindo",
+    "Henry Derozio"
+   ],
+   "answer": 0,
+   "explanation": "Tagore wrote Gitanjali."
+  },
+  {
+   "q": "Who wrote The Guide?",
+   "options": [
+    "R. K. Narayan",
+    "Raja Rao",
+    "Mulk Raj Anand",
+    "Anita Desai"
+   ],
+   "answer": 0,
+   "explanation": "Narayan wrote The Guide."
+  },
+  {
+   "q": "Who wrote Kanthapura?",
+   "options": [
+    "Raja Rao",
+    "R. K. Narayan",
+    "Mulk Raj Anand",
+    "Bhabani Bhattacharya"
+   ],
+   "answer": 0,
+   "explanation": "Raja Rao wrote Kanthapura."
+  },
+  {
+   "q": "Who wrote Clear Light of Day?",
+   "options": [
+    "Anita Desai",
+    "Kamala Markandaya",
+    "Ruth Prawer Jhabvala",
+    "Nayantara Sahgal"
+   ],
+   "answer": 0,
+   "explanation": "Desai wrote Clear Light of Day."
+  },
+  {
+   "q": "Sarojini Naidu is often called what?",
+   "options": [
+    "Nightingale of India",
+    "Mother of India",
+    "Voice of Asia",
+    "Queen of Poetry"
+   ],
+   "answer": 0,
+   "explanation": "Naidu is often called the Nightingale of India."
+  }
+ ],
+ "MEG-08": [
+  {
+   "q": "Who wrote Things Fall Apart?",
+   "options": [
+    "Chinua Achebe",
+    "Ngugi wa Thiong'o",
+    "Wole Soyinka",
+    "Nadine Gordimer"
+   ],
+   "answer": 0,
+   "explanation": "Achebe wrote Things Fall Apart."
+  },
+  {
+   "q": "Who wrote A Grain of Wheat?",
+   "options": [
+    "Chinua Achebe",
+    "Ngugi wa Thiong'o",
+    "Ama Ata Aidoo",
+    "Ayi Kwei Armah"
+   ],
+   "answer": 1,
+   "explanation": "Ngugi wrote A Grain of Wheat."
+  },
+  {
+   "q": "Who wrote Omeros?",
+   "options": [
+    "Derek Walcott",
+    "V. S. Naipaul",
+    "Wilson Harris",
+    "Edward Kamau Brathwaite"
+   ],
+   "answer": 0,
+   "explanation": "Walcott wrote Omeros."
+  },
+  {
+   "q": "Who wrote Midnight's Children?",
+   "options": [
+    "Salman Rushdie",
+    "Vikram Seth",
+    "Amitav Ghosh",
+    "Arundhati Roy"
+   ],
+   "answer": 0,
+   "explanation": "Rushdie wrote Midnight's Children."
+  },
+  {
+   "q": "A common theme in postcolonial writing is what?",
+   "options": [
+    "Colonial power and identity",
+    "Space travel",
+    "Medieval romance",
+    "Court poetry"
+   ],
+   "answer": 0,
+   "explanation": "Postcolonial writing often questions colonial power and identity."
+  }
+ ],
+ "MEG-09": [
+  {
+   "q": "Who wrote Voss?",
+   "options": [
+    "Patrick White",
+    "Peter Carey",
+    "Henry Lawson",
+    "Judith Wright"
+   ],
+   "answer": 0,
+   "explanation": "White wrote Voss."
+  },
+  {
+   "q": "Henry Lawson wrote mainly about what?",
+   "options": [
+    "Bush life",
+    "City banking",
+    "Sea voyages",
+    "Royal courts"
+   ],
+   "answer": 0,
+   "explanation": "Lawson wrote short stories of bush life."
+  },
+  {
+   "q": "Judith Wright was mainly known as what?",
+   "options": [
+    "Novelist only",
+    "Poet",
+    "Playwright only",
+    "Historian"
+   ],
+   "answer": 1,
+   "explanation": "Wright was an Australian poet."
+  },
+  {
+   "q": "Who wrote Oscar and Lucinda?",
+   "options": [
+    "Peter Carey",
+    "Patrick White",
+    "Thomas Keneally",
+    "David Malouf"
+   ],
+   "answer": 0,
+   "explanation": "Carey wrote Oscar and Lucinda."
+  },
+  {
+   "q": "Who wrote The Tree of Man?",
+   "options": [
+    "Patrick White",
+    "Peter Carey",
+    "Henry Lawson",
+    "Hal Porter"
+   ],
+   "answer": 0,
+   "explanation": "White wrote The Tree of Man."
+  }
+ ],
+ "MEG-10": [
+  {
+   "q": "In which year was Macaulay's Minute on education written?",
+   "options": [
+    "1813",
+    "1835",
+    "1857",
+    "1905"
+   ],
+   "answer": 1,
+   "explanation": "Macaulay's Minute was written in 1835."
+  },
+  {
+   "q": "Raja Ram Mohan Roy favoured what kind of education?",
+   "options": [
+    "English education",
+    "Persian only",
+    "Sanskrit only",
+    "No schooling"
+   ],
+   "answer": 0,
+   "explanation": "Roy supported English education in India."
+  },
+  {
+   "q": "In which year were the universities of Calcutta, Bombay and Madras founded?",
+   "options": [
+    "1835",
+    "1857",
+    "1882",
+    "1901"
+   ],
+   "answer": 1,
+   "explanation": "The three universities were founded in 1857."
+  },
+  {
+   "q": "In India, English works mainly as what?",
+   "options": [
+    "A link language",
+    "Only a home language",
+    "Only a religious language",
+    "Only a court language"
+   ],
+   "answer": 0,
+   "explanation": "English works as a link language in India."
+  },
+  {
+   "q": "Which language policy is central to English studies in India?",
+   "options": [
+    "Three-language formula",
+    "One-language rule",
+    "No-language rule",
+    "Foreign-only rule"
+   ],
+   "answer": 0,
+   "explanation": "The three-language formula shapes language policy in India."
+  }
+ ],
+ "MEG-11": [
+  {
+   "q": "Who wrote Moby-Dick?",
+   "options": [
+    "Herman Melville",
+    "Nathaniel Hawthorne",
+    "Edgar Allan Poe",
+    "James Fenimore Cooper"
+   ],
+   "answer": 0,
+   "explanation": "Melville wrote Moby-Dick."
+  },
+  {
+   "q": "Who wrote The Great Gatsby?",
+   "options": [
+    "Ernest Hemingway",
+    "F. Scott Fitzgerald",
+    "William Faulkner",
+    "John Steinbeck"
+   ],
+   "answer": 1,
+   "explanation": "Fitzgerald wrote The Great Gatsby."
+  },
+  {
+   "q": "Who wrote The Sound and the Fury?",
+   "options": [
+    "William Faulkner",
+    "F. Scott Fitzgerald",
+    "Thomas Wolfe",
+    "John Dos Passos"
+   ],
+   "answer": 0,
+   "explanation": "Faulkner wrote The Sound and the Fury."
+  },
+  {
+   "q": "Who wrote Beloved?",
+   "options": [
+    "Toni Morrison",
+    "Alice Walker",
+    "Maya Angelou",
+    "Zora Neale Hurston"
+   ],
+   "answer": 0,
+   "explanation": "Morrison wrote Beloved."
+  },
+  {
+   "q": "Who wrote The Adventures of Tom Sawyer?",
+   "options": [
+    "Mark Twain",
+    "Bret Harte",
+    "William Dean Howells",
+    "Henry James"
+   ],
+   "answer": 0,
+   "explanation": "Twain wrote The Adventures of Tom Sawyer."
+  }
+ ],
+ "MEG-12": [
+  {
+   "q": "Who wrote The Handmaid's Tale?",
+   "options": [
+    "Margaret Atwood",
+    "Alice Munro",
+    "Robertson Davies",
+    "Mordecai Richler"
+   ],
+   "answer": 0,
+   "explanation": "Atwood wrote The Handmaid's Tale."
+  },
+  {
+   "q": "In which year did Alice Munro win the Nobel Prize in Literature?",
+   "options": [
+    "2005",
+    "2013",
+    "2018",
+    "2020"
+   ],
+   "answer": 1,
+   "explanation": "Munro won the Nobel Prize in 2013."
+  },
+  {
+   "q": "Who wrote Fifth Business?",
+   "options": [
+    "Robertson Davies",
+    "Margaret Atwood",
+    "Alice Munro",
+    "Michael Ondaatje"
+   ],
+   "answer": 0,
+   "explanation": "Davies wrote Fifth Business."
+  },
+  {
+   "q": "Who wrote The English Patient?",
+   "options": [
+    "Michael Ondaatje",
+    "Margaret Atwood",
+    "Leonard Cohen",
+    "Alice Munro"
+   ],
+   "answer": 0,
+   "explanation": "Ondaatje wrote The English Patient."
+  },
+  {
+   "q": "Who wrote Anne of Green Gables?",
+   "options": [
+    "L. M. Montgomery",
+    "Margaret Atwood",
+    "Alice Munro",
+    "Robertson Davies"
+   ],
+   "answer": 0,
+   "explanation": "Montgomery wrote Anne of Green Gables."
+  }
+ ],
+ "MEG-13": [
+  {
+   "q": "Who wrote Joothan?",
+   "options": [
+    "Om Prakash Valmiki",
+    "B. R. Ambedkar",
+    "Jyotirao Phule",
+    "Periyar"
+   ],
+   "answer": 0,
+   "explanation": "Valmiki wrote Joothan."
+  },
+  {
+   "q": "Who wrote Karukku?",
+   "options": [
+    "Bama",
+    "Om Prakash Valmiki",
+    "Sharankumar Limbale",
+    "Daya Pawar"
+   ],
+   "answer": 0,
+   "explanation": "Bama wrote Karukku."
+  },
+  {
+   "q": "Mahasweta Devi's stories focus on whom?",
+   "options": [
+    "Tribal and marginalised people",
+    "Royal courts",
+    "Space travellers",
+    "Urban bankers"
+   ],
+   "answer": 0,
+   "explanation": "Devi wrote about tribal and marginalised people."
+  },
+  {
+   "q": "B. R. Ambedkar is best known for what?",
+   "options": [
+    "Caste reform and the Constitution",
+    "Cricket",
+    "Cinema",
+    "Space science"
+   ],
+   "answer": 0,
+   "explanation": "Ambedkar worked against caste discrimination and helped frame the Constitution."
+  },
+  {
+   "q": "Dalit writing centres on what?",
+   "options": [
+    "Caste oppression and dignity",
+    "Royal romance",
+    "War strategy",
+    "Trade routes"
+   ],
+   "answer": 0,
+   "explanation": "Dalit writing centres on caste oppression and dignity."
+  }
+ ],
+ "MEG-14": [
+  {
+   "q": "What does translation do?",
+   "options": [
+    "Copies by hand",
+    "Moves a text into another language",
+    "Prints only",
+    "Reads aloud"
+   ],
+   "answer": 1,
+   "explanation": "Translation moves a text into another language."
+  },
+  {
+   "q": "Premchand wrote mainly in which language?",
+   "options": [
+    "Hindi",
+    "Tamil only",
+    "Bengali only",
+    "Malayalam only"
+   ],
+   "answer": 0,
+   "explanation": "Premchand wrote mainly in Hindi."
+  },
+  {
+   "q": "Who translated Gitanjali into English?",
+   "options": [
+    "Tagore himself",
+    "W. B. Yeats alone",
+    "T. S. Eliot alone",
+    "Ezra Pound alone"
+   ],
+   "answer": 0,
+   "explanation": "Tagore translated Gitanjali into English himself."
+  },
+  {
+   "q": "A good translation keeps what?",
+   "options": [
+    "Meaning and tone",
+    "Word count only",
+    "Page size",
+    "Cover colour"
+   ],
+   "answer": 0,
+   "explanation": "A good translation keeps meaning and tone."
+  },
+  {
+   "q": "Translation helps readers do what?",
+   "options": [
+    "Share stories across languages",
+    "Forget originals",
+    "Stop reading",
+    "Learn printing"
+   ],
+   "answer": 0,
+   "explanation": "Translation lets readers share stories across languages."
+  }
+ ],
+ "MEG-15": [
+  {
+   "q": "Weltliteratur, or world literature, is linked to whom?",
+   "options": [
+    "Johann Wolfgang von Goethe",
+    "Friedrich Schiller",
+    "Johann Herder",
+    "Immanuel Kant"
+   ],
+   "answer": 0,
+   "explanation": "Goethe used the idea of world literature."
+  },
+  {
+   "q": "Comparative literature studies literatures across what?",
+   "options": [
+    "One author only",
+    "Languages and cultures",
+    "One book only",
+    "One century only"
+   ],
+   "answer": 1,
+   "explanation": "Comparative literature compares literatures across languages and cultures."
+  },
+  {
+   "q": "Influence study asks how one writer affects whom?",
+   "options": [
+    "Another writer",
+    "Book prices",
+    "Paper quality",
+    "Library size"
+   ],
+   "answer": 0,
+   "explanation": "Influence study asks how one writer affects another."
+  },
+  {
+   "q": "Intertextuality means texts relate to what?",
+   "options": [
+    "Other texts",
+    "Texts printed alone",
+    "Texts without readers",
+    "Texts in one language only"
+   ],
+   "answer": 0,
+   "explanation": "Intertextuality means texts relate to other texts."
+  },
+  {
+   "q": "A repeated story pattern across cultures is called what?",
+   "options": [
+    "Motif",
+    "Footnote",
+    "Index",
+    "Cover"
+   ],
+   "answer": 0,
+   "explanation": "A repeated story pattern is called a motif."
+  }
+ ],
+ "MEG-16": [
+  {
+   "q": "Folk literature is passed on mainly how?",
+   "options": [
+    "Word of mouth",
+    "Printing only",
+    "Radio only",
+    "Cinema only"
+   ],
+   "answer": 0,
+   "explanation": "Folk literature is passed on by word of mouth."
+  },
+  {
+   "q": "A folk tale is usually what?",
+   "options": [
+    "A long novel",
+    "A short traditional story",
+    "A newspaper report",
+    "A legal document"
+   ],
+   "answer": 1,
+   "explanation": "A folk tale is a short traditional story."
+  },
+  {
+   "q": "Indian epics like the Ramayana began mainly as what?",
+   "options": [
+    "Oral traditions",
+    "Printed novels",
+    "Films",
+    "Letters"
+   ],
+   "answer": 0,
+   "explanation": "Indian epics began as oral traditions."
+  },
+  {
+   "q": "A ballad is what?",
+   "options": [
+    "A story in song or verse",
+    "A legal code",
+    "A map",
+    "A recipe"
+   ],
+   "answer": 0,
+   "explanation": "A ballad is a story told in song or verse."
+  },
+  {
+   "q": "Folk songs often reflect what?",
+   "options": [
+    "Daily life of a community",
+    "Stock prices",
+    "Court orders",
+    "Space missions"
+   ],
+   "answer": 0,
+   "explanation": "Folk songs reflect the daily life of a community."
+  }
+ ],
+ "MEG-17": [
+  {
+   "q": "Who wrote Death of a Salesman?",
+   "options": [
+    "Arthur Miller",
+    "Tennessee Williams",
+    "Eugene O'Neill",
+    "Edward Albee"
+   ],
+   "answer": 0,
+   "explanation": "Miller wrote Death of a Salesman."
+  },
+  {
+   "q": "Who wrote A Streetcar Named Desire?",
+   "options": [
+    "Tennessee Williams",
+    "Arthur Miller",
+    "Eugene O'Neill",
+    "Thornton Wilder"
+   ],
+   "answer": 0,
+   "explanation": "Williams wrote A Streetcar Named Desire."
+  },
+  {
+   "q": "Who wrote Long Day's Journey Into Night?",
+   "options": [
+    "Eugene O'Neill",
+    "Arthur Miller",
+    "Tennessee Williams",
+    "Edward Albee"
+   ],
+   "answer": 0,
+   "explanation": "O'Neill wrote Long Day's Journey Into Night."
+  },
+  {
+   "q": "Who wrote Who's Afraid of Virginia Woolf?",
+   "options": [
+    "Edward Albee",
+    "Harold Pinter",
+    "Samuel Beckett",
+    "Sam Shepard"
+   ],
+   "answer": 0,
+   "explanation": "Albee wrote Who's Afraid of Virginia Woolf."
+  },
+  {
+   "q": "A common theme in American drama is what?",
+   "options": [
+    "Family and the American Dream",
+    "Medieval knights",
+    "Space war",
+    "Royal courts"
+   ],
+   "answer": 0,
+   "explanation": "American drama often explores family and the American Dream."
+  }
+ ],
+ "MEG-18": [
+  {
+   "q": "Who wrote Song of Myself?",
+   "options": [
+    "Walt Whitman",
+    "Robert Frost",
+    "Emily Dickinson",
+    "Wallace Stevens"
+   ],
+   "answer": 0,
+   "explanation": "Whitman wrote Song of Myself."
+  },
+  {
+   "q": "Who wrote The Road Not Taken?",
+   "options": [
+    "Robert Frost",
+    "Walt Whitman",
+    "Ezra Pound",
+    "T. S. Eliot"
+   ],
+   "answer": 0,
+   "explanation": "Frost wrote The Road Not Taken."
+  },
+  {
+   "q": "Emily Dickinson's poems are usually what?",
+   "options": [
+    "Short and intense",
+    "Long epics",
+    "Stage plays",
+    "Novels"
+   ],
+   "answer": 0,
+   "explanation": "Dickinson wrote short, intense poems."
+  },
+  {
+   "q": "Wallace Stevens wrote which poem?",
+   "options": [
+    "The Emperor of Ice-Cream",
+    "The Waste Land",
+    "Howl",
+    "Song of Myself"
+   ],
+   "answer": 0,
+   "explanation": "Stevens wrote The Emperor of Ice-Cream."
+  },
+  {
+   "q": "Sylvia Plath is linked to which kind of poetry?",
+   "options": [
+    "Confessional poetry",
+    "Epic poetry",
+    "Court poetry",
+    "Concrete poetry"
+   ],
+   "answer": 0,
+   "explanation": "Plath is linked to confessional poetry."
+  }
+ ],
+ "MEG-19": [
+  {
+   "q": "Who wrote Schindler's Ark?",
+   "options": [
+    "Thomas Keneally",
+    "Peter Carey",
+    "Patrick White",
+    "David Malouf"
+   ],
+   "answer": 0,
+   "explanation": "Keneally wrote Schindler's Ark."
+  },
+  {
+   "q": "Who wrote Remembering Babylon?",
+   "options": [
+    "David Malouf",
+    "Peter Carey",
+    "Patrick White",
+    "Thomas Keneally"
+   ],
+   "answer": 0,
+   "explanation": "Malouf wrote Remembering Babylon."
+  },
+  {
+   "q": "Who wrote True History of the Kelly Gang?",
+   "options": [
+    "Peter Carey",
+    "Patrick White",
+    "David Malouf",
+    "Thomas Keneally"
+   ],
+   "answer": 0,
+   "explanation": "Carey wrote True History of the Kelly Gang."
+  },
+  {
+   "q": "Who wrote Cloudstreet?",
+   "options": [
+    "Tim Winton",
+    "Peter Carey",
+    "Patrick White",
+    "David Malouf"
+   ],
+   "answer": 0,
+   "explanation": "Winton wrote Cloudstreet."
+  },
+  {
+   "q": "A common theme in Australian novels is what?",
+   "options": [
+    "Land and identity",
+    "Medieval Europe",
+    "Space travel",
+    "Royal courts"
+   ],
+   "answer": 0,
+   "explanation": "Australian novels often explore land and identity."
+  }
+ ]
+}
