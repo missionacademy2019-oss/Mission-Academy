@@ -36,3 +36,38 @@
 @meg17newcommunitty
 @meg18newcommunity
 @meg19newcommunity
+
+# EXPANSION APPROVED 27 Oct 2026 ~23:52 IST (user: "Yes proceed force joining")
+# 23 additional megagroups where the bot was verified admin on 27 Oct ~16:15 IST
+# (forcejoin52-check.json). Total force-join groups now: 24 original + 23 new = 47 entries,
+# of which 46 are megagroups (enforceable) + 1 channel (@ignounotificationkerala, unenforceable).
+# NOT added: channels (@ignoukeralaadmissionhelpdesk, @assignment_solved_ignou — cannot be
+# force-joined); groups where bot is not a member (@ignoukeralachaptermasters,
+# @ignoubachlorsall — add the bot first, then add here); groups where Mohammed is only a
+# member, not admin (@ignou_asignment, @assignment_solved_ignou, @ignou_historyhonours2022);
+# dead usernames (@ignouqueries2025, @literaturecommunittiiii).
+# New joiners only, same rules as before: join @ignouassignmentsofficial + start the bot,
+# then Verify in private chat. Existing members are never touched.
+@ignoumegchapter
+@ignoumapykerala
+@ignoumahicommunity
+@ignoumbakerala25
+@ignoumaeckerala
+@ignoumsokerala
+@mpskeralacommunity
+@ignoumswkerala25
+@ignoubagkerala
+@ignoubaeghkerala
+@ignoubasohcommunity
+@ignoubcastudymaterial
+@bahihstudymaterialcommunity
+@baechstudymaterialcommunity
+@bscstudymaterialcommunity
+@ignoubcomstudymaterial
+@ignoubapchkerala
+@bapshlearnerscommunity
+@ignoutamilnadustate
+@ignourctrivandrum
+@ignourccochin
+@ignouamalcollegenilambur
+@ignoujdtislam

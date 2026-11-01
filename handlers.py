@@ -13,13 +13,12 @@ import time
 from datetime import date
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-STATE_DIR = "/data" if os.path.isdir("/data") and os.access("/data", os.W_OK) else HERE
 FAQS_PATH = os.path.join(HERE, "faqs.json")
 QUIZZES_PATH = os.path.join(HERE, "quizzes.json")
 NOTES_PATH = os.path.join(HERE, "notes.json")
-SUBSCRIBERS_PATH = os.path.join(STATE_DIR, "subscribers.json")
-PENDING_PATH = os.path.join(STATE_DIR, "pending_files.json")
-NOTES_FILES_PATH = os.path.join(STATE_DIR, "notes_files.json")
+SUBSCRIBERS_PATH = os.path.join(HERE, "subscribers.json")
+PENDING_PATH = os.path.join(HERE, "pending_files.json")
+NOTES_FILES_PATH = os.path.join(HERE, "notes_files.json")
 
 FALLBACK = (
     "Thanks for your message! 😊 I'm still learning, so I don't have an "
@@ -75,14 +74,24 @@ _QUIZ_CACHE: dict = {}
 _NOTES_CACHE: dict = {}
 
 
-def today_quiz() -> dict:
-    quizzes = _load_json_cached(QUIZZES_PATH, _QUIZ_CACHE)
-    return quizzes[date.today().toordinal() % len(quizzes)]
+def today_quiz() -> None:
+    """RETIRED 28 Oct 2026. The generic quiz bank (global warming,
+    Chipko, Pride and Prejudice…) was sent to students of unrelated
+    courses with no course named. Its environment questions now live
+    under BEVAE-181 in quizzes_by_subject.json; its literature
+    questions duplicated the MEG banks and were dropped. A quiz with
+    no subject code is never sent — use today_subject_quiz(code)."""
+    return None
 
 
-def today_notes() -> str:
-    notes = _load_json_cached(NOTES_PATH, _NOTES_CACHE)
-    return notes[date.today().toordinal() % len(notes)]
+def today_notes() -> None:
+    """RETIRED 28 Oct 2026. The generic notes bank (the Environment
+    card photographed in a general group on 28 Oct) is retired for
+    the same reason: a note with no course, subject or topic named
+    is never sent. Its cards now live, labelled by block, under
+    BEVAE-181 in notes_by_subject_topics.json — use
+    today_subject_note(code)."""
+    return None
 
 
 def subscribe(chat_id: int) -> bool:
@@ -177,9 +186,11 @@ def is_simple(chat_id: int) -> bool:
 # Files are read-only data next to the code (same in the FadeHost pack).
 QUIZZES_BY_SUBJECT_PATH = os.path.join(HERE, "quizzes_by_subject.json")
 NOTES_BY_SUBJECT_PATH = os.path.join(HERE, "notes_by_subject.json")
-DOUBTS_PATH = os.path.join(STATE_DIR, "doubts.json")
+NOTES_TOPICS_PATH = os.path.join(HERE, "notes_by_subject_topics.json")
+DOUBTS_PATH = os.path.join(HERE, "doubts.json")
 _SUBJECT_QUIZ_CACHE: dict = {}
 _SUBJECT_NOTE_CACHE: dict = {}
+_SUBJECT_NOTE_TOPICS_CACHE: dict = {}
 
 MAEG_SUBJECTS = {
     "MEG-01": "British Poetry", "MEG-02": "British Drama",
@@ -200,6 +211,16 @@ MAEG_SUBJECTS = {
     "MEG-19": "Australian Novel",
 }
 
+# Common courses: subjects shared by many IGNOU programmes, so a note
+# for them is never "random" — it is a named course, subject and topic.
+# BEVAE-181 Environmental Studies is the AECC compulsory course in
+# Semester 1 of the BA (Hons) programmes and the FYUGP AEC, verified
+# from the programme research files. Its 4 blocks are the topic list
+# in notes_by_subject_topics.json.
+COMMON_SUBJECTS = {
+    "BEVAE-181": "Environmental Studies",
+}
+
 
 def load_subject_quizzes() -> dict:
     return _load_json_cached(QUIZZES_BY_SUBJECT_PATH, _SUBJECT_QUIZ_CACHE)
@@ -207,6 +228,10 @@ def load_subject_quizzes() -> dict:
 
 def load_subject_notes() -> dict:
     return _load_json_cached(NOTES_BY_SUBJECT_PATH, _SUBJECT_NOTE_CACHE)
+
+
+def load_subject_note_topics() -> dict:
+    return _load_json_cached(NOTES_TOPICS_PATH, _SUBJECT_NOTE_TOPICS_CACHE)
 
 
 def today_subject_quiz(code: str, on_date: date | None = None) -> dict | None:
@@ -219,7 +244,19 @@ def today_subject_quiz(code: str, on_date: date | None = None) -> dict | None:
     return items[day.toordinal() % len(items)]
 
 
-def today_subject_note(code: str) -> str | None:
+def today_subject_note(code: str, on_date: date | None = None) -> str | None:
+    """Today's note for one subject, always labelled with its course
+    code, subject name and topic. Topic-bank subjects (BEVAE-181)
+    rotate one card per day, deterministic by date, like quizzes;
+    single-card subjects (MEG/MAEG) return their card. A subject with
+    no bank returns None — never a generic card."""
+    topics = load_subject_note_topics().get(code)
+    if topics:
+        day = on_date or date.today()
+        card = topics[day.toordinal() % len(topics)]
+        name = COMMON_SUBJECTS.get(code) or MAEG_SUBJECTS.get(code) or ""
+        header = f"{code} — {name}" if name else code
+        return f"{header}\nTopic: {card['topic']}\n\n{card['text']}"
     return load_subject_notes().get(code)
 
 
@@ -256,18 +293,53 @@ _HELP_TEXT = (
 )
 
 
+def _is_private_chat_id(chat_id: int) -> bool:
+    """Telegram private chats have positive ids; groups, supergroups and
+    channels are negative. Quizzes, notes and subscriptions are private
+    only — a poll in a group would notify every member and expose every
+    answer, which is never acceptable. Any negative chat_id is refused
+    here as defence in depth, whatever called us."""
+    try:
+        return int(chat_id) > 0
+    except Exception:
+        return False
+
+
 def _send_quiz(ctx: dict, chat_id: int) -> None:
     """Today's quiz for the subscriber's subject, else the generic one.
     The poll has no timer. The explanation also arrives as plain text
-    right after the poll, not only inside the poll."""
+    right after the poll, not only inside the poll.
+    PRIVATE ONLY: never send a poll to a group — see _is_private_chat_id."""
+    if not _is_private_chat_id(chat_id):
+        print("universal: quiz refused for non-private chat", chat_id, flush=True)
+        return
     sub = get_subscription(chat_id)
     code = sub.get("subject_code") if sub else None
     quiz = today_subject_quiz(code) if code else None
     if quiz is None:
-        quiz = today_quiz()
-        label = "Today's Quiz"
-    else:
-        label = f"Today's Quiz — {code}"
+        # NO generic fallback. A random quiz (global warming, Chipko,
+        # Pride and Prejudice…) sent to a student of another course is
+        # exactly the "no relation between course and topic" complaint.
+        # If there is no subscribed subject with a real quiz bank for
+        # it, send no poll at all — send the choose-a-subject message.
+        try:
+            ctx["call"]("sendMessage", {
+                "chat_id": chat_id,
+                "text": _fmt(chat_id, (
+                    "No quiz for your course yet.\n\n"
+                    "Quizzes are sent only for the subject you subscribed "
+                    "to, so the topic always matches your course.\n"
+                    "Tap Daily Study → Subscribe, choose your university, "
+                    "course and subject, and your quiz will be for that "
+                    "subject only.\n\n"
+                    "MEG/MAEG and BEVAE-181 subjects are ready now. Other courses "
+                    "are being added programme by programme — no random "
+                    "quiz is sent in between.")),
+            })
+        except Exception:
+            pass
+        return
+    label = f"Today's Quiz — {code}"
     try:
         ctx["call"]("sendPoll", {
             "chat_id": chat_id,
@@ -292,13 +364,29 @@ def _send_quiz(ctx: dict, chat_id: int) -> None:
 
 
 def _send_notes(ctx: dict, chat_id: int) -> None:
+    if not _is_private_chat_id(chat_id):
+        print("universal: notes refused for non-private chat", chat_id, flush=True)
+        return
     sub = get_subscription(chat_id)
     code = sub.get("subject_code") if sub else None
     note = today_subject_note(code) if code else None
     if note is None:
-        text = "Today's Notes\n\n" + today_notes()
-    else:
-        text = f"Today's Notes — {code}\n\n{note}"
+        # Same no-generic rule as quizzes: no random note card for a
+        # student whose subject has no note bank yet.
+        try:
+            ctx["call"]("sendMessage", {
+                "chat_id": chat_id,
+                "text": _fmt(chat_id, (
+                    "No note for your course yet.\n\n"
+                    "Notes are sent only for the subject you subscribed "
+                    "to. Tap Daily Study → Subscribe, choose your "
+                    "university, course and subject, and your note will "
+                    "be for that subject only.")),
+            })
+        except Exception:
+            pass
+        return
+    text = f"Today's Notes — {code}\n\n{note}"
     try:
         ctx["call"]("sendMessage", {"chat_id": chat_id, "text": _fmt(chat_id, text)})
     except Exception as e:
@@ -328,16 +416,20 @@ def _send_my_subscription(ctx: dict, chat_id: int) -> None:
 
 
 def _do_subscribe(ctx: dict, chat_id: int, code: str) -> None:
-    name = MAEG_SUBJECTS.get(code)
+    if not _is_private_chat_id(chat_id):
+        print("universal: subscribe refused for non-private chat", chat_id, flush=True)
+        return
+    name = MAEG_SUBJECTS.get(code) or COMMON_SUBJECTS.get(code)
     if name is None:
         try:
             ctx["call"]("sendMessage", {
                 "chat_id": chat_id,
-                "text": "That subject is not ready yet. MAEG English subjects are ready now."})
+                "text": "That subject is not ready yet. MAEG English and BEVAE-181 Environmental Studies are ready now."})
         except Exception:
             pass
         return
-    set_subscription(chat_id, "IGNOU", "MAEG", code, name)
+    programme = "MAEG" if code in MAEG_SUBJECTS else "AECC"
+    set_subscription(chat_id, "IGNOU", programme, code, name)
     try:
         ctx["call"]("sendMessage", {
             "chat_id": chat_id,
@@ -433,12 +525,132 @@ def _save_doubt(chat_id: int, question: str) -> None:
         json.dump(doubts, f)
 
 
-def _handle_private_command(ctx: dict, chat_id: int, text: str, menus: dict) -> bool:
+# ---- Separate admin view (private only, bot owner only) ----
+# The normal home menu is identical for everyone and contains NO admin
+# button, so members never see this view exists. Admin access is by the
+# typed /admin command in a private chat only. Identity is the bot
+# owner's Telegram username (Shafeque_rayaroth, from the owner account),
+# plus any numeric ids in the ADMIN_USER_IDS env var on the host
+# (comma-separated). Set ADMIN_USER_IDS on FadeHost to lock admin to a
+# numeric id if the username ever changes.
+def _admin_user_ids() -> set:
+    out = set()
+    for part in (os.environ.get("ADMIN_USER_IDS") or "").split(","):
+        part = part.strip()
+        if part.lstrip("-").isdigit():
+            out.add(int(part))
+    return out
+
+
+def _admin_usernames() -> set:
+    raw = os.environ.get("ADMIN_USERNAMES") or "shafeque_rayaroth"
+    return {p.strip().lower() for p in raw.split(",") if p.strip()}
+
+
+def _is_admin_sender(sender: dict | None) -> bool:
+    if not sender:
+        return False
+    if sender.get("id") is not None and sender["id"] in _admin_user_ids():
+        return True
+    uname = (sender.get("username") or "").lower()
+    return bool(uname) and uname in _admin_usernames()
+
+
+def _admin_rows() -> list:
+    return [[{"text": "❓ Doubts", "callback_data": "menu:admin-doubts"},
+             {"text": "👥 Subscribers", "callback_data": "menu:admin-subs"}],
+            [{"text": "⏳ Pending verifications", "callback_data": "menu:admin-pending"}],
+            [{"text": "🏠 Back to Home", "callback_data": "menu:home"}]]
+
+
+def _send_admin_home(ctx: dict, chat_id: int) -> None:
+    subs = load_subscriptions()
+    doubts = _load_doubts()
+    pending = _load_pending_verify()
+    tracked = _load_json_file(GROUP_TRACKED_PATH) if 'GROUP_TRACKED_PATH' in globals() else {}
+    text = ("🛠 Admin — Mission Academy Bot\n\n"
+            f"Subscribers: {len(subs)}\n"
+            f"Doubts saved: {len(doubts)}\n"
+            f"Pending verifications: {len(pending)}\n"
+            f"Groups tracked: {len(tracked)}\n\n"
+            "This view is private and owner-only. Members see the "
+            "normal home only.\n\n"
+            "To add a file to a shared Notes page: forward the PDF to "
+            "me privately (admin only), then tap Notes on that page.")
+    try:
+        ctx["call"]("sendMessage", {"chat_id": chat_id, "text": text,
+                                    "reply_markup": {"inline_keyboard": _admin_rows()}})
+    except Exception:
+        pass
+
+
+def _send_admin_doubts(ctx: dict, chat_id: int) -> None:
+    doubts = _load_doubts()[-10:]
+    if not doubts:
+        body = "No doubts saved yet."
+    else:
+        lines = []
+        for d in doubts:
+            q = (d.get("question") or "")[:200].replace("\n", " ")
+            lines.append(f"• [{d.get('chat_id')}] {q}")
+        body = "\n".join(lines)
+    try:
+        ctx["call"]("sendMessage", {"chat_id": chat_id,
+                                    "text": "❓ Latest doubts (last 10):\n\n" + body,
+                                    "reply_markup": {"inline_keyboard": _admin_rows()}})
+    except Exception:
+        pass
+
+
+def _send_admin_subs(ctx: dict, chat_id: int) -> None:
+    subs = load_subscriptions()
+    by_subject: dict = {}
+    for sub in subs.values():
+        if isinstance(sub, dict) and sub.get("subject_code"):
+            by_subject[sub["subject_code"]] = by_subject.get(sub["subject_code"], 0) + 1
+    no_subject = len(subs) - sum(by_subject.values())
+    lines = [f"Total subscribers: {len(subs)}"]
+    for code in sorted(by_subject):
+        lines.append(f"• {code}: {by_subject[code]}")
+    if no_subject:
+        lines.append(f"• No subject chosen yet: {no_subject}")
+    try:
+        ctx["call"]("sendMessage", {"chat_id": chat_id,
+                                    "text": "👥 Subscribers:\n\n" + "\n".join(lines),
+                                    "reply_markup": {"inline_keyboard": _admin_rows()}})
+    except Exception:
+        pass
+
+
+def _send_admin_pending(ctx: dict, chat_id: int) -> None:
+    pending = _load_pending_verify()
+    if not pending:
+        body = "No pending verifications."
+    else:
+        body = "\n".join(
+            f"• user {e.get('user_id')} in {e.get('group_username') or e.get('group_id')} "
+            f"(prompt sent: {e.get('prompt_sent')})" for e in pending[:20])
+    try:
+        ctx["call"]("sendMessage", {"chat_id": chat_id,
+                                    "text": "⏳ Pending verifications:\n\n" + body,
+                                    "reply_markup": {"inline_keyboard": _admin_rows()}})
+    except Exception:
+        pass
+
+
+def _handle_private_command(ctx: dict, chat_id: int, text: str, menus: dict, sender: dict | None = None) -> bool:
     """Typed command equivalents for every Phase 1 button action.
-    Returns True when the text was a command."""
+    Returns True when the text was a command. /admin is owner-only:
+    a non-admin gets False here, so the caller answers 'Unknown
+    command' — the admin view's existence is never confirmed to them."""
     parts = text.strip().split(None, 1)
     cmd = parts[0].lower()
     arg = parts[1] if len(parts) > 1 else ""
+    if cmd == "/admin":
+        if _is_private_chat_id(chat_id) and _is_admin_sender(sender):
+            _send_admin_home(ctx, chat_id)
+            return True
+        return False
     if cmd == "/home":
         ctx["show_menu"](chat_id, None, "home", menus)
     elif cmd == "/ignou":
@@ -533,6 +745,48 @@ def _handle_private_free_text(ctx: dict, chat_id: int, text: str) -> None:
             pass
         return
     try:
+        # Free-tier AI routing (built 28 Oct 2026, user: "Build?").
+        # Lazy import so a pack missing ai_answer.py / course_info.json
+        # falls back to the old doubt-saving behaviour, never a crash.
+        # Order: course info -> verified facts (none supplied here, so
+        # sensitive university facts stay unverified) -> free AI ->
+        # honest fallback. Phone number is NOT the default here; it is
+        # kept only for the human-needed route below.
+        import ai_answer as _ai
+        _courses = _ai.load_courses(os.path.join(HERE, "course_info.json"))
+        _route, _obj = _ai.route_question(text, _courses)
+        _reply = None
+        if _route == "course":
+            _reply = _ai.course_answer(_obj)
+        elif _route == "unverified_sensitive":
+            _reply = ("I don't have a verified answer for that deadline / "
+                      "fee / eligibility question yet, so I won't guess it. "
+                      "Your question is saved for the Mission Academy team.")
+            _save_doubt(chat_id, text)
+        elif _route == "ai":
+            _ai_text, _ai_err = _ai.call_free_ai(text)
+            if _ai_text:
+                _reply = (_ai_text + "\n\n— AI answer. For university "
+                          "deadlines, fees or eligibility, please confirm "
+                          "with Mission Academy before acting.")
+            else:
+                _reply = (_ai.fallback_message(text, _ai.is_malayalam(text))
+                          + "\nSaved for the team.\nWe will get back to you.\n"
+                          "WhatsApp: +91 86066 56245")
+                _save_doubt(chat_id, text)
+        if _reply is not None:
+            try:
+                ctx["call"]("sendMessage", {
+                    "chat_id": chat_id, "text": _fmt(chat_id, _reply),
+                    "reply_markup": ctx["main_keyboard"](),
+                    "protect_content": True,
+                })
+            except Exception:
+                pass
+            return
+    except Exception as e:
+        print("universal: ai routing failed, falling back to doubt save:", e, flush=True)
+    try:
         _save_doubt(chat_id, text)
     except Exception as e:
         print("universal: doubt save failed:", e, flush=True)
@@ -622,7 +876,7 @@ ASSIGN_GROUPS_PATH = os.path.join(HERE, "force-join-assignment-channel-groups.tx
 # with no startup load step. User IDs only, nothing else is stored.
 BOT_USERNAME = "Shafeeque_rayaroth_bot"
 BOT_URL = "https://t.me/Shafeeque_rayaroth_bot"
-BOT_STARTERS_PATH = os.path.join(STATE_DIR, "bot_starters.json")
+BOT_STARTERS_PATH = os.path.join(HERE, "bot_starters.json")
 
 # Private verification (27 Oct 2026): the verification step must be
 # invisible to other group members. Telegram has NO "only this user sees
@@ -639,7 +893,7 @@ BOT_STARTERS_PATH = os.path.join(STATE_DIR, "bot_starters.json")
 # or from another member), at which point the pending prompt below is
 # delivered immediately on their first private message. Pending entries
 # are the source of truth for verification, so they survive restarts.
-PENDING_VERIFY_PATH = os.path.join(STATE_DIR, "pending_verify.json")
+PENDING_VERIFY_PATH = os.path.join(HERE, "pending_verify.json")
 
 
 def _load_pending_verify() -> list:
@@ -1015,6 +1269,172 @@ def _handle_assignments_page(cb: dict, ctx: dict, menus: dict, key: str) -> bool
     return True
 
 
+# ---- SGOU subject materials (launched 1 Nov 2026) ----
+# Subject buttons live in menus.json under the new "sgou-sub-*" tree
+# (Programme -> Semester -> Subject). Their material buttons point at
+# "sgou-mat-<kind>-<id>" keys, intercepted here BEFORE the generic
+# menu branch. Materials are sent as CloudFront / YouTube URLs: the bot
+# host cannot read the VM disk where the PDFs were verified, so NO local
+# file path is ever used here. PDF kinds (Notes, Papers, semester
+# Assignments) pass the same force-join gate as the old Notes handler:
+# members of @missionacademy_official only, fail-open on check errors
+# (that behaviour lives in _is_channel_member). YouTube links are not
+# downloads, so they are NOT gated — and they are sent with link
+# preview ON, per the owner's virtual-content rule (the generic menu
+# renderer disables preview, so these go through sendMessage directly).
+SGOU_MATERIALS_PATH = os.path.join(HERE, "sgou_materials.json")
+_SGOU_MAT_CACHE: dict = {}
+
+
+def load_sgou_materials() -> dict:
+    try:
+        return _load_json_cached(SGOU_MATERIALS_PATH, _SGOU_MAT_CACHE)
+    except (FileNotFoundError, json.JSONDecodeError):
+        return {}
+
+
+def _sgou_back_row(back_key: str) -> dict:
+    return {"inline_keyboard": [[{"text": "⬅ Back",
+                                  "callback_data": "menu:" + back_key}]]}
+
+
+def _sgou_send(ctx: dict, chat_id: int, text: str, back_key: str,
+               preview: bool = False) -> None:
+    payload = {"chat_id": chat_id, "text": text,
+               "reply_markup": _sgou_back_row(back_key)}
+    if preview:
+        payload["link_preview_options"] = {"is_disabled": False}
+    ctx["call"]("sendMessage", payload)
+
+
+def _sgou_join_prompt(ctx: dict, chat_id: int, back_key: str) -> None:
+    ctx["call"]("sendMessage", {
+        "chat_id": chat_id,
+        "text": ("📢 To download this PDF, please join our "
+                 "Mission Academy channel first.\n\n"
+                 "Tap Join below, then come back and tap again."),
+        "reply_markup": {"inline_keyboard": [[
+            {"text": "📢 Join Mission Academy Channel",
+             "url": FORCE_JOIN_URL}]]},
+    })
+    ctx["call"]("sendMessage", {
+        "chat_id": chat_id,
+        "text": "⬅ Back",
+        "reply_markup": _sgou_back_row(back_key),
+    })
+
+
+def _sgou_chunk_lines(lines: list, header: str, limit: int = 3500) -> list:
+    """Split a header + bullet lines into Telegram-sized messages."""
+    chunks, current = [], header
+    for line in lines:
+        if len(current) + len(line) + 1 > limit:
+            chunks.append(current)
+            current = header
+        current += "\n" + line
+    chunks.append(current)
+    return chunks
+
+
+def _handle_sgou_material(cb: dict, ctx: dict, key: str) -> None:
+    """Handle a "sgou-mat-<kind>-<id>" tap. Never raises: an unknown
+    id or a failed send degrades to an honest coming-soon message."""
+    chat_id = cb["message"]["chat"]["id"]
+    user_id = (cb.get("from") or {}).get("id")
+    parts = key.split("-")
+    # key form: sgou-mat-<kind>-<id> (kind is one word; semassign ids
+    # contain a hyphen, so rejoin everything after the kind).
+    kind = parts[2] if len(parts) > 2 else ""
+    ident = "-".join(parts[3:]) if len(parts) > 3 else ""
+    data = load_sgou_materials()
+    subjects = data.get("subjects") or {}
+    semesters = data.get("semesters") or {}
+    try:
+        if kind == "notes":
+            subj = subjects.get(ident)
+            if subj is None:
+                raise KeyError(ident)
+            back_key = subj["subject_key"]
+            url = subj.get("slm_url")
+            if not url:
+                _sgou_send(ctx, chat_id,
+                           "📝 %s — %s\n\nContent coming soon."
+                           % (subj["code"], subj["title"]), back_key)
+                return
+            if not _is_channel_member(ctx, user_id):
+                _sgou_join_prompt(ctx, chat_id, back_key)
+                return
+            _sgou_send(ctx, chat_id,
+                       "📝 %s — %s\n\nStudy material (SLM):\n%s"
+                       % (subj["code"], subj["title"], url), back_key)
+        elif kind == "papers":
+            subj = subjects.get(ident)
+            if subj is None:
+                raise KeyError(ident)
+            back_key = subj["subject_key"]
+            papers = subj.get("pyq") or []
+            if not papers:
+                _sgou_send(ctx, chat_id,
+                           "📄 %s — %s\n\nContent coming soon."
+                           % (subj["code"], subj["title"]), back_key)
+                return
+            if not _is_channel_member(ctx, user_id):
+                _sgou_join_prompt(ctx, chat_id, back_key)
+                return
+            header = "📄 %s — %s\n\nQuestion Papers:" \
+                     % (subj["code"], subj["title"])
+            lines = ["• %s (%s)\n%s" % (p.get("paper") or p.get("code") or "",
+                                         p.get("exam") or "", p["url"])
+                     for p in papers]
+            for chunk in _sgou_chunk_lines(lines, header):
+                _sgou_send(ctx, chat_id, chunk, back_key)
+        elif kind == "videos":
+            subj = subjects.get(ident)
+            if subj is None:
+                raise KeyError(ident)
+            back_key = subj["subject_key"]
+            videos = subj.get("videos") or []
+            if not videos:
+                _sgou_send(ctx, chat_id,
+                           "🎬 %s — %s\n\nContent coming soon."
+                           % (subj["code"], subj["title"]), back_key)
+                return
+            for v in videos:
+                _sgou_send(ctx, chat_id,
+                           "🎬 %s\n%s" % (v.get("title") or "", v["url"]),
+                           back_key, preview=True)
+        elif kind == "semassign":
+            sem = semesters.get(ident)
+            if sem is None:
+                raise KeyError(ident)
+            back_key = sem["semester_key"]
+            booklets = sem.get("assignments") or []
+            if not booklets:
+                _sgou_send(ctx, chat_id,
+                           "📋 %s — %s\n\nContent coming soon."
+                           % (sem["programme_name"], sem["semester"]),
+                           back_key)
+                return
+            if not _is_channel_member(ctx, user_id):
+                _sgou_join_prompt(ctx, chat_id, back_key)
+                return
+            header = "📋 %s — %s\n\nAssignment booklets:" \
+                     % (sem["programme_name"], sem["semester"])
+            lines = ["• %s\n%s" % (b.get("title") or "", b["url"])
+                     for b in booklets]
+            for chunk in _sgou_chunk_lines(lines, header):
+                _sgou_send(ctx, chat_id, chunk, back_key)
+        else:
+            _sgou_send(ctx, chat_id, "Content coming soon.",
+                       "sgou-subjects")
+    except Exception:
+        try:
+            _sgou_send(ctx, chat_id, "Content coming soon.",
+                       "sgou-subjects")
+        except Exception:
+            pass
+
+
 def _handle_assign_get(cb: dict, ctx: dict, menus: dict) -> None:
     """Forward a chosen multi-programme booklet (assign-get callback).
     The code is recovered from the parent hub's title when present."""
@@ -1257,10 +1677,10 @@ def _handle_verify_callback(cb: dict, ctx: dict) -> None:
 #   group_notes.json    — per-group saved notes
 #   group_tracked.json  — groups the bot has seen (for /fban)
 # Flood timestamps live in memory only; a restart clears them.
-GROUP_SETTINGS_PATH = os.path.join(STATE_DIR, "group_settings.json")
-GROUP_WARNS_PATH = os.path.join(STATE_DIR, "group_warns.json")
-GROUP_NOTES_PATH = os.path.join(STATE_DIR, "group_notes.json")
-GROUP_TRACKED_PATH = os.path.join(STATE_DIR, "group_tracked.json")
+GROUP_SETTINGS_PATH = os.path.join(HERE, "group_settings.json")
+GROUP_WARNS_PATH = os.path.join(HERE, "group_warns.json")
+GROUP_NOTES_PATH = os.path.join(HERE, "group_notes.json")
+GROUP_TRACKED_PATH = os.path.join(HERE, "group_tracked.json")
 _FLOOD_TRACKER: dict = {}
 
 _GROUP_DEFAULTS = {
@@ -1851,6 +2271,20 @@ def handle_update(upd: dict, ctx: dict) -> None:
     if msg and msg.get("document") and msg.get("chat", {}).get("type") == "private":
         doc = msg["document"]
         chat_id = msg["chat"]["id"]
+        # Shared Notes uploads are admin-only: previously any member
+        # could attach a PDF to a subject's Notes page for everyone.
+        # A non-admin file is refused, not queued.
+        if not _is_admin_sender(msg.get("from") or {}):
+            ctx["call"]("sendMessage", {
+                "chat_id": chat_id,
+                "text": ("Only the admin can add files to shared Notes. "
+                         "Your file was not added. If this is study "
+                         "material for a subject, please send it to the "
+                         "admin instead."),
+                "reply_markup": ctx["main_keyboard"](),
+                "protect_content": True,
+            })
+            return
         pending = _load_json_file(PENDING_PATH)
         queue = pending.setdefault(str(chat_id), [])
         queue.append({
@@ -1878,7 +2312,7 @@ def handle_update(upd: dict, ctx: dict) -> None:
         if text.startswith("/"):
             # Typed commands (button equivalents + /calc + /simple).
             # Unknown commands get a help hint — they are not doubts.
-            if _handle_private_command(ctx, msg["chat"]["id"], text, menus):
+            if _handle_private_command(ctx, msg["chat"]["id"], text, menus, sender=msg.get("from") or {}):
                 return
             ctx["call"]("sendMessage", {
                 "chat_id": msg["chat"]["id"],
@@ -1902,6 +2336,29 @@ def handle_update(upd: dict, ctx: dict) -> None:
     if data.startswith("assign-get:"):
         _handle_assign_get(cb, ctx, menus)
         return
+    # SGOU subject materials: intercepted before the generic menu branch
+    # (their keys are menu keys, but the content is URL-based and gated).
+    if data.startswith("menu:sgou-mat-"):
+        _handle_sgou_material(cb, ctx, data[len("menu:"):])
+        return
+    # PRIVATE-ONLY GUARD for Daily Study buttons: a quiz poll, note or
+    # subscription must never land in a group, where it would notify
+    # every member and expose answers. If a Daily Study button is ever
+    # tapped from a group message, show the tapper a private-only alert
+    # and send nothing to the group.
+    if data.startswith("menu:daily-") or data in (
+            "menu:my-subscription", "menu:unsubscribe") or data.startswith("menu:sub-do-"):
+        msg_chat = (cb.get("message") or {}).get("chat") or {}
+        if msg_chat.get("type") in ("group", "supergroup") or int(msg_chat.get("id") or 0) < 0:
+            try:
+                ctx["call"]("answerCallbackQuery", {
+                    "callback_query_id": cb["id"],
+                    "text": "Quizzes and Daily Study are private only — open the bot privately and use Daily Study there, so other group members are never notified.",
+                    "show_alert": True,
+                })
+            except Exception:
+                pass
+            return
     # answer the callback FIRST so the button spinner clears immediately,
     # even if the menu edit is slow on a bad connection
     try:
@@ -1909,6 +2366,21 @@ def handle_update(upd: dict, ctx: dict) -> None:
     except Exception:
         pass
     chat_id = cb["message"]["chat"]["id"]
+    # Separate admin view: owner-only callbacks, private only. A
+    # non-admin tapping one (if they ever see it) gets nothing — the
+    # generic spinner answer above is the only response, so the view
+    # is never confirmed to them.
+    if data.startswith("menu:admin"):
+        if _is_private_chat_id(chat_id) and _is_admin_sender(cb.get("from") or {}):
+            if data == "menu:admin":
+                _send_admin_home(ctx, chat_id)
+            elif data == "menu:admin-doubts":
+                _send_admin_doubts(ctx, chat_id)
+            elif data == "menu:admin-subs":
+                _send_admin_subs(ctx, chat_id)
+            elif data == "menu:admin-pending":
+                _send_admin_pending(ctx, chat_id)
+        return
     # Daily Study actions (buttons on the daily-study menu)
     if data == "menu:daily-quiz-take":
         _send_quiz(ctx, chat_id)

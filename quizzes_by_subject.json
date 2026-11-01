@@ -1081,5 +1081,62 @@
    "answer": 0,
    "explanation": "Australian novels often explore land and identity."
   }
+ ],
+ "BEVAE-181": [
+  {
+   "answer": 1,
+   "explanation": "CO2 traps heat in the atmosphere and is the main driver of global warming.",
+   "options": [
+    "Oxygen",
+    "Carbon dioxide",
+    "Nitrogen",
+    "Hydrogen"
+   ],
+   "q": "Which gas is the main contributor to global warming?"
+  },
+  {
+   "answer": 2,
+   "explanation": "Solar energy is renewed by nature; coal, petroleum and gas are finite fossil fuels.",
+   "options": [
+    "Coal",
+    "Petroleum",
+    "Solar energy",
+    "Natural gas"
+   ],
+   "q": "Which of these is a renewable source of energy?"
+  },
+  {
+   "answer": 1,
+   "explanation": "Chipko (1973) protected trees — villagers hugged trees to stop them being cut.",
+   "options": [
+    "Water conservation",
+    "Forest conservation",
+    "Air pollution",
+    "Soil erosion"
+   ],
+   "q": "The Chipko Movement is associated with:"
+  },
+  {
+   "answer": 1,
+   "explanation": "Oceans cover about 71% of Earth — the largest ecosystem.",
+   "options": [
+    "Desert",
+    "Ocean",
+    "Forest",
+    "Grassland"
+   ],
+   "q": "Which is the largest ecosystem on Earth?"
+  },
+  {
+   "q": "Which of these breaks down dead matter and recycles nutrients?",
+   "options": [
+    "Producers",
+    "Consumers",
+    "Decomposers",
+    "Herbivores"
+   ],
+   "answer": 2,
+   "explanation": "Decomposers (bacteria, fungi) break down dead matter and recycle nutrients into the soil."
+  }
  ]
 }
