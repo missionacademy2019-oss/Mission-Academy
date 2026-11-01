@@ -557,8 +557,8 @@ def _is_admin_sender(sender: dict | None) -> bool:
 
 
 def _admin_rows() -> list:
-    return [[{"text": "❓ Doubts", "callback_data": "menu:admin-doubts"},
-             {"text": "👥 Subscribers", "callback_data": "menu:admin-subs"}],
+    return [[{"text": "❓ Doubts", "callback_data": "menu:admin-doubts"}],
+            [{"text": "👥 Subscribers", "callback_data": "menu:admin-subs"}],
             [{"text": "⏳ Pending verifications", "callback_data": "menu:admin-pending"}],
             [{"text": "🏠 Back to Home", "callback_data": "menu:home"}]]
 
