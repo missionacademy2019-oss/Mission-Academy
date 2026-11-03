@@ -16,6 +16,10 @@ import json
 import os
 import re
 
+# NOTE: never put this number in a sent message — Telegram auto-links a
+# bare number to the owner's personal profile. Bot contact is always the
+# wa.me button sent by handlers._send_whatsapp_button. Kept here only as
+# a business record, never rendered into message text.
 CONTACT_PHONE = "+91 86066 56245"
 CONTACT_SITE = "www.missionacademys.com"
 SENSITIVE_WORDS = ("deadline", "last date", "fee", "fees", "price",
@@ -93,7 +97,7 @@ def course_answer(course):
     lines = [course.get("name", ""), "", course.get("overview", ""), ""]
     for point in (course.get("structure") or [])[:5]:
         lines.append(f"- {point}")
-    lines += ["", price, f"Admissions and guidance: {CONTACT_PHONE} | {CONTACT_SITE}"]
+    lines += ["", price, f"Admissions and guidance: {CONTACT_SITE}"]
     return "\n".join(lines)
 
 

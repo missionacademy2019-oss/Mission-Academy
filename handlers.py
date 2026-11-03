@@ -19,12 +19,39 @@ NOTES_PATH = os.path.join(HERE, "notes.json")
 SUBSCRIBERS_PATH = os.path.join(HERE, "subscribers.json")
 PENDING_PATH = os.path.join(HERE, "pending_files.json")
 NOTES_FILES_PATH = os.path.join(HERE, "notes_files.json")
+# Bulk-harvest state (3 Nov 2026): while a harvest target is set for an
+# admin chat, admin documents attach DIRECTLY to that Notes page's list
+# in notes_files.json, bypassing the pending queue and its 1-hour expiry
+# (the queue path is unusable for bulk work). Keyed by admin chat_id.
+HARVEST_STATE_PATH = os.path.join(HERE, "harvest_state.json")
+HARVEST_PROGRESS_EVERY = 50
 
 FALLBACK = (
     "Thanks for your message! 😊 I'm still learning, so I don't have an "
     "answer for that one yet. Our team will be happy to help you directly — "
-    "message Mission Academy on WhatsApp: +91 86066 56245"
+    "contact Mission Academy on WhatsApp."
 )
+
+# WhatsApp contact (3 Nov 2026): NEVER put the bare phone number in a
+# sent message — Telegram auto-links it to the owner's personal profile
+# instead of WhatsApp. Contact is always this wa.me button, so tapping
+# it opens WhatsApp directly. The button text shows the number, but as
+# button text it is never linkified to a Telegram profile.
+WHATSAPP_URL = "https://wa.me/918606656245"
+WHATSAPP_BUTTON_TEXT = "📱 +91 86066 56245"
+
+
+def _send_whatsapp_button(ctx: dict, chat_id: int) -> None:
+    """Send the WhatsApp contact button as its own message."""
+    try:
+        ctx["call"]("sendMessage", {
+            "chat_id": chat_id,
+            "text": "💬 Chat with Mission Academy on WhatsApp:",
+            "reply_markup": {"inline_keyboard": [[{"text": WHATSAPP_BUTTON_TEXT,
+                                                   "url": WHATSAPP_URL}]]},
+        })
+    except Exception:
+        pass
 
 _FAQS_CACHE = {"mtime": None, "faqs": []}
 
@@ -651,6 +678,66 @@ def _handle_private_command(ctx: dict, chat_id: int, text: str, menus: dict, sen
             _send_admin_home(ctx, chat_id)
             return True
         return False
+    if cmd in ("/harvest_start", "/harvest_stop", "/harvest_status"):
+        # Bulk-harvest mode (3 Nov 2026): admin-only, private only. A
+        # non-admin gets a refusal and nothing is recorded.
+        if not (_is_private_chat_id(chat_id) and _is_admin_sender(sender)):
+            try:
+                ctx["call"]("sendMessage", {
+                    "chat_id": chat_id,
+                    "text": "Only the admin can use harvest mode."})
+            except Exception:
+                pass
+            return True
+        if cmd == "/harvest_start":
+            page_key = arg.strip()
+            if not page_key:
+                msg = ("Usage: /harvest_start <notes-page-key> — e.g. "
+                       "/harvest_start ignou-pg-maeg-yr1-meg05-notes")
+            elif page_key not in menus or not page_key.endswith("-notes"):
+                msg = f"Unknown Notes page: {page_key}. Nothing recorded."
+            else:
+                state = _load_harvest_state()
+                state[str(chat_id)] = {"page_key": page_key,
+                                       "started_ts": time.time()}
+                _save_harvest_state(state)
+                count = len(_load_json_file(NOTES_FILES_PATH).get(page_key, []))
+                msg = (f"Harvest on: {page_key} "
+                       f"({count} file(s) already on this page). "
+                       "Send the files now; /harvest_stop when done.")
+            try:
+                ctx["call"]("sendMessage", {"chat_id": chat_id, "text": msg})
+            except Exception:
+                pass
+            return True
+        if cmd == "/harvest_stop":
+            state = _load_harvest_state()
+            target = state.pop(str(chat_id), None)
+            if target is None:
+                msg = "No harvest running."
+            else:
+                _save_harvest_state(state)
+                page_key = target["page_key"]
+                count = len(_load_json_file(NOTES_FILES_PATH).get(page_key, []))
+                msg = f"Harvest stopped: {page_key} now holds {count} file(s)."
+            try:
+                ctx["call"]("sendMessage", {"chat_id": chat_id, "text": msg})
+            except Exception:
+                pass
+            return True
+        # /harvest_status
+        target = _load_harvest_state().get(str(chat_id))
+        if target is None:
+            msg = "No harvest running."
+        else:
+            page_key = target["page_key"]
+            count = len(_load_json_file(NOTES_FILES_PATH).get(page_key, []))
+            msg = f"Harvest on: {page_key} — {count} file(s) on this page."
+        try:
+            ctx["call"]("sendMessage", {"chat_id": chat_id, "text": msg})
+        except Exception:
+            pass
+        return True
     if cmd == "/home":
         ctx["show_menu"](chat_id, None, "home", menus)
     elif cmd == "/ignou":
@@ -743,6 +830,10 @@ def _handle_private_free_text(ctx: dict, chat_id: int, text: str) -> None:
             })
         except Exception:
             pass
+        # FAQ answers never carry the bare number (it would link to a
+        # Telegram profile); answers mentioning WhatsApp get the button.
+        if "whatsapp" in answer.lower():
+            _send_whatsapp_button(ctx, chat_id)
         return
     try:
         # Free-tier AI routing (built 28 Oct 2026, user: "Build?").
@@ -756,8 +847,10 @@ def _handle_private_free_text(ctx: dict, chat_id: int, text: str) -> None:
         _courses = _ai.load_courses(os.path.join(HERE, "course_info.json"))
         _route, _obj = _ai.route_question(text, _courses)
         _reply = None
+        _needs_wa = False
         if _route == "course":
             _reply = _ai.course_answer(_obj)
+            _needs_wa = True
         elif _route == "unverified_sensitive":
             _reply = ("I don't have a verified answer for that deadline / "
                       "fee / eligibility question yet, so I won't guess it. "
@@ -771,9 +864,9 @@ def _handle_private_free_text(ctx: dict, chat_id: int, text: str) -> None:
                           "with Mission Academy before acting.")
             else:
                 _reply = (_ai.fallback_message(text, _ai.is_malayalam(text))
-                          + "\nSaved for the team.\nWe will get back to you.\n"
-                          "WhatsApp: +91 86066 56245")
+                          + "\nSaved for the team.\nWe will get back to you.")
                 _save_doubt(chat_id, text)
+                _needs_wa = True
         if _reply is not None:
             try:
                 ctx["call"]("sendMessage", {
@@ -783,6 +876,10 @@ def _handle_private_free_text(ctx: dict, chat_id: int, text: str) -> None:
                 })
             except Exception:
                 pass
+            # Course answers and AI fallbacks used to end with the bare
+            # number (linked to a Telegram profile); the button replaces it.
+            if _needs_wa:
+                _send_whatsapp_button(ctx, chat_id)
             return
     except Exception as e:
         print("universal: ai routing failed, falling back to doubt save:", e, flush=True)
@@ -794,13 +891,13 @@ def _handle_private_free_text(ctx: dict, chat_id: int, text: str) -> None:
         ctx["call"]("sendMessage", {
             "chat_id": chat_id,
             "text": ("Saved for the team.\n"
-                     "We will get back to you.\n"
-                     "WhatsApp: +91 86066 56245"),
+                     "We will get back to you."),
             "reply_markup": ctx["main_keyboard"](),
             "protect_content": True,
         })
     except Exception:
         pass
+    _send_whatsapp_button(ctx, chat_id)
 
 
 def _load_json_file(path: str):
@@ -814,6 +911,17 @@ def _load_json_file(path: str):
 def _save_json_file(path: str, data) -> None:
     with open(path, "w", encoding="utf-8") as f:
         json.dump(data, f)
+
+
+def _load_harvest_state() -> dict:
+    """Bulk-harvest targets, keyed by admin chat_id string. Each value
+    is {"page_key": <notes-page-key>, "started_ts": <epoch>}."""
+    data = _load_json_file(HARVEST_STATE_PATH)
+    return data if isinstance(data, dict) else {}
+
+
+def _save_harvest_state(state: dict) -> None:
+    _save_json_file(HARVEST_STATE_PATH, state)
 
 
 # Force-join gate: Notes PDFs are served only to members of the Mission Academy
@@ -2284,6 +2392,26 @@ def handle_update(upd: dict, ctx: dict) -> None:
                 "reply_markup": ctx["main_keyboard"](),
                 "protect_content": True,
             })
+            return
+        # Bulk-harvest mode: while a harvest target is set for this
+        # admin chat, attach DIRECTLY to that Notes page's list,
+        # bypassing the pending queue and its 1-hour expiry. Silent
+        # per file except a progress note every HARVEST_PROGRESS_EVERY
+        # files, so a bulk send never spams the admin chat.
+        target = _load_harvest_state().get(str(chat_id))
+        if target is not None:
+            page_key = target["page_key"]
+            mapping = _load_json_file(NOTES_FILES_PATH)
+            files = mapping.setdefault(page_key, [])
+            if all(f.get("file_id") != doc["file_id"] for f in files):
+                files.append({"file_id": doc["file_id"],
+                              "file_name": doc.get("file_name") or "notes.pdf"})
+                _save_json_file(NOTES_FILES_PATH, mapping)
+            count = len(mapping[page_key])
+            if count % HARVEST_PROGRESS_EVERY == 0:
+                ctx["call"]("sendMessage", {
+                    "chat_id": chat_id,
+                    "text": f"Harvest progress: {count} file(s) on {page_key}."})
             return
         pending = _load_json_file(PENDING_PATH)
         queue = pending.setdefault(str(chat_id), [])

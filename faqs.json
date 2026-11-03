@@ -11,7 +11,7 @@
     ]
   },
   {
-    "answer": "You're welcome! 😊 If you need anything else, just ask — or message us on WhatsApp at +91 86066 56245.",
+    "answer": "You're welcome! 😊 If you need anything else, just ask — or message us on WhatsApp using the button below.",
     "id": "thanks",
     "keywords": [
       "thank",
@@ -20,7 +20,7 @@
     ]
   },
   {
-    "answer": "Don't worry, everything will be fine! 😊 Take a deep breath. Tell me what's worrying you — admissions, exams, assignments — and I'll do my best to help. If it's urgent, our team is on WhatsApp: +91 86066 56245",
+    "answer": "Don't worry, everything will be fine! 😊 Take a deep breath. Tell me what's worrying you — admissions, exams, assignments — and I'll do my best to help. If it's urgent, our team is on WhatsApp: the WhatsApp button below",
     "id": "worried",
     "keywords": [
       "worried",
@@ -35,7 +35,7 @@
     ]
   },
   {
-    "answer": "It's okay — missing a date happens, and there's always a next step. ✅ IGNOU + SGOU July 2026 admissions closed on 13 Oct, but our January 2027 Priority List is open now. Join it and you'll be first to know when admissions open. Message us on WhatsApp: +91 86066 56245",
+    "answer": "It's okay — missing a date happens, and there's always a next step. ✅ IGNOU + SGOU July 2026 admissions closed on 13 Oct, but our January 2027 Priority List is open now. Join it and you'll be first to know when admissions open. Message us on WhatsApp: the WhatsApp button below",
     "id": "missed",
     "keywords": [
       "missed",
@@ -48,7 +48,7 @@
     ]
   },
   {
-    "answer": "I'm really sorry to hear that. 💛 One result never decides your future — there are always options: re-appear, switch courses, or plan the next session with us. Talk to our team and we'll guide you: +91 86066 56245",
+    "answer": "I'm really sorry to hear that. 💛 One result never decides your future — there are always options: re-appear, switch courses, or plan the next session with us. Talk to our team and we'll guide you: the WhatsApp button below",
     "id": "failed",
     "keywords": [
       "failed",
@@ -60,7 +60,7 @@
     ]
   },
   {
-    "answer": "No problem at all! 😊 Tell me what you're confused about — admissions, a course, notes, or assignments — and I'll explain it simply. You can also message our team on WhatsApp: +91 86066 56245",
+    "answer": "No problem at all! 😊 Tell me what you're confused about — admissions, a course, notes, or assignments — and I'll explain it simply. You can also message our team on WhatsApp: the WhatsApp button below",
     "id": "confused",
     "keywords": [
       "confused",
@@ -73,7 +73,7 @@
     ]
   },
   {
-    "answer": "I'm here to help! 😊 You can ask me about:\n\n📚 Admissions\n📖 Courses (IGNOU + SGOU)\n📝 Notes, assignments, question papers\n\nOr just browse the menu above. For anything else, WhatsApp us: +91 86066 56245",
+    "answer": "I'm here to help! 😊 You can ask me about:\n\n📚 Admissions\n📖 Courses (IGNOU + SGOU)\n📝 Notes, assignments, question papers\n\nOr just browse the menu above. For anything else, WhatsApp us: the WhatsApp button below",
     "id": "help",
     "keywords": [
       "help",
@@ -84,7 +84,7 @@
     ]
   },
   {
-    "answer": "📚 Admissions update:\n\nIGNOU + SGOU July 2026 admissions closed on 13 October 2026.\n\n🎯 Our January 2027 Priority List is now open — members get the first alert when admissions open, plus the document checklist in advance.\n\nTo join, message us on WhatsApp: +91 86066 56245",
+    "answer": "📚 Admissions update:\n\nIGNOU + SGOU July 2026 admissions closed on 13 October 2026.\n\n🎯 Our January 2027 Priority List is now open — members get the first alert when admissions open, plus the document checklist in advance.\n\nTo join, message us on WhatsApp: the WhatsApp button below",
     "id": "admission",
     "keywords": [
       "admission",
@@ -98,7 +98,7 @@
     ]
   },
   {
-    "answer": "Mission Academy offers:\n\n✅ IGNOU + SGOU admission & follow-up\n✅ Notes and study material (all courses)\n✅ Assignment services (all courses)\n✅ Projects, dissertations, field-work reports, practicum documentation\n✅ Classes — Malayalam / bilingual, plus premium English notes\n\nMessage us on WhatsApp: +91 86066 56245",
+    "answer": "Mission Academy offers:\n\n✅ IGNOU + SGOU admission & follow-up\n✅ Notes and study material (all courses)\n✅ Assignment services (all courses)\n✅ Projects, dissertations, field-work reports, practicum documentation\n✅ Classes — Malayalam / bilingual, plus premium English notes\n\nMessage us on WhatsApp: the WhatsApp button below",
     "id": "services",
     "keywords": [
       "service",
@@ -109,7 +109,7 @@
     ]
   },
   {
-    "answer": "📝 We provide notes and study material for all IGNOU and SGOU courses — diploma, certificate, UG and PG.\n\nOur premium exam-oriented notes are specially prepared for English courses (MA/BA English, diplomas, certificates).\n\nBrowse your course in the menu above, or message us on WhatsApp: +91 86066 56245",
+    "answer": "📝 We provide notes and study material for all IGNOU and SGOU courses — diploma, certificate, UG and PG.\n\nOur premium exam-oriented notes are specially prepared for English courses (MA/BA English, diplomas, certificates).\n\nBrowse your course in the menu above, or message us on WhatsApp: the WhatsApp button below",
     "id": "notes",
     "keywords": [
       "notes",
@@ -120,7 +120,7 @@
     ]
   },
   {
-    "answer": "📋 We provide assignment services for ALL IGNOU and SGOU courses — diploma, certificate, UG and PG — plus projects, dissertations, field-work reports and practicum documentation.\n\nTo place an order, message us on WhatsApp: +91 86066 56245",
+    "answer": "📋 We provide assignment services for ALL IGNOU and SGOU courses — diploma, certificate, UG and PG — plus projects, dissertations, field-work reports and practicum documentation.\n\nTo place an order, message us on WhatsApp: the WhatsApp button below",
     "id": "assignment",
     "keywords": [
       "assignment",
@@ -129,7 +129,7 @@
     ]
   },
   {
-    "answer": "📖 MA English (MEG/MAEG) — IGNOU:\n\nWe offer admission support, Malayalam / bilingual classes, premium exam-oriented notes, assignments and question papers for MA English.\n\nBrowse MEG/MAEG in the menu above, or message us on WhatsApp: +91 86066 56245",
+    "answer": "📖 MA English (MEG/MAEG) — IGNOU:\n\nWe offer admission support, Malayalam / bilingual classes, premium exam-oriented notes, assignments and question papers for MA English.\n\nBrowse MEG/MAEG in the menu above, or message us on WhatsApp: the WhatsApp button below",
     "id": "ma-english",
     "keywords": [
       "ma english",
@@ -140,7 +140,7 @@
     ]
   },
   {
-    "answer": "📖 BA English — IGNOU / SGOU:\n\nWe offer admission support, classes, premium exam-oriented notes, assignments and question papers for BA English.\n\nBrowse BA English in the menu above, or message us on WhatsApp: +91 86066 56245",
+    "answer": "📖 BA English — IGNOU / SGOU:\n\nWe offer admission support, classes, premium exam-oriented notes, assignments and question papers for BA English.\n\nBrowse BA English in the menu above, or message us on WhatsApp: the WhatsApp button below",
     "id": "ba-english",
     "keywords": [
       "ba english",
@@ -149,7 +149,7 @@
     ]
   },
   {
-    "answer": "🎓 We offer English NET coaching (UGC NET) with classes and study material.\n\nFor details and batches, message us on WhatsApp: +91 86066 56245",
+    "answer": "🎓 We offer English NET coaching (UGC NET) with classes and study material.\n\nFor details and batches, message us on WhatsApp: the WhatsApp button below",
     "id": "net",
     "keywords": [
       "net",
@@ -159,7 +159,7 @@
     ]
   },
   {
-    "answer": "📘 We also offer: B.Ed / M.Ed English, TESOL / TEFL, IELTS / OET, school subjects, KTET / CTET / SET, and spoken English courses.\n\nFor details, message us on WhatsApp: +91 86066 56245",
+    "answer": "📘 We also offer: B.Ed / M.Ed English, TESOL / TEFL, IELTS / OET, school subjects, KTET / CTET / SET, and spoken English courses.\n\nFor details, message us on WhatsApp: the WhatsApp button below",
     "id": "english-courses",
     "keywords": [
       "ielts",
@@ -177,7 +177,7 @@
     ]
   },
   {
-    "answer": "📝 IGNOU December 2026 Term-End Exam: assignments are due 31 October 2026.\n\nFor exam-form help, hall tickets, or results, message us on WhatsApp: +91 86066 56245",
+    "answer": "📝 IGNOU December 2026 Term-End Exam: assignments are due 31 October 2026.\n\nFor exam-form help, hall tickets, or results, message us on WhatsApp: the WhatsApp button below",
     "id": "tee",
     "keywords": [
       "exam",
@@ -188,7 +188,7 @@
     ]
   },
   {
-    "answer": "📞 Contact Mission Academy:\n\nWhatsApp: +91 86066 56245\nEmail: Missionacademy52@gmail.com\nPlace: Oomanoor, Edavannappara 673645",
+    "answer": "📞 Contact Mission Academy:\n\nWhatsApp: the WhatsApp button below\nEmail: Missionacademy52@gmail.com\nPlace: Oomanoor, Edavannappara 673645",
     "id": "contact",
     "keywords": [
       "contact",
@@ -202,7 +202,7 @@
     ]
   },
   {
-    "answer": "💰 Fees and offers depend on the course and service. Please message us on WhatsApp at +91 86066 56245 and our team will share the exact details.",
+    "answer": "💰 Fees and offers depend on the course and service. Please message us on WhatsApp using the button below and our team will share the exact details.",
     "id": "fees",
     "keywords": [
       "fee",
@@ -276,7 +276,7 @@
     ]
   },
   {
-    "answer": "I'm Mission Academy's assistant bot 🤖 — here to help you with admissions, courses, notes, assignments and more. I'm not a human, but our real team is just a WhatsApp message away: +91 86066 56245",
+    "answer": "I'm Mission Academy's assistant bot 🤖 — here to help you with admissions, courses, notes, assignments and more. I'm not a human, but our real team is just a WhatsApp message away: the WhatsApp button below",
     "id": "who-are-you",
     "keywords": [
       "who are you",
