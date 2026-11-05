@@ -1,0 +1,9 @@
+app = "mission-bot-old"
+primary_region = "bom"
+
+[build]
+  dockerfile = "Dockerfile"
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "256mb"
