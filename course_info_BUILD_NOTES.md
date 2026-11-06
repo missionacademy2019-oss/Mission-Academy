@@ -38,7 +38,7 @@ price_status, detail_status.
   Functional English- U.G, H.S.S classes, School Subjects,
   English AI Courses, KTET, CTET, SET, English Spoken Courses,
   Publications, Mission Rehab.
-  All 15 of those entries say only: "Price: ask Mission Academy
+  All 15 of those entries say only: "Price: ask Distance Learners
   counsellor" with price_status "on-enquiry".
 
 ## Internal material stripped

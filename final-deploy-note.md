@@ -1,4 +1,4 @@
-# FINAL deployment — Mission Academy bot (3 Nov 2026)
+# FINAL deployment — Distance Learners bot (3 Nov 2026)
 
 This zip is the complete, current bot: full-coverage IGNOU Notes wiring
 (447 pages, 8,264 files) + harvest mode + the WhatsApp-button fix below.

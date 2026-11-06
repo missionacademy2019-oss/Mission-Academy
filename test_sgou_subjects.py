@@ -172,8 +172,9 @@ class TestSgouHandler(unittest.TestCase):
             for _, p in fake.calls
             for row in (p.get("reply_markup") or {}).get("inline_keyboard", [])
             for b in row)
-        self.assertIn("Join Mission Academy Channel", button_texts)
-        self.assertIn("join our Mission Academy channel", joined)
+        self.assertIn("Join Learners", button_texts)
+        self.assertIn("join our <a href=\"https://t.me/missionacademy_official\">"
+                      "Learners</a> channel", joined)
         self.assertNotIn("cloudfront.net", joined)
 
     def test_notes_sent_for_member(self):
@@ -194,7 +195,7 @@ class TestSgouHandler(unittest.TestCase):
             make_ctx(fake), "sgou-mat-notes-" + self.sid_no_slm)
         joined = "\n".join(fake.texts())
         self.assertIn("Content coming soon.", joined)
-        self.assertNotIn("Join Mission Academy Channel", joined)
+        self.assertNotIn("Join Learners", joined)
 
     def test_papers_sent_for_member(self):
         fake = FakeCall(member_status={111: "member"})

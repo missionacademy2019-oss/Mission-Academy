@@ -1,6 +1,6 @@
 [
   {
-    "answer": "Hello! 👋 Welcome to Mission Academy. Use the menu below to browse IGNOU and SGOU courses, or just ask me a question about admissions, notes, or assignments.",
+    "answer": "Hello! 👋 Welcome to Distance Learners. Use the menu below to browse IGNOU and SGOU courses, or just ask me a question about admissions, notes, or assignments.",
     "id": "greeting",
     "keywords": [
       "hi",
@@ -98,7 +98,7 @@
     ]
   },
   {
-    "answer": "Mission Academy offers:\n\n✅ IGNOU + SGOU admission & follow-up\n✅ Notes and study material (all courses)\n✅ Assignment services (all courses)\n✅ Projects, dissertations, field-work reports, practicum documentation\n✅ Classes — Malayalam / bilingual, plus premium English notes\n\nMessage us on WhatsApp: the WhatsApp button below",
+    "answer": "Distance Learners offers:\n\n✅ IGNOU + SGOU admission & follow-up\n✅ Notes and study material (all courses)\n✅ Assignment services (all courses)\n✅ Projects, dissertations, field-work reports, practicum documentation\n✅ Classes — Malayalam / bilingual, plus premium English notes\n\nMessage us on WhatsApp: the WhatsApp button below",
     "id": "services",
     "keywords": [
       "service",
@@ -188,7 +188,7 @@
     ]
   },
   {
-    "answer": "📞 Contact Mission Academy:\n\nWhatsApp: the WhatsApp button below\nEmail: Missionacademy52@gmail.com\nPlace: Oomanoor, Edavannappara 673645",
+    "answer": "📞 Contact Distance Learners:\n\nWhatsApp: the WhatsApp button below\nEmail: Missionacademy52@gmail.com\nPlace: Oomanoor, Edavannappara 673645",
     "id": "contact",
     "keywords": [
       "contact",
@@ -229,7 +229,7 @@
     ]
   },
   {
-    "answer": "Good morning! ☀️ Welcome to Mission Academy. How can I help you today?",
+    "answer": "Good morning! ☀️ Welcome to Distance Learners. How can I help you today?",
     "id": "good-morning",
     "keywords": [
       "good morning",
@@ -266,7 +266,7 @@
     ]
   },
   {
-    "answer": "Bye! 👋 Take care, and come back anytime you need help with admissions, notes, or assignments. Mission Academy is always here for you.",
+    "answer": "Bye! 👋 Take care, and come back anytime you need help with admissions, notes, or assignments. Distance Learners is always here for you.",
     "id": "bye",
     "keywords": [
       "bye",
@@ -276,7 +276,7 @@
     ]
   },
   {
-    "answer": "I'm Mission Academy's assistant bot 🤖 — here to help you with admissions, courses, notes, assignments and more. I'm not a human, but our real team is just a WhatsApp message away: the WhatsApp button below",
+    "answer": "I'm Distance Learners' assistant bot 🤖 — here to help you with admissions, courses, notes, assignments and more. I'm not a human, but our real team is just a WhatsApp message away: the WhatsApp button below",
     "id": "who-are-you",
     "keywords": [
       "who are you",

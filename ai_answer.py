@@ -1,7 +1,7 @@
 """Free-tier AI answer routing — pure logic, no network in tests.
 
 Order (see ai_answer_spec.md):
-  1. course_info.json first (16 Mission Academy courses)
+  1. course_info.json first (16 Distance Learners courses)
   2. verified university facts (caller-supplied, never invented here)
   3. free-tier AI API (env only: AI_PROVIDER, AI_API_KEY, AI_MODEL)
   4. honest fallback: doubt saved, no fake answer, phone only for
@@ -63,7 +63,7 @@ def find_course(query, courses):
 
 
 def needs_human(question):
-    """True only for cases that genuinely need a human at Mission Academy."""
+    """True only for cases that genuinely need a human at Distance Learners."""
     q = (question or "").lower()
     return any(w in q for w in (
         "pay", "payment", "paid", "refund", "my admission", "my application",
@@ -93,7 +93,7 @@ def route_question(question, courses, verified_fact=None):
 
 def course_answer(course):
     """Short bot answer from a course_info entry. No price unless confirmed."""
-    price = course.get("price", "") if course.get("price_status") == "confirmed" else "Price: ask Mission Academy counsellor"
+    price = course.get("price", "") if course.get("price_status") == "confirmed" else "Price: ask Distance Learners counsellor"
     lines = [course.get("name", ""), "", course.get("overview", ""), ""]
     for point in (course.get("structure") or [])[:5]:
         lines.append(f"- {point}")
@@ -105,9 +105,9 @@ def fallback_message(question, lang_malayalam=False):
     if lang_malayalam:
         return ("AI ഇപ്പോൾ ഫ്രീ ലിമിറ്റിൽ ആണ്, അതുകൊണ്ട് ഉത്തരം നൽകാൻ "
                 "കഴിയുന്നില്ല. നിങ്ങളുടെ ചോദ്യം സേവ് ചെയ്തിട്ടുണ്ട്, "
-                "Mission Academy WhatsApp വഴി ഫോളോ അപ്പ് ചെയ്യും.")
+                "Distance Learners WhatsApp വഴി ഫോളോ അപ്പ് ചെയ്യും.")
     return ("The AI is at its free limit right now, so I can't answer "
-            "that yet. Your question is saved, and Mission Academy "
+            "that yet. Your question is saved, and Distance Learners "
             "will follow up on WhatsApp.")
 
 
@@ -151,7 +151,7 @@ def call_free_ai(question, env=None):
         return None, "not_configured"
     lang = "Malayalam" if is_malayalam(question) else "English"
     prompt = (
-        "You are a helpful study assistant for Mission Academy students. "
+        "You are a helpful study assistant for Distance Learners students. "
         "Answer the question clearly, from every relevant aspect, with "
         "examples, in " + lang + ". "
         "Do NOT invent university deadlines, fees, eligibility, prices, "

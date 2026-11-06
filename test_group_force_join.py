@@ -348,6 +348,67 @@ class TestGroupForceJoin(unittest.TestCase):
         self.assertEqual(sends[0]["chat_id"], 111)
         self.assertTrue(self.read_pending()[0]["prompt_sent"])
 
+    # SGOU groups (6 Nov 2026): target is @missionacademy_official, NOT
+    # @ignouassignmentsofficial. SGOU joiners need the Distance Learners
+    # channel + bot start only.
+    SGOU_CHAT = {"id": -100456, "username": "sgoukerala",
+                 "type": "supergroup"}
+
+    def test_sgou_join_prompts_learners_channel(self):
+        fake = FakeCall()
+        handlers.handle_update(
+            join_update(self.SGOU_CHAT, [{"id": 111, "first_name": "Asha"}]),
+            make_ctx(fake))
+        restricts = methods(fake, "restrictChatMember")
+        self.assertEqual(len(restricts), 1)
+        sends = methods(fake, "sendMessage")
+        self.assertEqual(len(sends), 1)
+        buttons = sends[0]["reply_markup"]["inline_keyboard"]
+        flat = [b for row in buttons for b in row]
+        self.assertEqual(flat[0]["text"], "📢 Join Learners")
+        self.assertEqual(flat[0]["url"], "https://t.me/missionacademy_official")
+        self.assertIn("Learners</a>", sends[0]["text"])
+        self.assertIn("https://t.me/missionacademy_official",
+                      sends[0]["text"])
+
+    def test_sgou_verify_checks_learners_channel(self):
+        fake = FakeCall(member_status="member")
+        ctx = make_ctx(fake)
+        handlers.handle_update(
+            join_update(self.SGOU_CHAT, [{"id": 111, "first_name": "Asha"}]),
+            ctx)
+        handlers.handle_update(verify_private_update(111, -100456), ctx)
+        checks = [p for m, p in fake.calls if m == "getChatMember"]
+        self.assertEqual(len(checks), 1)
+        self.assertEqual(checks[0]["chat_id"], "@missionacademy_official")
+        restricts = methods(fake, "restrictChatMember")
+        self.assertTrue(all(v is True
+                            for v in restricts[-1]["permissions"].values()))
+        self.assertEqual(self.read_pending(), [])
+
+    def test_sgou_verify_left_stays_restricted(self):
+        fake = FakeCall(member_status="left")
+        ctx = make_ctx(fake)
+        handlers.handle_update(
+            join_update(self.SGOU_CHAT, [{"id": 111, "first_name": "Asha"}]),
+            ctx)
+        handlers.handle_update(verify_private_update(111, -100456), ctx)
+        self.assertEqual(len(methods(fake, "restrictChatMember")), 1)
+        self.assertEqual(len(self.read_pending()), 1)
+        answers = methods(fake, "answerCallbackQuery")
+        self.assertIn("@missionacademy_official", answers[-1].get("text", ""))
+
+    def test_ignou_verify_checks_assignment_channel(self):
+        # Regression guard: IGNOU groups still check the assignments channel.
+        fake = FakeCall(member_status="member")
+        ctx = make_ctx(fake)
+        handlers.handle_update(
+            join_update(GROUP_CHAT, [{"id": 111, "first_name": "Asha"}]), ctx)
+        handlers.handle_update(verify_private_update(111, -100123), ctx)
+        checks = [p for m, p in fake.calls if m == "getChatMember"]
+        self.assertEqual(len(checks), 1)
+        self.assertEqual(checks[0]["chat_id"], "@ignouassignmentsofficial")
+
 
 if __name__ == "__main__":
     unittest.main()

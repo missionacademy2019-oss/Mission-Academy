@@ -466,7 +466,7 @@ def main() -> None:
     menus = build(menus)
     # main menu: universities + Daily Study product
     menus["home"] = {
-        "text": "Welcome to Mission Academy! 🎓\n\nChoose an option:",
+        "text": "Welcome to Distance Learners! 🎓\n\nChoose an option:",
         "buttons": [[{"text": "IGNOU", "to": "ignou"},
                      {"text": "SGOU", "to": "sgou"}],
                     [{"text": "📝 Daily Study", "to": "daily-study"}]],
@@ -483,12 +483,15 @@ def main() -> None:
                     [{"text": "⬅ Back", "to": "home"}]],
     }
     # entry screen: a Start button that opens the main menu + channel link
+    # (the channel is a URL button labelled "Learners" — same link as
+    # before, https://t.me/missionacademy_official)
     menus["welcome"] = {
-        "text": ("Welcome to Mission Academy! 🎓\n\n"
+        "text": ("Welcome to Distance Learners! 🎓\n\n"
                  "Tap Start to continue:\n\n"
-                 "📢 Join our channel:\n"
-                 "https://t.me/missionacademy_official"),
-        "buttons": [[{"text": "▶ Start", "to": "home"}]],
+                 "📢 Join our channel:"),
+        "buttons": [[{"text": "▶ Start", "to": "home"}],
+                    [{"text": "📢 Learners",
+                      "url": "https://t.me/missionacademy_official"}]],
     }
     # verify every route resolves (action buttons are intercepted by
     # handlers.py, not real menus)
@@ -496,6 +499,8 @@ def main() -> None:
     for key, menu in menus.items():
         for row in menu["buttons"]:
             for b in row:
+                if b.get("url"):
+                    continue  # URL buttons open a link, no menu route
                 assert b["to"] in menus or b["to"] in ACTION_KEYS, \
                     f"dead link {key} -> {b['to']}"
     with open(MENUS_PATH, "w", encoding="utf-8") as f:

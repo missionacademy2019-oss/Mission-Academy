@@ -11,7 +11,7 @@
 ## Architecture (bot code only, grabber-safe)
 - New module: ai_answer.py (to be built, pure logic + HTTP client).
 - Flow for Ask a Question / free-text question in private chat only:
-  1. Check course_info.json first (16 Mission Academy courses).
+  1. Check course_info.json first (16 Distance Learners courses).
      If the question is about one of those courses, answer from that
      verified file, not from the AI.
   2. Else check verified university facts (MAEG, BEVAE-181, IGNOU/SGOU
@@ -21,7 +21,7 @@
   4. If the AI call fails, is rate-limited, or returns no answer,
      save the doubt to doubts.json (existing behaviour) and say
      honestly: "AI is at its free limit right now — your question is
-     saved, and Mission Academy will follow up on WhatsApp."
+     saved, and Distance Learners will follow up on WhatsApp."
   5. Phone number is NEVER the default answer. It appears only for
      human-needed cases: admission payment, personal case, document
      problem, or an unverified university fact.

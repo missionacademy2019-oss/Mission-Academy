@@ -71,3 +71,25 @@
 @ignourccochin
 @ignouamalcollegenilambur
 @ignoujdtislam
+
+# EXPANSION 6 Nov 2026 ~12:18 IST (user: "Can you enforce Force joining to all groups")
+# Mohammed confirmed the bot is admin with all permissions in ALL groups now.
+# Adds every remaining Telegram group from groups_directory.json (51 Telegram
+# groups total): the 2 IGNOU groups previously blocked because the bot was not
+# a member (@ignoukeralachaptermasters, @ignoubachlorsall) + all 24 SGOU groups,
+# which were never in this list before.
+# Total now: 49 entries = 48 enforceable megagroups + 1 channel
+# (@ignounotificationkerala, unenforceable — channels cannot be force-joined).
+# NOT added: WhatsApp groups (78 in the directory — a Telegram bot has no power
+# in WhatsApp); Telegram channels (@ignoukeralaadmissionhelpdesk — cannot be
+# force-joined); dead usernames (@ignouqueries2025, @literaturecommunittiiii);
+# groups where Mohammed is only a member, not admin (@ignou_asignment,
+# @assignment_solved_ignou, @ignou_historyhonours2022 — do NOT force without
+# the owner's permission).
+# SGOU groups are NOT in this file: since 6 Nov 2026 ~12:49 IST they live in
+# force-join-learners-channel-groups.txt and their joiners are asked
+# to join @missionacademy_official + start the bot (NOT @ignouassignmentsofficial).
+# New joiners only, same rules as before. NOT live until GitHub upload +
+# FadeHost Redeploy AFTER the Notes harvest finishes — do NOT redeploy mid-harvest.
+@ignoukeralachaptermasters
+@ignoubachlorsall

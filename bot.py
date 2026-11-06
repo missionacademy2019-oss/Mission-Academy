@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Mission Academy Telegram bot — @Shafeeque_rayaroth_bot.
+"""Distance Learners Telegram bot — @Shafeeque_rayaroth_bot.
 
 Polls the Bot API with long polling. Auth: --token-stdin reads one token
 line from stdin (held in memory only), otherwise the stored custom.telegram
@@ -42,9 +42,6 @@ HOSTS = ["api.telegram.org"]
 BASE = "https://api.telegram.org/bot{}/"
 POLL_TIMEOUT = 30
 HERE = os.path.dirname(os.path.abspath(__file__))
-# FadeHost apps run on a read-only filesystem; writable state goes under /data
-# when it exists (the original bot folder stays untouched by this change).
-STATE_DIR = "/data" if os.path.isdir("/data") and os.access("/data", os.W_OK) else HERE
 MENUS_PATH = os.path.join(HERE, "menus.json")
 HANDLERS_PATH = os.path.join(HERE, "handlers.py")
 
@@ -85,7 +82,16 @@ def call(method: str, payload: dict, timeout: int = 15) -> dict:
 def build_keyboard(menu: dict) -> dict:
     rows = []
     for row in menu.get("buttons", []):
-        rows.append([{"text": b["text"], "callback_data": "menu:" + b["to"]} for b in row])
+        out = []
+        for b in row:
+            if b.get("url"):
+                # URL button: opens the link directly (e.g. the Learners
+                # channel on the welcome screen) instead of a callback.
+                out.append({"text": b["text"], "url": b["url"]})
+            else:
+                out.append({"text": b["text"],
+                            "callback_data": "menu:" + b["to"]})
+        rows.append(out)
     return {"inline_keyboard": rows}
 
 
@@ -128,7 +134,7 @@ def main() -> int:
     # single-instance guard: if another bot process already holds the lock,
     # exit instead of running a duplicate that fights over updates
     import fcntl
-    lock_f = open(os.path.join(STATE_DIR, "bot.lock"), "w")
+    lock_f = open(os.path.join(HERE, "bot.lock"), "w")
     try:
         fcntl.flock(lock_f, fcntl.LOCK_EX | fcntl.LOCK_NB)
     except BlockingIOError:
@@ -164,11 +170,4 @@ if __name__ == "__main__":
         if not DIRECT_TOKEN:
             print("no token on stdin", flush=True)
             sys.exit(2)
-    elif os.environ.get("TELEGRAM_BOT_TOKEN"):
-        # FadeHost (and most hosts) run the bot directly, not via the
-        # Procfile's stdin pipe, so read the token from the environment
-        # variable set on the app. This must come before any Telegram call:
-        # without it api_url() falls back to the Hatch-only vault helper,
-        # which raises RuntimeError outside the Hatch host and crash-loops.
-        DIRECT_TOKEN = os.environ["TELEGRAM_BOT_TOKEN"].strip()
     sys.exit(main())

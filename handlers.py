@@ -1,4 +1,4 @@
-"""Message + callback routing for the Mission Academy bot, reloaded per update.
+"""Message + callback routing for the Distance Learners bot, reloaded per update.
 
 bot.py owns the API plumbing (call, show_menu, keyboards, menus/faqs loading)
 and passes a ctx dict of callables. This module owns ALL behaviour so logic
@@ -29,7 +29,7 @@ HARVEST_PROGRESS_EVERY = 50
 FALLBACK = (
     "Thanks for your message! 😊 I'm still learning, so I don't have an "
     "answer for that one yet. Our team will be happy to help you directly — "
-    "contact Mission Academy on WhatsApp."
+    "contact Distance Learners on WhatsApp."
 )
 
 # WhatsApp contact (3 Nov 2026): NEVER put the bare phone number in a
@@ -46,7 +46,7 @@ def _send_whatsapp_button(ctx: dict, chat_id: int) -> None:
     try:
         ctx["call"]("sendMessage", {
             "chat_id": chat_id,
-            "text": "💬 Chat with Mission Academy on WhatsApp:",
+            "text": "💬 Chat with Distance Learners on WhatsApp:",
             "reply_markup": {"inline_keyboard": [[{"text": WHATSAPP_BUTTON_TEXT,
                                                    "url": WHATSAPP_URL}]]},
         })
@@ -595,7 +595,7 @@ def _send_admin_home(ctx: dict, chat_id: int) -> None:
     doubts = _load_doubts()
     pending = _load_pending_verify()
     tracked = _load_json_file(GROUP_TRACKED_PATH) if 'GROUP_TRACKED_PATH' in globals() else {}
-    text = ("🛠 Admin — Mission Academy Bot\n\n"
+    text = ("🛠 Admin — Distance Learners Bot\n\n"
             f"Subscribers: {len(subs)}\n"
             f"Doubts saved: {len(doubts)}\n"
             f"Pending verifications: {len(pending)}\n"
@@ -854,14 +854,14 @@ def _handle_private_free_text(ctx: dict, chat_id: int, text: str) -> None:
         elif _route == "unverified_sensitive":
             _reply = ("I don't have a verified answer for that deadline / "
                       "fee / eligibility question yet, so I won't guess it. "
-                      "Your question is saved for the Mission Academy team.")
+                      "Your question is saved for the Distance Learners team.")
             _save_doubt(chat_id, text)
         elif _route == "ai":
             _ai_text, _ai_err = _ai.call_free_ai(text)
             if _ai_text:
                 _reply = (_ai_text + "\n\n— AI answer. For university "
                           "deadlines, fees or eligibility, please confirm "
-                          "with Mission Academy before acting.")
+                          "with Distance Learners before acting.")
             else:
                 _reply = (_ai.fallback_message(text, _ai.is_malayalam(text))
                           + "\nSaved for the team.\nWe will get back to you.")
@@ -924,7 +924,7 @@ def _save_harvest_state(state: dict) -> None:
     _save_json_file(HARVEST_STATE_PATH, state)
 
 
-# Force-join gate: Notes PDFs are served only to members of the Mission Academy
+# Force-join gate: Notes PDFs are served only to members of the Distance Learners
 # channel. The bot must be an admin of the channel for the membership check
 # to work; if the check itself fails, fail OPEN (serve the file) so no
 # student is blocked by a misconfiguration.
@@ -962,11 +962,16 @@ def _is_channel_member(ctx: dict, user_id: int) -> bool:
     return member
 
 
-# Group force-join: anyone JOINING one of the listed groups must join the
-# assignment channel. New joiners ONLY — existing members are never touched
-# (this event only fires for joins). The bot must be admin of the assignment
-# channel (for the membership check) and admin with ban/restrict permission
-# in each group (for the restrict calls).
+# Group force-join: anyone JOINING one of the listed groups must join that
+# group's target channel and start the bot. New joiners ONLY — existing
+# members are never touched (this event only fires for joins). The bot must
+# be admin of the target channel (for the membership check) and admin with
+# ban/restrict permission in each group (for the restrict calls).
+# Two targets (6 Nov 2026): IGNOU groups (force-join-assignment-channel-
+# groups.txt) must join @ignouassignmentsofficial; SGOU groups
+# (force-join-learners-channel-groups.txt) must join
+# @missionacademy_official instead — SGOU joiners are never asked for the
+# IGNOU assignments channel. Both also require starting the bot.
 # Fail-open philosophy, same as the PDF gate: a failed membership CHECK
 # unrestricts (never trap a user because of a bot misconfiguration), and a
 # failed restrict/unrestrict call is logged, never fatal. Restriction only
@@ -975,6 +980,7 @@ def _is_channel_member(ctx: dict, user_id: int) -> bool:
 ASSIGN_CHANNEL = "@ignouassignmentsofficial"
 ASSIGN_CHANNEL_URL = "https://t.me/ignouassignmentsofficial"
 ASSIGN_GROUPS_PATH = os.path.join(HERE, "force-join-assignment-channel-groups.txt")
+MA_GROUPS_PATH = os.path.join(HERE, "force-join-learners-channel-groups.txt")
 
 # Bot-start requirement: a joiner must ALSO have started the bot itself.
 # Telegram has no "bot membership" query, so the enforceable version is a
@@ -1059,20 +1065,32 @@ def _send_private_verify_prompt(ctx: dict, user_id: int, group_id: int,
     """Send the verification prompt privately to the joiner. Returns True
     on success. On failure (bot cannot initiate a private chat with this
     user) the pending entry is left with prompt_sent=False so it is
-    delivered when the user starts the bot. Never raises."""
+    delivered when the user starts the bot. Never raises. The channel in
+    the prompt is the group's own force-join target (IGNOU groups:
+    @ignouassignmentsofficial; SGOU groups: the Learners channel,
+    same link https://t.me/missionacademy_official, shown as a
+    hyperlink on the word "Learners")."""
     title = html.escape(group_title or group_username or "the group")
+    target = _force_join_target(group_username)
+    channel, url = target if target else (ASSIGN_CHANNEL, ASSIGN_CHANNEL_URL)
+    if channel == FORCE_JOIN_CHANNEL:
+        join_button = "📢 Join Learners"
+        join_text = '<a href="%s">Learners</a>' % url
+    else:
+        join_button = "📢 Join " + channel
+        join_text = channel
     try:
         ctx["call"]("sendMessage", {
             "chat_id": user_id,
             "text": ("👋 You joined %s!\n\n"
-                     "To send messages in that group, please join our "
-                     "assignment channel first, then tap ✅ Verify here.\n\n"
+                     "To send messages in that group, please join %s "
+                     "first, then tap ✅ Verify here.\n\n"
                      "This step is private — other members of the group "
-                     "cannot see it." % title),
+                     "cannot see it." % (title, join_text)),
             "parse_mode": "HTML",
             "reply_markup": {"inline_keyboard": [
-                [{"text": "📢 Join @ignouassignmentsofficial",
-                  "url": ASSIGN_CHANNEL_URL}],
+                [{"text": join_button,
+                  "url": url}],
                 [{"text": "✅ I've joined — Verify",
                   "callback_data": "verify-assign:%d:%d" % (user_id, group_id)}],
             ]},
@@ -1184,14 +1202,55 @@ def load_assign_force_join_groups() -> set:
     return _GROUPS_CACHE["groups"]
 
 
-def _assignment_channel_status(ctx: dict, user_id: int) -> str:
+_MA_GROUPS_CACHE: dict = {}
+
+
+def load_ma_force_join_groups() -> set:
+    """SGOU group usernames (lowercased, no @) from the Distance Learners
+    channel groups file, reloaded when the file changes. Same shape as
+    load_assign_force_join_groups, separate cache."""
+    try:
+        mtime = os.path.getmtime(MA_GROUPS_PATH)
+    except OSError as e:
+        print("ma force-join: groups file unreadable:", e, flush=True)
+        return set()
+    if _MA_GROUPS_CACHE.get("mtime") != mtime:
+        groups = set()
+        try:
+            with open(MA_GROUPS_PATH, encoding="utf-8") as f:
+                for line in f:
+                    line = line.strip()
+                    if not line or line.startswith("#"):
+                        continue
+                    groups.add(line.lstrip("@").lower())
+        except OSError as e:
+            print("ma force-join: groups file unreadable:", e, flush=True)
+            return set()
+        _MA_GROUPS_CACHE["groups"] = groups
+        _MA_GROUPS_CACHE["mtime"] = mtime
+    return _MA_GROUPS_CACHE["groups"]
+
+
+def _force_join_target(group_username: str):
+    """(channel, url) a new joiner of this group must satisfy, or None
+    when the group has no force-join gate. IGNOU groups -> the assignment
+    channel; SGOU groups -> the Distance Learners channel."""
+    username = (group_username or "").lower()
+    if username in load_assign_force_join_groups():
+        return (ASSIGN_CHANNEL, ASSIGN_CHANNEL_URL)
+    if username in load_ma_force_join_groups():
+        return (FORCE_JOIN_CHANNEL, FORCE_JOIN_URL)
+    return None
+
+
+def _channel_status(ctx: dict, user_id: int, channel: str) -> str:
     """"member" for member/administrator/creator/restricted, "left" for
     left/kicked/unknown, "error" when the check itself fails (exception or
     ok:false). Deliberately NOT cached: a Verify tap must reflect the
     just-completed join, not a stale negative result."""
     try:
         res = ctx["call"]("getChatMember", {
-            "chat_id": ASSIGN_CHANNEL,
+            "chat_id": channel,
             "user_id": user_id,
         })
     except Exception as e:
@@ -1240,7 +1299,7 @@ def _set_member_permissions(ctx: dict, chat_id: int, user_id: int, permissions: 
 # the channel, so forwarding works). If forwarding fails, fall back to
 # the channel link — never fail silently. Assignments are official IGNOU
 # booklets from a public channel, so unlike user-forwarded Notes PDFs
-# they are NOT gated on Mission Academy channel membership (the link
+# they are NOT gated on Distance Learners channel membership (the link
 # itself is public, so a gate would only annoy, not protect).
 ASSIGN_INDEX_PATH = os.path.join(HERE, "assignment_index.json")
 _ASSIGN_INDEX_CACHE: dict = {}
@@ -1419,10 +1478,12 @@ def _sgou_join_prompt(ctx: dict, chat_id: int, back_key: str) -> None:
     ctx["call"]("sendMessage", {
         "chat_id": chat_id,
         "text": ("📢 To download this PDF, please join our "
-                 "Mission Academy channel first.\n\n"
+                 "<a href=\"https://t.me/missionacademy_official\">Learners</a> "
+                 "channel first.\n\n"
                  "Tap Join below, then come back and tap again."),
+        "parse_mode": "HTML",
         "reply_markup": {"inline_keyboard": [[
-            {"text": "📢 Join Mission Academy Channel",
+            {"text": "📢 Join Learners",
              "url": FORCE_JOIN_URL}]]},
     })
     ctx["call"]("sendMessage", {
@@ -1583,7 +1644,7 @@ def _handle_new_members(msg: dict, ctx: dict) -> None:
     they start the bot (see _deliver_pending_prompts)."""
     chat = msg.get("chat", {})
     username = (chat.get("username") or "").lower()
-    if username not in load_assign_force_join_groups():
+    if _force_join_target(username) is None:
         return
     chat_id = chat.get("id")
     if chat_id is None:
@@ -1637,11 +1698,13 @@ def _send_verify_confirmation(ctx: dict, cb: dict, chat_id: int) -> None:
 
 
 def _handle_verify_callback(cb: dict, ctx: dict) -> None:
-    """Verify BOTH conditions, in order: (1) assignment-channel membership,
-    (2) bot started. Channel check error → fail-open unrestrict (same
-    philosophy as the PDF gate). Channel left/kicked → stay restricted
-    regardless of bot-start state. Channel OK but bot not started → stay
-    restricted with a start-the-bot alert. Only both satisfied unrestricts.
+    """Verify BOTH conditions, in order: (1) target-channel membership
+    (IGNOU groups: @ignouassignmentsofficial; SGOU groups:
+    @missionacademy_official), (2) bot started. Channel check error →
+    fail-open unrestrict (same philosophy as the PDF gate). Channel
+    left/kicked → stay restricted regardless of bot-start state. Channel
+    OK but bot not started → stay restricted with a start-the-bot alert.
+    Only both satisfied unrestricts.
 
     Two callback shapes:
     - New private shape "verify-assign:<user_id>:<group_id>": the button
@@ -1689,8 +1752,12 @@ def _handle_verify_callback(cb: dict, ctx: dict) -> None:
                 pass
             return
         if pending[0].get("group_username", "").lower() \
-                not in load_assign_force_join_groups():
-            return  # group no longer in the listed set
+                not in load_assign_force_join_groups() \
+                and pending[0].get("group_username", "").lower() \
+                not in load_ma_force_join_groups():
+            return  # group no longer in either listed set
+        target = _force_join_target(pending[0].get("group_username", ""))
+        channel = target[0] if target else ASSIGN_CHANNEL
         prompt_chat_id = (cb.get("message") or {}).get("chat", {}).get("id")
         # Tapping Verify in a private chat proves the bot-start condition.
         record_bot_starter(user_id)
@@ -1699,14 +1766,16 @@ def _handle_verify_callback(cb: dict, ctx: dict) -> None:
         # Legacy group verification.
         chat = (cb.get("message") or {}).get("chat", {})
         username = (chat.get("username") or "").lower()
-        if username not in load_assign_force_join_groups():
+        target = _force_join_target(username)
+        if target is None:
             return  # this button only operates in listed groups
+        channel = target[0]
         chat_id = chat.get("id")
         if chat_id is None:
             return
         prompt_chat_id = chat_id
         starter_ok = is_bot_starter(user_id)
-    status = _assignment_channel_status(ctx, user_id)
+    status = _channel_status(ctx, user_id, channel)
     if status == "error":
         # fail open: never trap a user because of a bot misconfiguration
         _set_member_permissions(ctx, chat_id, user_id, _FULL_PERMISSIONS)
@@ -1720,8 +1789,8 @@ def _handle_verify_callback(cb: dict, ctx: dict) -> None:
         try:
             ctx["call"]("answerCallbackQuery", {
                 "callback_query_id": cb["id"],
-                "text": ("Please join @ignouassignmentsofficial first, "
-                         "then tap Verify again."),
+                "text": ("Please join %s first, "
+                         "then tap Verify again." % channel),
                 "show_alert": True,
             })
         except Exception:
@@ -2311,7 +2380,7 @@ def _handle_group_join_welcome(msg: dict, ctx: dict) -> None:
     chat_id = chat.get("id")
     if chat_id is None:
         return
-    if (chat.get("username") or "").lower() in load_assign_force_join_groups():
+    if _force_join_target((chat.get("username") or "").lower()) is not None:
         return
     settings = _group_settings(chat_id)
     for member in msg.get("new_chat_members", []):
@@ -2335,7 +2404,7 @@ def handle_update(upd: dict, ctx: dict) -> None:
     menus = ctx["load_menus"]()
     msg = upd.get("message")
     # Group force-join: a new member in a listed group is restricted until
-    # they join the assignment channel and tap Verify. Existing members are
+    # they join the group's target channel and tap Verify. Existing members are
     # never touched (this event only fires for joins).
     if msg and msg.get("new_chat_members"):
         _handle_new_members(msg, ctx)
@@ -2579,10 +2648,12 @@ def handle_update(upd: dict, ctx: dict) -> None:
                     ctx["call"]("sendMessage", {
                         "chat_id": chat_id,
                         "text": ("📢 To download this PDF, please join our "
-                                 "Mission Academy channel first.\n\n"
+                                 "<a href=\"https://t.me/missionacademy_official\">Learners</a> "
+                                 "channel first.\n\n"
                                  "Tap Join below, then come back and tap Notes again."),
+                        "parse_mode": "HTML",
                         "reply_markup": {"inline_keyboard": [[
-                            {"text": "📢 Join Mission Academy Channel",
+                            {"text": "📢 Join Learners",
                              "url": FORCE_JOIN_URL}]]},
                     })
                     return
@@ -2590,7 +2661,10 @@ def handle_update(upd: dict, ctx: dict) -> None:
                     ctx["call"]("sendDocument", {
                         "chat_id": chat_id,
                         "document": fl["file_id"],
-                        "caption": fl["file_name"],
+                        "caption": (fl["file_name"] + "\n\n📢 "
+                                    "<a href=\"https://t.me/missionacademy_official\">"
+                                    "Learners</a>"),
+                        "parse_mode": "HTML",
                     })
                 parent = key[: -len("-notes")]
                 title = menus.get(key, {}).get("text", key).split("\n\n")[0]

@@ -1,0 +1,48 @@
+# Force-join groups for @missionacademy_official — SGOU groups only
+# Created 6 Nov 2026 ~12:49 IST on Mohammed's word: "No need for SGOU
+# joiners only mission academy telegram channel and my bot start only required"
+# i.e. SGOU new joiners must join @missionacademy_official and start
+# @Shafeeque_rayaroth_bot — they are NOT asked to join @ignouassignmentsofficial.
+# IGNOU groups stay in force-join-assignment-channel-groups.txt with the
+# @ignouassignmentsofficial target. Enforcement = new joiners only (existing
+# members are NOT retroactively forced). The bot must be admin (with
+# ban/restrict permission) in each group, and admin of @missionacademy_official
+# (already confirmed) to check membership. Restriction only works in
+# groups/supergroups, not channels.
+# Total: 27 SGOU groups (the 24 SGOU Telegram groups in groups_directory.json
+# + 3 more shared by Mohammed 6 Nov 2026 ~12:57 IST: @sgouslmchatgroup
+# "SGOU CHAT BOX" 269 members, @sgouallmacourses "SGOU PG COURSES" 75 members,
+# @sgouallcourse "SGOU UG COMMUNITY" 76 members — all verified groups via
+# t.me the same day. NOT added from that share: @sgouslmflipbookofficial
+# (the SGOU Official SLM channel) and @sgouofficialannoucements (442
+# subscribers, channel) — channels cannot be force-joined. @sgoukollampublic
+# was already in this list.)
+# NOT live until GitHub upload + FadeHost Redeploy AFTER the Notes harvest
+# finishes — do NOT redeploy mid-harvest.
+@sgoukollampublic
+@sgoubcom
+@sgoubscprogramme
+@sgoubba
+@sgoubcalearners
+@sgoubaarabiclearners
+@sgoubamalayalam5
+@sgoukerala
+@sgoubaeconomics
+@sgoubahistory
+@sgoubasociology
+@sgoupoliticalscience
+@sgouuniversity
+@sgoumcomfirst
+@sgoumamalayalam
+@sgoumaenglish
+@sgoumaeconomics
+@sgoumahistory
+@sgoumasociology
+@sgoumapoliticalscience
+@sgoumapublicadministration
+@sgoumaarabic
+@sgoumaphilosaphy
+@sgoumasanskrit
+@sgouslmchatgroup
+@sgouallmacourses
+@sgouallcourse

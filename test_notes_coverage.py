@@ -161,7 +161,7 @@ class TestSenderPlanMatches(unittest.TestCase):
         # sit in the plan slots), so they are NOT added again here.
         recon = (total + sk["unclassified"] + sk["multi_code"]
                  + sk["no_page"] + sk["bad_disk"] + sk["no_join"]
-                 + sk["low_unverified"]
+                 + sk["low_unverified"] + sk["large"]
                  + sk["second_pass_no_page"]
                  + sk["second_pass_bad_disk"]
                  + sk["second_pass_no_join"])

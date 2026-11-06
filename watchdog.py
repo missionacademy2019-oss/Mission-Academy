@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Watchdog: keep the 3 Mission Academy Telegram bots running.
+"""Watchdog: keep the 3 Distance Learners Telegram bots running.
 
 DRAFT — not applied. Replaces the vault pre-check gate with
 start-and-observe (see watchdog-start-and-observe-fix-DRAFT.md).

@@ -1,4 +1,4 @@
-# Mission Academy — Old Combined Bot (@Shafeeque_rayaroth_bot) — FadeHost deploy pack
+# Distance Learners — Old Combined Bot (@Shafeeque_rayaroth_bot) — FadeHost deploy pack
 
 Prepared 21 Oct 2026. Clean copy of `~/workspace/telegram-bot/` (code + data only;
 no logs, locks, caches, or backups). Python standard library only — no pip packages.

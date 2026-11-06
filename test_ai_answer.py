@@ -43,7 +43,7 @@ def test_course_answer_no_invented_price():
     assert "89,000" in course_answer(bed)
     med = find_course("English MEd", COURSES)
     ans = course_answer(med)
-    assert "89,000" not in ans and "ask Mission Academy counsellor" in ans
+    assert "89,000" not in ans and "ask Distance Learners counsellor" in ans
     print("course_price_rule ok")
 
 
