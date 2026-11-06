@@ -42,6 +42,9 @@ HOSTS = ["api.telegram.org"]
 BASE = "https://api.telegram.org/bot{}/"
 POLL_TIMEOUT = 30
 HERE = os.path.dirname(os.path.abspath(__file__))
+# FadeHost apps run on a read-only filesystem; writable state goes under /data
+# when it exists (the original bot folder stays untouched by this change).
+STATE_DIR = "/data" if os.path.isdir("/data") and os.access("/data", os.W_OK) else HERE
 MENUS_PATH = os.path.join(HERE, "menus.json")
 HANDLERS_PATH = os.path.join(HERE, "handlers.py")
 
@@ -134,7 +137,7 @@ def main() -> int:
     # single-instance guard: if another bot process already holds the lock,
     # exit instead of running a duplicate that fights over updates
     import fcntl
-    lock_f = open(os.path.join(HERE, "bot.lock"), "w")
+    lock_f = open(os.path.join(STATE_DIR, "bot.lock"), "w")
     try:
         fcntl.flock(lock_f, fcntl.LOCK_EX | fcntl.LOCK_NB)
     except BlockingIOError:
@@ -170,4 +173,11 @@ if __name__ == "__main__":
         if not DIRECT_TOKEN:
             print("no token on stdin", flush=True)
             sys.exit(2)
+    elif os.environ.get("TELEGRAM_BOT_TOKEN"):
+        # FadeHost (and most hosts) run the bot directly, not via the
+        # Procfile's stdin pipe, so read the token from the environment
+        # variable set on the app. This must come before any Telegram call:
+        # without it api_url() falls back to the Hatch-only vault helper,
+        # which raises RuntimeError outside the Hatch host and crash-loops.
+        DIRECT_TOKEN = os.environ["TELEGRAM_BOT_TOKEN"].strip()
     sys.exit(main())
