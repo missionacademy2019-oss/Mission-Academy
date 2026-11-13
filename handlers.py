@@ -863,7 +863,7 @@ def _handle_private_free_text(ctx: dict, chat_id: int, text: str) -> None:
                           "deadlines, fees or eligibility, please confirm "
                           "with Distance Learners before acting.")
             else:
-                _reply = (_ai.fallback_message(text, _ai.is_malayalam(text))
+                _reply = (_ai.fallback_message(text)
                           + "\nSaved for the team.\nWe will get back to you.")
                 _save_doubt(chat_id, text)
                 _needs_wa = True
@@ -1263,6 +1263,90 @@ def _channel_status(ctx: dict, user_id: int, channel: str) -> str:
     if status in ("member", "administrator", "creator", "restricted"):
         return "member"
     return "left"
+
+
+# Starter gate (13 Nov 2026): anyone who starts the bot must be a member
+# of @missionacademy_official before the bot serves them. Private chat
+# only; admins are exempt. The gate reuses _is_channel_member (cached,
+# fail-open) for the per-message check and _channel_status (live, no
+# cache) for the Verify tap. The gate's own Verify callback and the
+# group force-join Verify callback ("verify-assign:...") are exempt from
+# the gate — the group flow has its own channel check and must not be
+# trapped by this gate. Everything else the bot could serve (home menu,
+# Notes, quiz, doubts, subscription, assignments, documents) is blocked
+# until the user joins: existing starters who never joined the channel
+# hit the gate on their next private message.
+STARTER_VERIFY_DATA = "verify-starter"
+
+
+def _send_starter_join_prompt(ctx: dict, chat_id: int) -> None:
+    """Join prompt for the starter gate: Join button + Verify button.
+    Never raises."""
+    try:
+        ctx["call"]("sendMessage", {
+            "chat_id": chat_id,
+            "text": ("👋 Welcome to Distance Learners!\n\n"
+                     "To use this bot, please join our "
+                     "<a href=\"https://t.me/missionacademy_official\">Learners</a> "
+                     "channel first, then tap ✅ Verify here."),
+            "parse_mode": "HTML",
+            "reply_markup": {"inline_keyboard": [
+                [{"text": "📢 Join Learners",
+                  "url": FORCE_JOIN_URL}],
+                [{"text": "✅ I've Joined — Verify",
+                  "callback_data": STARTER_VERIFY_DATA}],
+            ]},
+        })
+    except Exception as e:
+        print("starter gate: join prompt failed:", e, flush=True)
+
+
+def _handle_starter_verify(cb: dict, ctx: dict, menus: dict) -> None:
+    """The gate's own Verify button: live membership re-check.
+    Member -> home menu. Check error -> fail open (home menu). Left ->
+    alert + Join prompt again. Never raises."""
+    user_id = (cb.get("from") or {}).get("id")
+    chat_id = (cb.get("message") or {}).get("chat", {}).get("id")
+    if user_id is None or chat_id is None:
+        return
+    status = _channel_status(ctx, user_id, FORCE_JOIN_CHANNEL)
+    if status == "member":
+        try:
+            ctx["call"]("answerCallbackQuery", {
+                "callback_query_id": cb["id"],
+                "text": "Welcome to Distance Learners!",
+            })
+        except Exception:
+            pass
+        record_bot_starter(user_id)
+        ctx["show_menu"](chat_id,
+                         (cb.get("message") or {}).get("message_id"),
+                         "welcome", menus)
+        return
+    if status == "error":
+        # Fail open: a Telegram blip must never lock out all students.
+        try:
+            ctx["call"]("answerCallbackQuery", {
+                "callback_query_id": cb["id"],
+                "text": "Couldn't check right now — you're in.",
+            })
+        except Exception:
+            pass
+        record_bot_starter(user_id)
+        ctx["show_menu"](chat_id,
+                         (cb.get("message") or {}).get("message_id"),
+                         "welcome", menus)
+        return
+    try:
+        ctx["call"]("answerCallbackQuery", {
+            "callback_query_id": cb["id"],
+            "text": ("Please join the Learners channel first, "
+                     "then tap Verify again."),
+            "show_alert": True,
+        })
+    except Exception:
+        pass
+    _send_starter_join_prompt(ctx, chat_id)
 
 
 def _set_member_permissions(ctx: dict, chat_id: int, user_id: int, permissions: dict) -> bool:
@@ -2441,6 +2525,20 @@ def handle_update(upd: dict, ctx: dict) -> None:
                 _deliver_pending_prompts(ctx, sender["id"], force=is_start)
             except Exception as e:
                 print("pending verify: delivery error:", e, flush=True)
+    # Starter gate (13 Nov 2026): a private user who is not a member of
+    # @missionacademy_official gets the Join prompt and nothing else —
+    # no home menu, no Notes, no quiz, no doubts, no subscription, no
+    # assignments, no document handling. Admins are exempt. The starter
+    # recording and pending group-prompt delivery above still run first
+    # (the group flow needs the starter recorded). _is_channel_member
+    # fails OPEN on check errors, so a Telegram blip never locks out
+    # all students.
+    if msg and msg.get("chat", {}).get("type") == "private":
+        sender = msg.get("from") or {}
+        if sender.get("id") is not None and not _is_admin_sender(sender):
+            if not _is_channel_member(ctx, sender["id"]):
+                _send_starter_join_prompt(ctx, msg["chat"]["id"])
+                return
     # Document (PDF) forwarded/sent to the bot in a private chat: queue it
     # for assignment. The sender then navigates to the right Notes page and
     # taps Notes to attach it there. Group documents are ignored — the bot
@@ -2528,6 +2626,29 @@ def handle_update(upd: dict, ctx: dict) -> None:
     if data.startswith("verify-assign:"):
         _handle_verify_callback(cb, ctx)
         return
+    # Starter gate's own Verify button: live re-check, then home menu.
+    if data == STARTER_VERIFY_DATA:
+        _handle_starter_verify(cb, ctx, menus)
+        return
+    # Starter gate for private callbacks: a non-member gets the Join
+    # prompt and nothing else. Admins exempt; group callbacks untouched;
+    # the group force-join Verify above is exempt (it has its own check).
+    _cb_chat = (cb.get("message") or {}).get("chat") or {}
+    if _cb_chat.get("type") == "private":
+        _cb_sender = cb.get("from") or {}
+        if _cb_sender.get("id") is not None \
+                and not _is_admin_sender(_cb_sender):
+            if not _is_channel_member(ctx, _cb_sender["id"]):
+                try:
+                    ctx["call"]("answerCallbackQuery", {
+                        "callback_query_id": cb["id"],
+                        "text": "Please join the Learners channel first.",
+                        "show_alert": True,
+                    })
+                except Exception:
+                    pass
+                _send_starter_join_prompt(ctx, _cb_chat.get("id"))
+                return
     # Assignment choice from a multi-programme code: handled with its own
     # answer, before the generic spinner-clearing answer below.
     if data.startswith("assign-get:"):

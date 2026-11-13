@@ -109,14 +109,34 @@ class TestCoverageMenus(unittest.TestCase):
             self.skipTest("no pre-coverage backup")
         with open(BACKUP, encoding="utf-8") as f:
             old = json.load(f)
+        # 13 Nov 2026 English-only change: the Malayalam strings (home
+        # line + SGOU Malayalam subject pages/buttons) were rewritten
+        # as Latin-script transliterations. Pages/buttons with no
+        # Malayalam in the backup must still be byte-identical; a
+        # Malayalam page/button must come back with no Malayalam left
+        # and the same navigation target.
+        malayalam = re.compile(r"[\u0d00-\u0d7f]")
         for k, page in old.items():
-            self.assertEqual(self.menus[k].get("text"), page.get("text"))
+            if malayalam.search(page.get("text") or ""):
+                self.assertFalse(malayalam.search(
+                    self.menus[k].get("text") or ""), k)
+            else:
+                self.assertEqual(self.menus[k].get("text"),
+                                 page.get("text"), k)
             old_tos = {(b.get("text"), b.get("to"))
                        for row in page.get("buttons", []) for b in row}
             new_tos = {(b.get("text"), b.get("to"))
                        for row in self.menus[k].get("buttons", [])
                        for b in row}
-            self.assertTrue(old_tos <= new_tos, k)
+            kept = {(t, to) for (t, to) in old_tos
+                    if not malayalam.search(t or "")}
+            self.assertTrue(kept <= new_tos, k)
+            new_by_to = {to: t for (t, to) in new_tos}
+            for (t, to) in old_tos:
+                if malayalam.search(t or ""):
+                    self.assertIn(to, new_by_to, k)
+                    self.assertFalse(malayalam.search(
+                        new_by_to[to] or ""), k)
 
 
 @unittest.skipUnless(os.path.isfile(DECISIONS),

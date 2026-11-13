@@ -11,8 +11,10 @@ For each bot:
      dead every 5 minutes; it is retried once the hour passes).
   3. Otherwise, start `python3 bot.py`, wait 25s, then judge by the bot's
      own behaviour: still running + a `bot: @<username>` line in the NEW
-     bot.log lines = up. Exited + 401/Unauthorized in the new lines =
+     bot.log lines = up. Exited + 401/404/Unauthorized in the new lines =
      token truly invalid -> record auth failure, skip for 60 minutes.
+     (Telegram returns HTTP 404, not 401, for an invalid bot token,
+     so 404 must count as an auth error too.)
      Exited with any other error -> log it, retry next run.
 
 Run every 5 minutes via cron. Safe to run concurrently: the bot's own
@@ -123,8 +125,9 @@ def main() -> int:
                 print("  UP (process alive; no 'bot: @' line in new log "
                       "lines yet — will confirm on next run)", flush=True)
             state.pop(label, None)
-        elif "401" in new_lines or "Unauthorized" in new_lines:
-            print("  DOWN: auth error (401/Unauthorized) — token truly "
+        elif "401" in new_lines or "Unauthorized" in new_lines or \
+                "404" in new_lines:
+            print("  DOWN: auth error (401/404/Unauthorized) — token truly "
                   "invalid; cooling down 60 min", flush=True)
             state[label] = now
         else:

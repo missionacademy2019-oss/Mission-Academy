@@ -27,10 +27,6 @@ SENSITIVE_WORDS = ("deadline", "last date", "fee", "fees", "price",
                     "exam date", "result date")
 
 
-def is_malayalam(text):
-    return bool(re.search(r"[\u0d00-\u0d7f]", text or ""))
-
-
 def load_courses(path):
     try:
         with open(path, encoding="utf-8") as f:
@@ -101,11 +97,9 @@ def course_answer(course):
     return "\n".join(lines)
 
 
-def fallback_message(question, lang_malayalam=False):
-    if lang_malayalam:
-        return ("AI ഇപ്പോൾ ഫ്രീ ലിമിറ്റിൽ ആണ്, അതുകൊണ്ട് ഉത്തരം നൽകാൻ "
-                "കഴിയുന്നില്ല. നിങ്ങളുടെ ചോദ്യം സേവ് ചെയ്തിട്ടുണ്ട്, "
-                "Distance Learners WhatsApp വഴി ഫോളോ അപ്പ് ചെയ്യും.")
+def fallback_message(question):
+    """English-only fallback (13 Nov 2026: Malayalam removed from the
+    bot). The AI is at its free limit; the doubt is saved for follow-up."""
     return ("The AI is at its free limit right now, so I can't answer "
             "that yet. Your question is saved, and Distance Learners "
             "will follow up on WhatsApp.")
@@ -139,8 +133,8 @@ def call_free_ai(question, env=None):
     only, 20s timeout. Any other provider, missing key, HTTP error,
     rate limit or unparsable reply returns (None, error) — the caller
     must then use the honest fallback, never a fake answer.
-    The prompt instructs the model to explain generally, in the
-    question's language, and to NOT invent university deadlines,
+    The prompt instructs the model to explain generally, in English,
+    and to NOT invent university deadlines,
     fees, eligibility or prices.
     """
     import urllib.request
@@ -149,7 +143,7 @@ def call_free_ai(question, env=None):
     cfg = ai_config_from_env(env)
     if not cfg["has_key"] or cfg["provider"] != "gemini" or not cfg["model"]:
         return None, "not_configured"
-    lang = "Malayalam" if is_malayalam(question) else "English"
+    lang = "English"
     prompt = (
         "You are a helpful study assistant for Distance Learners students. "
         "Answer the question clearly, from every relevant aspect, with "

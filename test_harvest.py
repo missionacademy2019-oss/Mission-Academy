@@ -28,6 +28,11 @@ class FakeCall:
 
     def __call__(self, method, payload):
         self.calls.append((method, payload))
+        if method == "getChatMember":
+            # The user under test is a channel member: the starter
+            # gate (13 Nov 2026) lets them through. Membership itself
+            # is covered by test_group_force_join.py.
+            return {"ok": True, "result": {"status": "member"}}
         return {"ok": True, "result": {}}
 
 

@@ -410,5 +410,174 @@ class TestGroupForceJoin(unittest.TestCase):
         self.assertEqual(checks[0]["chat_id"], "@ignouassignmentsofficial")
 
 
+# Starter gate (13 Nov 2026): anyone starting the bot must be a member
+# of @missionacademy_official before the bot serves them. Private chat
+# only; admins exempt; the gate's own Verify callback and the group
+# force-join Verify callback are exempt. Fail-open on check errors.
+def private_message(user_id, text, username=None):
+    sender = {"id": user_id, "first_name": "Test"}
+    if username:
+        sender["username"] = username
+    return {"update_id": 9,
+            "message": {"chat": {"id": user_id, "type": "private"},
+                        "from": sender, "text": text}}
+
+
+def private_callback(user_id, data, message_id=42):
+    return {"update_id": 9,
+            "callback_query": {
+                "id": "cb9",
+                "from": {"id": user_id, "first_name": "Test"},
+                "message": {"message_id": message_id,
+                            "chat": {"id": user_id, "type": "private"}},
+                "data": data}}
+
+
+def join_prompt_buttons(sends):
+    """Inline buttons of the starter-gate Join prompt, or None."""
+    for s in sends:
+        kb = (s.get("reply_markup") or {}).get("inline_keyboard") or []
+        flat = [b for row in kb for b in row]
+        if any(b.get("callback_data") == "verify-starter" for b in flat):
+            return flat
+    return None
+
+
+class TestStarterGate(unittest.TestCase):
+    def setUp(self):
+        self._tmpdir = tempfile.mkdtemp(prefix="gate-test-")
+        self._starters_path = os.path.join(self._tmpdir, "starters.json")
+        self._pending_path = os.path.join(self._tmpdir, "pending.json")
+        handlers.BOT_STARTERS_PATH = self._starters_path
+        handlers.PENDING_VERIFY_PATH = self._pending_path
+        handlers._MEMBER_CACHE.clear()
+
+    def tearDown(self):
+        handlers.BOT_STARTERS_PATH = "bot_starters.json"
+        handlers.PENDING_VERIFY_PATH = "pending_verify.json"
+        handlers._MEMBER_CACHE.clear()
+        for path in (self._starters_path, self._pending_path):
+            if os.path.exists(path):
+                os.unlink(path)
+        os.rmdir(self._tmpdir)
+
+    def read_starters(self):
+        if not os.path.exists(self._starters_path):
+            return []
+        with open(self._starters_path, encoding="utf-8") as f:
+            return json.load(f)
+
+    def make_recording_ctx(self, fake):
+        shown = []
+        ctx = make_ctx(fake)
+        ctx["show_menu"] = lambda chat_id, mid, key, menus: shown.append(
+            (chat_id, mid, key))
+        return ctx, shown
+
+    def test_non_member_start_gets_join_prompt_not_menu(self):
+        fake = FakeCall(member_status="left")
+        ctx, shown = self.make_recording_ctx(fake)
+        handlers.handle_update(private_message(5001, "/start"), ctx)
+        self.assertEqual(shown, [])
+        sends = methods(fake, "sendMessage")
+        self.assertEqual(len(sends), 1)
+        flat = join_prompt_buttons(sends)
+        self.assertIsNotNone(flat)
+        self.assertEqual(flat[0]["url"],
+                         "https://t.me/missionacademy_official")
+        self.assertEqual(flat[1]["callback_data"], "verify-starter")
+        self.assertEqual(self.read_starters(), [5001])
+
+    def test_member_start_gets_menu(self):
+        fake = FakeCall(member_status="member")
+        ctx, shown = self.make_recording_ctx(fake)
+        handlers.handle_update(private_message(5002, "/start"), ctx)
+        self.assertEqual(shown, [(5002, None, "welcome")])
+        self.assertEqual(methods(fake, "sendMessage"), [])
+
+    def test_non_member_free_text_gets_join_prompt_only(self):
+        fake = FakeCall(member_status="left")
+        ctx, shown = self.make_recording_ctx(fake)
+        handlers.handle_update(private_message(5003, "hello"), ctx)
+        self.assertEqual(shown, [])
+        self.assertEqual(len(methods(fake, "sendMessage")), 1)
+        self.assertIsNotNone(
+            join_prompt_buttons(methods(fake, "sendMessage")))
+
+    def test_non_member_menu_callback_gets_join_prompt(self):
+        fake = FakeCall(member_status="left")
+        ctx, shown = self.make_recording_ctx(fake)
+        handlers.handle_update(private_callback(5004, "menu:home"), ctx)
+        self.assertEqual(shown, [])
+        answers = methods(fake, "answerCallbackQuery")
+        self.assertEqual(len(answers), 1)
+        self.assertTrue(answers[0].get("show_alert"))
+        self.assertIsNotNone(
+            join_prompt_buttons(methods(fake, "sendMessage")))
+
+    def test_starter_verify_member_shows_menu(self):
+        fake = FakeCall(member_status="member")
+        ctx, shown = self.make_recording_ctx(fake)
+        handlers.handle_update(private_callback(5005, "verify-starter"), ctx)
+        self.assertEqual(shown, [(5005, 42, "welcome")])
+        self.assertEqual(self.read_starters(), [5005])
+
+    def test_starter_verify_left_reshows_prompt(self):
+        fake = FakeCall(member_status="left")
+        ctx, shown = self.make_recording_ctx(fake)
+        handlers.handle_update(private_callback(5006, "verify-starter"), ctx)
+        self.assertEqual(shown, [])
+        answers = methods(fake, "answerCallbackQuery")
+        self.assertEqual(len(answers), 1)
+        self.assertTrue(answers[0].get("show_alert"))
+        self.assertIsNotNone(
+            join_prompt_buttons(methods(fake, "sendMessage")))
+
+    def test_starter_verify_check_error_fails_open(self):
+        for variant in ("raise", "notok"):
+            fake = FakeCall(raise_on_get=(variant == "raise"),
+                            member_status=None if variant == "notok"
+                            else "member")
+            ctx, shown = self.make_recording_ctx(fake)
+            handlers.handle_update(
+                private_callback(5007, "verify-starter"), ctx)
+            self.assertEqual(shown, [(5007, 42, "welcome")],
+                             variant)
+
+    def test_non_member_start_check_error_fails_open(self):
+        fake = FakeCall(raise_on_get=True, member_status="member")
+        ctx, shown = self.make_recording_ctx(fake)
+        handlers.handle_update(private_message(5008, "/start"), ctx)
+        self.assertEqual(shown, [(5008, None, "welcome")])
+
+    def test_admin_exempt_from_gate(self):
+        fake = FakeCall(member_status="left")
+        ctx, shown = self.make_recording_ctx(fake)
+        handlers.handle_update(
+            private_message(5009, "/start",
+                            username="shafeque_rayaroth"), ctx)
+        self.assertEqual(shown, [(5009, None, "welcome")])
+        self.assertEqual(methods(fake, "sendMessage"), [])
+
+    def test_group_verify_assign_exempt_from_gate(self):
+        # A non-member of @missionacademy_official can still complete
+        # the IGNOU group verification: the gate must not intercept
+        # verify-assign callbacks (the group flow has its own check).
+        fake = FakeCall(member_status="left")
+        ctx, shown = self.make_recording_ctx(fake)
+        handlers.handle_update(
+            join_update(GROUP_CHAT, [{"id": 5010, "first_name": "Asha"}]),
+            ctx)
+        handlers.handle_update(verify_update(GROUP_CHAT, 5010), ctx)
+        self.assertEqual(shown, [])
+        # Only the initial private prompt was sent; the gate sent nothing.
+        self.assertEqual(len(methods(fake, "sendMessage")), 1)
+        self.assertIsNone(
+            join_prompt_buttons(methods(fake, "sendMessage")))
+        answers = methods(fake, "answerCallbackQuery")
+        self.assertTrue(answers)
+        self.assertIn("join", answers[-1].get("text", "").lower())
+
+
 if __name__ == "__main__":
     unittest.main()
