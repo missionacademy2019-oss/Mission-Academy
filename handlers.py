@@ -1311,6 +1311,12 @@ def _handle_starter_verify(cb: dict, ctx: dict, menus: dict) -> None:
         return
     status = _channel_status(ctx, user_id, FORCE_JOIN_CHANNEL)
     if status == "member":
+        # Clear the stale negative cache entry: _is_channel_member may
+        # have cached this user as a non-member at /start (5-min TTL),
+        # and the per-message gate reuses that cache — without this,
+        # the very next message re-shows the Join prompt even though
+        # Verify just passed (seen 14 Nov 2026 on a live test account).
+        _MEMBER_CACHE[user_id] = (True, time.time(), _MEMBER_TTL)
         try:
             ctx["call"]("answerCallbackQuery", {
                 "callback_query_id": cb["id"],
@@ -1325,6 +1331,10 @@ def _handle_starter_verify(cb: dict, ctx: dict, menus: dict) -> None:
         return
     if status == "error":
         # Fail open: a Telegram blip must never lock out all students.
+        # Same cache fix as the member path: the user is being let in,
+        # so the stale non-member entry must not re-block their next
+        # message.
+        _MEMBER_CACHE[user_id] = (True, time.time(), _MEMBER_TTL)
         try:
             ctx["call"]("answerCallbackQuery", {
                 "callback_query_id": cb["id"],
